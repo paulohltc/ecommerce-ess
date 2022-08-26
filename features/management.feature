@@ -1,5 +1,4 @@
-# todo
-Feature: arroz
+Feature: User mane
 
     In order to
 
