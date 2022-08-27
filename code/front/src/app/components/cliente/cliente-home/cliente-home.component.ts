@@ -3,10 +3,10 @@ import { NomesService } from 'src/app/services/nomes.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './cliente-home.component.html',
+  styleUrls: ['./cliente-home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ClienteHomeComponent implements OnInit {
 
   nome: string = "palao";
   idade: number = 21;
