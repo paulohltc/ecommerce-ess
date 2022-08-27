@@ -1,0 +1,8 @@
+<p>Adicione um nome abaixo</p>
+<input type="text" [(ngModel)]="nome">
+<button (click)="adicionarNome()">Adicione um nome</button>
+
+<ul *ngFor="let nome of listarNomes();index as i">
+    <li>{{nome}}</li>
+    <button (click)="removerNome(i)">Remover nome</button>
+</ul>
