@@ -1,18 +1,17 @@
-<html>
-<h1>Login</h1>
-<table>
-    <tr>
-        <td><label>CPF </label></td>
-        <td><input></td>
-    </tr>
-    <tr>
-        <td><label>Senha </label></td>
-        <td><input></td>
-        <td><button>Entrar</button></td>
-    </tr>
-    <tr>
-        <a routerLink="/register">Não tem conta? Cadastre-se</a>
-    </tr>
-</table>
+<form class="login-form">
+    <h2>Login</h2>
+    <mat-form-field appearance="fill">
+        <mat-label>CPF</mat-label>
+        <input matInput type="cpf" name="cpf">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="showPassword ? 'text' : 'password'" name="password">
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+            {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Entrar</button>
 
-</html>
+    <a mat-button href="/register" target="_blank">Não tem conta? Cadastre-se!</a>
+</form>
