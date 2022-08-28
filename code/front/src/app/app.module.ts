@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -47,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCheckboxModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
