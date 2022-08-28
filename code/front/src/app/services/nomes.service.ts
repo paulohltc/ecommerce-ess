@@ -3,11 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class NomesService {
 
   nomes: string[];
-
-
 
   constructor() {
     this.nomes = [];
