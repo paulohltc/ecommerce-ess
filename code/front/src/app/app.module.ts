@@ -1,10 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-//import {MatInputModule} from '@angular/material/input';
 import { MatInputModule} from '@angular/material/input';
-
-
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +17,8 @@ import { AdminProductsComponent } from './components/empresa/admin-products/admi
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
 import { AdminUsersComponent } from './components/empresa/admin-users/admin-users.component';
 import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,7 +38,9 @@ import { AdminProfilePageComponent } from './components/empresa/admin-profile-pa
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatFormFieldModule,
     MatInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
