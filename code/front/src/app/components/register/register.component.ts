@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     cpf: [''],
     email: [''],
     password: [''],
-    offers: [''],
+    offers: [false],
   });;
 
 
