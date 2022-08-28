@@ -1,31 +1,37 @@
 <html>
 <h1>Register</h1>
 <table>
-    <tr>
-        <td><label>Nome </label></td>
-        <td><input></td>
-    </tr>
-    <tr>
-        <td><label>CPF </label></td>
-        <td><input></td>
-    </tr>
-    <tr>
-        <td><label>Senha </label></td>
-        <td><input></td>
-    </tr>
-    <tr>
-        <td><label>Email </label></td>
-        <td><input></td>
-        <td><button>Cadastrar</button></td>
-    </tr>
+    
+    <mat-form-field class="seu-nome" appearance="fill">
+        <mat-label>Seu nome</mat-label>
+        <input matInput placeholder="Ex. Leonardo">
+    </mat-form-field>
+
+    <mat-form-field class="seu-cpf" appearance="fill">
+        <mat-label>Seu CPF</mat-label>
+        <input matInput placeholder="Ex. 123.234.345-56">
+    </mat-form-field>
+
+    <mat-form-field class="sua-senha" appearance="fill">
+        <mat-label>Sua senha</mat-label>
+        <input matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="seu-email" appearance="fill">
+        <mat-label>Seu email</mat-label>
+        <input matInput placeholder="Ex. meunome@gmail.com">
+    </mat-form-field>
+
+    <a mat-raised-button color = "primary" href="/login" target="_blank">Link</a>
+    
     <tr>
         <a routerLink="/login">Fazer login!</a>
     </tr>
-    <div>
-        <input type="checkbox" id="promocoes" name="promocoes"
-               checked>
-        <label for="promocoes">Receber promoções no email</label>
-    </div>
+
+    <section>
+        <mat-checkbox color = "primary" class="checkbox">Receber promoções no email</mat-checkbox>
+      </section>
+
 </table>
 
 </html>
