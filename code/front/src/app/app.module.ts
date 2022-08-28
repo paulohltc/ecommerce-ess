@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { ClienteHomeComponent } from './components/cliente/cliente-home/cliente-home.component';
 import { ClienteShoppingCartComponent } from './components/cliente/cliente-shopping-cart/cliente-shopping-cart.component';
 import { ClienteDebitCardComponent } from './components/cliente/cliente-debit-card/cliente-debit-card.component';
@@ -18,10 +19,12 @@ import { AdminProfilePageComponent } from './components/empresa/admin-profile-pa
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     ClienteHomeComponent,
     ClienteShoppingCartComponent,
     ClienteDebitCardComponent,

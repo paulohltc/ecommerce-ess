@@ -10,10 +10,14 @@ import { AdminProductsComponent } from './components/empresa/admin-products/admi
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
 import { AdminUsersComponent } from './components/empresa/admin-users/admin-users.component';
 import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'register', component: RegisterComponent
   },
 
   // Rotas de cliente
