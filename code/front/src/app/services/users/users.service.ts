@@ -10,7 +10,8 @@ import { User } from 'src/app/models/user';
 export class UsersService {
 
   users: User[];
-  private admin: User = new User('admin', '01234567899', 'admin@admin.com', '123', false, 'Admin')
+
+  private admin: User = new User('admin', '01234567899', 'admin@admin.com', '123', false, 'Admin');
   constructor() { this.users = [this.admin]; }
 
   getUsers(): Observable<User[]> {

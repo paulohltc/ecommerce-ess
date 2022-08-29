@@ -42,9 +42,7 @@ export class RegisterComponent implements OnInit {
 
   createUser() {
     this.usersService.addUser(this.userForm.value);
-    console.log(this.usersService.getUsers());
     this.cleanUserForm();
-
   }
 
 }
