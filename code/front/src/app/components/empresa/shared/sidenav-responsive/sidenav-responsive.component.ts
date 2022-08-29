@@ -4,20 +4,11 @@ import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-admin-products',
-  templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.css']
+  selector: 'app-sidenav-responsive',
+  templateUrl: './sidenav-responsive.component.html',
+  styleUrls: ['./sidenav-responsive.component.css']
 })
-// export class AdminProductsComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
-export class AdminProductsComponent {
+export class SidenavResponsiveComponent {
   mobileQuery: MediaQueryList;
 
 
