@@ -6,7 +6,6 @@ export class User {
     password: string;
     offers: boolean;
 
-
     constructor(name: string, cpf: string, email: string, password: string, offers: boolean) {
         this.name = name;
         this.cpf = cpf;

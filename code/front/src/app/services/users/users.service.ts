@@ -15,7 +15,7 @@ export class UsersService {
     return this.users;
   }
 
-  adicionarNome(user: User): void {
+  addUser(user: User): void {
     this.users.push(user);
   }
 

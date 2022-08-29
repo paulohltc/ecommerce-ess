@@ -1,15 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatInputModule} from '@angular/material/input';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -49,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
