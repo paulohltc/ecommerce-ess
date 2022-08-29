@@ -1,5 +1,11 @@
+
+html{
+    justify-content: center;
+}
+
 .login-form{
     display: flex;
     flex-direction: column;
     padding: 50px;
+    width: 50vh;
 }

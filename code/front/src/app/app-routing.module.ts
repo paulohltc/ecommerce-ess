@@ -6,7 +6,7 @@ import { ClienteHomeComponent } from './components/cliente/cliente-home/cliente-
 import { ClienteShoppingCartComponent } from './components/cliente/cliente-shopping-cart/cliente-shopping-cart.component';
 import { ClienteDebitCardComponent } from './components/cliente/cliente-debit-card/cliente-debit-card.component';
 import { ClienteProfilePageComponent } from './components/cliente/cliente-profile-page/cliente-profile-page.component';
-import { AdminProductsComponent } from './components/empresa/admin-products/admin-products.component';
+import { SidenavResponsiveExample } from './components/empresa/admin-products/admin-products.component';
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
 import { AdminUsersComponent } from './components/empresa/admin-users/admin-users.component';
 import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
@@ -36,7 +36,7 @@ const routes: Routes = [
 
   // Rotas de funcionários
   {
-    path: 'products', component: AdminProductsComponent
+    path: 'products', component: SidenavResponsiveExample
   },
   {
     path: 'sales', component: AdminSalesComponent
