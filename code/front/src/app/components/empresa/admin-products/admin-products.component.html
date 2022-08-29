@@ -1,5 +1,27 @@
-<html>
-<app-sidenav-responsive></app-sidenav-responsive>
-<p> oi teste</p>
+<div class="example-container">
+    <mat-toolbar color="primary" class="toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="example-app-name">Administração</h1>
+    </mat-toolbar>
 
-</html>
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav mode = "push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+            <mat-nav-list>
+                <mat-list-item><a routerLink="/sales">Vendas</a></mat-list-item>
+                <a mat-list-item routerLink="/admin-profile-page">Fulano</a>
+                <a mat-list-item routerLink="/products">Produtos</a>
+                <a mat-list-item routerLink="/sales">Vendas</a>
+                <a mat-list-item routerLink="/users">Usuários</a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</div>

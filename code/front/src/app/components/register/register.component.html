@@ -1,43 +1,45 @@
 <html>
+    <div class = "grand-parent">
+        <div class = "cointainer">
+            <form class="register-form" [formGroup]="userForm">
+                <h1>Cadastro</h1>
+                <mat-form-field class="seu-nome" appearance="fill">
+                    <mat-label>Seu nome</mat-label>
+                    <input matInput placeholder="Ex. Leonardo" matInput formControlName="name" name="password">
+                </mat-form-field>
 
-<form class="register-form" [formGroup]="userForm">
-    <h1>Cadastro</h1>
-    <mat-form-field class="seu-nome" appearance="fill">
-        <mat-label>Seu nome</mat-label>
-        <input matInput placeholder="Ex. Leonardo" matInput formControlName="name" name="password">
-    </mat-form-field>
+                <mat-form-field class="seu-cpf" appearance="fill">
+                    <mat-label>Seu CPF</mat-label>
+                    <input matInput placeholder="Ex. 123.234.345-56" matInput formControlName="cpf" name="cpf">
+                </mat-form-field>
 
-    <mat-form-field class="seu-cpf" appearance="fill">
-        <mat-label>Seu CPF</mat-label>
-        <input matInput placeholder="Ex. 123.234.345-56" matInput formControlName="cpf" name="cpf">
-    </mat-form-field>
+                <!-- <mat-form-field class="sua-senha" appearance="fill">
+                    <mat-label>Sua senha</mat-label>
+                    <input matInput placeholder="">
+                </mat-form-field> -->
 
-    <!-- <mat-form-field class="sua-senha" appearance="fill">
-        <mat-label>Sua senha</mat-label>
-        <input matInput placeholder="">
-    </mat-form-field> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Senha</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" matInput formControlName="password" name="password">
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                        {{showPassword?'visibility_off':'visibility'}}
+                    </mat-icon>
+                </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Senha</mat-label>
-        <input matInput [type]="showPassword ? 'text' : 'password'" matInput formControlName="password" name="password">
-        <mat-icon matSuffix (click)="togglePasswordVisibility()">
-            {{showPassword?'visibility_off':'visibility'}}
-        </mat-icon>
-    </mat-form-field>
+                <mat-form-field class="seu-email" appearance="fill">
+                    <mat-label>Seu email</mat-label>
+                    <input matInput placeholder="Ex. meunome@gmail.com" matInput formControlName="email" name="email">
+                </mat-form-field>
 
-    <mat-form-field class="seu-email" appearance="fill">
-        <mat-label>Seu email</mat-label>
-        <input matInput placeholder="Ex. meunome@gmail.com" matInput formControlName="email" name="email">
-    </mat-form-field>
+                <a mat-raised-button color="primary" (click)="createUser()" target="_blank">Cadastrar</a>
 
-    <a mat-raised-button color="primary" (click)="createUser()" target="_blank">Cadastrar</a>
+                <a mat-button href="/login" target="_blank">Fazer login!</a>
 
-    <a mat-button href="/login" target="_blank">Fazer login!</a>
-
-    <section>
-        <mat-checkbox color="primary" class="checkbox" matInput formControlName="offers" name="offers">Receber promoções
-            no email</mat-checkbox>
-    </section>
-</form>
-
+                <section>
+                    <mat-checkbox color="primary" class="checkbox" matInput formControlName="offers" name="offers">Receber promoções
+                        no email</mat-checkbox>
+                </section>
+            </form>
+        </div>  
+    </div>
 </html>
