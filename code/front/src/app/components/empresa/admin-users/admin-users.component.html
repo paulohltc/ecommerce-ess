@@ -1,8 +1,31 @@
-<h1>Admin Users</h1>
-<p>admin-users works!</p>
-<ul *ngFor="let user of getUsers()">
-    <li>
-        <p> Nome : {{ user.name }} CPF : {{ user.cpf }} Email : {{ user.email }} Password : {{ user.password }} Offers :
-            {{ user.offers }}</p>
-    </li>
-</ul>
+<div class="example-container">
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+        <mat-sidenav [opened]=true mode="push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+            <mat-nav-list>
+                <a mat-list-item routerLink="/admin-profile-page">Fulano</a>
+                <a mat-list-item routerLink="/products">Produtos</a>
+                <a mat-list-item routerLink="/sales">Vendas</a>
+                <a mat-list-item routerLink="/users">Usuários</a>
+                <a mat-list-item routerLink="/login">Sair</a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <h1>Admin Users</h1>
+            <ul *ngFor="let user of getUsers()">
+                <li>
+                    <p> Auth : {{ user.auth }}, Nome : {{ user.name }}, CPF : {{ user.cpf }}, Email : {{ user.email }},
+                        Password : {{ user.password
+                        }}, Offers :
+                        {{ user.offers }}</p>
+                </li>
+            </ul>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

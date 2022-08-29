@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Login } from 'src/app/models/login';
 import { User } from 'src/app/models/user';
 
 @Injectable({
@@ -8,18 +10,38 @@ import { User } from 'src/app/models/user';
 export class UsersService {
 
   users: User[];
+  private admin: User = new User('admin', '01234567899', 'admin@admin.com', '123', false, 'Admin')
+  constructor() { this.users = [this.admin]; }
 
-  constructor() { this.users = []; }
+  getUsers(): Observable<User[]> {
+    const users = of(this.users);
+    return users;
+  }
 
-  getUsers(): User[] {
-    return this.users;
+  userExists(cpf: string): boolean {
+    let exists = false
+    for (let user of this.users)
+      if (user.cpf == cpf) exists = true;
+
+    return exists;
+  }
+
+  authPassword(login: Login): [boolean, string] {
+    let response = [false, ''];
+    for (let user of this.users) {
+      if (login.cpf == user.cpf) {
+        let samePassword: boolean = (login.password == user.password);
+        response = [samePassword, user.auth];
+      }
+    }
+    return response as [boolean, string];
   }
 
   addUser(user: User): void {
     this.users.push(user);
   }
 
-  removerNome(index: number): void {
+  removeUser(index: number): void {
     this.users.splice(index, 1);
   }
 }

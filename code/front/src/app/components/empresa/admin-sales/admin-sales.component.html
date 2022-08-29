@@ -1,1 +1,23 @@
-<p>admin-sales works!</p>
+<div class="example-container">
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+        <mat-sidenav [opened]=true mode="push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+            <mat-nav-list>
+                <a mat-list-item routerLink="/admin-profile-page">Fulano</a>
+                <a mat-list-item routerLink="/products">Produtos</a>
+                <a mat-list-item routerLink="/sales">Vendas</a>
+                <a mat-list-item routerLink="/users">Usuários</a>
+                <a mat-list-item routerLink="/login">Sair</a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <h1>Admin Sales</h1>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

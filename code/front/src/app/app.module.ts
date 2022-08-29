@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +13,6 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SidenavResponsiveComponent } from './components/empresa/shared/sidenav-responsive/sidenav-responsive.component';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -38,12 +38,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ClienteShoppingCartComponent,
     ClienteDebitCardComponent,
     ClienteProfilePageComponent,
-    SidenavResponsiveComponent,
     AdminProductsComponent,
     AdminSalesComponent,
     AdminUsersComponent,
     AdminProfilePageComponent,
-    SidenavResponsiveComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +59,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, SidenavResponsiveComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

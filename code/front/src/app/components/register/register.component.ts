@@ -15,8 +15,20 @@ export class RegisterComponent implements OnInit {
     cpf: [''],
     email: [''],
     password: [''],
-    offers: [false],
+    offers: [true],
+    auth: ['Cliente'],
   });;
+
+
+  cleanUserForm(): void {
+    this.userForm.patchValue({
+      name: [''],
+      cpf: [''],
+      email: [''],
+      password: [''],
+      offers: [true],
+    });
+  }
 
 
   public showPassword: boolean = false;
@@ -31,6 +43,8 @@ export class RegisterComponent implements OnInit {
   createUser() {
     this.usersService.addUser(this.userForm.value);
     console.log(this.usersService.getUsers());
+    this.cleanUserForm();
+
   }
 
 }
