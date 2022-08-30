@@ -45,3 +45,7 @@ html{
 .teste {
 width: 100%;
 }
+
+.errorMsg {
+    margin-top: 1vh;
+}

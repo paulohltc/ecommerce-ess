@@ -16,6 +16,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 export class LoginComponent implements OnInit {
 
   public showPassword: boolean = false;
+  public notAccount = false;
+  public notPassword = false;
 
   public userForm: FormGroup = this.formBuilder.group({
     cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),  
@@ -60,10 +62,12 @@ export class LoginComponent implements OnInit {
         route = this.authRouteMap.get(auth) as string;
       }
       else {
+        this.notPassword = true;
         console.log("senhas não conferem");
       }
     }
     else {
+      this.notAccount = true;
       console.log("conta nao existe");
     }
     this.router.navigateByUrl(route);
