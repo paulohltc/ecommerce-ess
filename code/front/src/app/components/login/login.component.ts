@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
+import {ErrorStateMatcher} from '@angular/material/core';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
 
   public showPassword: boolean = false;
 
   public userForm: FormGroup = this.formBuilder.group({
-    cpf: [''],
-    password: [''],
+    cpf: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
 
   private authRouteMap: Map<string, string> = new Map([

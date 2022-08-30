@@ -3,14 +3,16 @@
     <div class="container">
         <form class="login-form" [formGroup]="userForm">
             <h2>Login</h2>
-            <mat-form-field appearance="fill">
+            <mat-form-field class = "teste" appearance="fill">
                 <mat-label>CPF</mat-label>
                 <input matInput type="text" matInput formControlName="cpf" name="cpf">
+                <mat-error *ngIf="this.userForm.controls.cpf.hasError">Favor preencher CPF</mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>
                 <input matInput [type]="showPassword ? 'text' : 'password'" matInput formControlName="password"
                     name="password">
+                <mat-error *ngIf="this.userForm.controls.password.hasError">Favor preencher senha</mat-error>
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
                     {{showPassword?'visibility_off':'visibility'}}
                 </mat-icon>

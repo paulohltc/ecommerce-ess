@@ -11,10 +11,10 @@ export class RegisterComponent implements OnInit {
 
 
   public userForm: FormGroup = this.formBuilder.group({
-    name: [''],
-    cpf: [''],
-    email: [''],
-    password: [''],
+    name: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
     offers: [true],
     auth: ['Cliente'],
   });;

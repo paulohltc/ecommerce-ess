@@ -23,3 +23,25 @@ html{
     padding: 50px;
     width: 35vw;
 }
+
+.login-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+.mat-form-field {
+    margin-top: 2vh;
+}
+
+.mat-raised-button {
+    margin-top: 2vh;
+}
+
+.mat-button{
+    margin-top: 2vh;
+}
+
+.teste {
+width: 100%;
+}
