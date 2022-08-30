@@ -12,8 +12,8 @@ export class RegisterComponent implements OnInit {
 
   public userForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    cpf: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     offers: [true],
     auth: ['Cliente'],

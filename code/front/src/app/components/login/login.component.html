@@ -6,7 +6,12 @@
             <mat-form-field class = "teste" appearance="fill">
                 <mat-label>CPF</mat-label>
                 <input matInput type="text" matInput formControlName="cpf" name="cpf">
-                <mat-error *ngIf="this.userForm.controls.cpf.hasError">Favor preencher CPF</mat-error>
+                <!-- <mat-error *ngIf="this.userForm.controls.cpf.hasError">Favor preencher CPF</mat-error> -->
+                <!-- <mat-error *ngIf="userForm.get('cpf').hasError('required')"></mat-error> -->
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.required">Favor preencher CPF</mat-error>
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.minLenght">Favor preencher CPF corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.maxLenght">Favor preencher CPF corretamente</mat-error>
+
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>

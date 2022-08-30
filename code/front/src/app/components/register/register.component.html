@@ -12,7 +12,10 @@
             <mat-form-field class="seu-cpf" appearance="fill">
                 <mat-label>Seu CPF</mat-label>
                 <input matInput placeholder="Ex. 12323434556" matInput formControlName="cpf" name="cpf">
-                <mat-error *ngIf="this.userForm.controls.cpf.hasError">Favor fornecer CPF</mat-error>
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.required">Favor preencher CPF corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.minLenght"></mat-error>
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.maxLenght"></mat-error>
+
             </mat-form-field>
 
             <mat-form-field appearance="fill">
@@ -28,7 +31,9 @@
             <mat-form-field class="seu-email" appearance="fill">
                 <mat-label>Seu email</mat-label>
                 <input matInput placeholder="Ex. meunome@gmail.com" matInput formControlName="email" name="email">
-                <mat-error *ngIf="this.userForm.controls.email.hasError">Favor fornecer email</mat-error>
+                <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('cpf')?.errors?.email"></mat-error>
+
             </mat-form-field>
 
             <a mat-raised-button color="primary" (click)="createUser()" target="_blank">Cadastrar</a>

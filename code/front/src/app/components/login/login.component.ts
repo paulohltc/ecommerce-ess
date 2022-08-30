@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public showPassword: boolean = false;
 
   public userForm: FormGroup = this.formBuilder.group({
-    cpf: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),  
     password: new FormControl('', [Validators.required]),
   });
 
