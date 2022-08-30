@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormControl, FormGroupDirective, NgForm, Valida
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 
 @Component({
@@ -16,11 +16,9 @@ import {ErrorStateMatcher} from '@angular/material/core';
 export class LoginComponent implements OnInit {
 
   public showPassword: boolean = false;
-  public notAccount = false;
-  public notPassword = false;
 
   public userForm: FormGroup = this.formBuilder.group({
-    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),  
+    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),
     password: new FormControl('', [Validators.required]),
   });
 
@@ -30,6 +28,8 @@ export class LoginComponent implements OnInit {
     ['Funcionário', '/products'],
   ]);
 
+  wrongAccount: boolean = false;
+  wrongPassword: boolean = false;
 
   cleanUserForm(): void {
     this.userForm.setValue({
@@ -53,22 +53,20 @@ export class LoginComponent implements OnInit {
 
   loginRoute(): void {
     let route = '';
-    let auth = '';
-    console.log(this.usersService.getUsers());
     if (this.usersService.userExists(this.userForm.value.cpf)) {
+      this.wrongAccount = false;
       let response = this.usersService.authPassword(this.userForm.value);
-      auth = response[1];
+      let auth = response[1];
       if (response[0]) {
+        this.wrongPassword = false;
         route = this.authRouteMap.get(auth) as string;
       }
       else {
-        this.notPassword = true;
-        console.log("senhas não conferem");
+        this.wrongPassword = true;
       }
     }
     else {
-      this.notAccount = true;
-      console.log("conta nao existe");
+      this.wrongAccount = true;
     }
     this.router.navigateByUrl(route);
   }
