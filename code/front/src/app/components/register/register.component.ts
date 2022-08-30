@@ -41,9 +41,20 @@ export class RegisterComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
+
+  validForm(): boolean {
+    let valid = true;
+    Object.keys(this.userForm.controls).forEach(key => {
+      valid = (this.userForm.controls[key].status == "VALID") && valid;
+    });
+    return valid;
+  }
+
   createUser() {
-    this.usersService.addUser(this.userForm.value);
-    this.cleanUserForm();
+    if (this.validForm()) {
+      this.usersService.addUser(this.userForm.value);
+      this.cleanUserForm();
+    }
   }
 
 }

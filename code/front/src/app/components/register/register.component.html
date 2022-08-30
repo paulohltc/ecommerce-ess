@@ -5,13 +5,14 @@
             <h1>Faça seu cadastro</h1>
             <mat-form-field class="seu-nome" appearance="fill">
                 <mat-label>Seu nome</mat-label>
-                <input matInput placeholder="Ex. Leonardo" matInput formControlName="name" name="password">
+                <input matInput placeholder="Ex. Leonardo" maxlength="35" matInput formControlName="name"
+                    name="password">
                 <mat-error *ngIf="this.userForm.controls.name.hasError">Favor fornecer nome</mat-error>
             </mat-form-field>
 
             <mat-form-field class="seu-cpf" appearance="fill">
                 <mat-label>Seu CPF</mat-label>
-                <input matInput placeholder="Ex. 12323434556" matInput formControlName="cpf" name="cpf">
+                <input matInput placeholder="Ex. 12323434556" maxlength="11" matInput formControlName="cpf" name="cpf">
                 <mat-error *ngIf="userForm.get('cpf')?.errors?.required">Favor preencher CPF corretamente</mat-error>
                 <mat-error *ngIf="userForm.get('cpf')?.errors?.minLenght"></mat-error>
                 <mat-error *ngIf="userForm.get('cpf')?.errors?.maxLenght"></mat-error>
@@ -20,8 +21,8 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>
-                <input matInput [type]="showPassword ? 'text' : 'password'" matInput formControlName="password"
-                    name="password">
+                <input matInput [type]="showPassword ? 'text' : 'password'" maxlength="20" matInput
+                    formControlName="password" name="password">
                 <mat-error *ngIf="this.userForm.controls.password.hasError">Favor fornecer senha</mat-error>
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
                     {{showPassword?'visibility_off':'visibility'}}
@@ -30,7 +31,8 @@
 
             <mat-form-field class="seu-email" appearance="fill">
                 <mat-label>Seu email</mat-label>
-                <input matInput placeholder="Ex. meunome@gmail.com" matInput formControlName="email" name="email">
+                <input matInput placeholder="Ex. meunome@gmail.com" maxlength="55" matInput formControlName="email"
+                    name="email">
                 <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
                 <mat-error *ngIf="userForm.get('cpf')?.errors?.email"></mat-error>
 
