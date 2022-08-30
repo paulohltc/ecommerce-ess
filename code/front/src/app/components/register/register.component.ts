@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Route, Router, RouterModule, Routes } from '@angular/router';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -7,9 +8,12 @@ import { UsersService } from 'src/app/services/users/users.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+
 export class RegisterComponent implements OnInit {
 
   numberRegEx = /\-?\d*\.?\d{1,2}/;
+  errorMsg = false;
 
   public userForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
@@ -33,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
 
   public showPassword: boolean = false;
-  constructor(private usersService: UsersService, private formBuilder: FormBuilder) { }
+  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -53,8 +57,12 @@ export class RegisterComponent implements OnInit {
   createUser() {
     if (this.validForm()) {
       this.usersService.addUser(this.userForm.value);
+      this.router.navigate(['products'])
       this.cleanUserForm();
+    } else {
+      this.errorMsg = true;
     }
+    
   }
 
 }

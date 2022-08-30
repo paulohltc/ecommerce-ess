@@ -39,6 +39,7 @@
             </mat-form-field>
 
             <a mat-raised-button color="primary" (click)="createUser()" target="_blank">Cadastrar</a>
+            <mat-error class = "errorMsg" *ngIf="errorMsg">Favor preencher as informações corretamente!</mat-error>
 
             <a mat-button routerLink="/login">Fazer login!</a>
 
