@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
   createUser() {
     if (this.validForm()) {
       this.usersService.addUser(this.userForm.value);
-      this.router.navigate(['products'])
+      this.router.navigate(['login'])
       this.cleanUserForm();
     } else {
       this.errorMsg = true;
