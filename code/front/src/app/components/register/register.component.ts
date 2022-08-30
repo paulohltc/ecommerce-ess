@@ -9,10 +9,11 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class RegisterComponent implements OnInit {
 
+  numberRegEx = /\-?\d*\.?\d{1,2}/;
 
   public userForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),
+    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     offers: [true],
