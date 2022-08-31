@@ -24,3 +24,12 @@ h1.example-app-name {
 .example-is-mobile .example-sidenav-container {
     flex: 1 0 auto;
 }
+
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+font-size: 14px;
+width: 100%;
+}
