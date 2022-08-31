@@ -1,70 +1,69 @@
 <div class="example-container">
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 
-        <mat-sidenav [opened]=true mode="push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-            [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-            <mat-nav-list>
-                <a mat-list-item routerLink="/admin-profile-page">Fulano</a>
-                <a mat-list-item routerLink="/products">Produtos</a>
-                <a mat-list-item routerLink="/sales">Vendas</a>
-                <a mat-list-item routerLink="/users">Usuários</a>
-                <a mat-list-item routerLink="/login">Sair</a>
-            </mat-nav-list>
-        </mat-sidenav>
+    <mat-sidenav [opened]=true mode="push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/admin-profile-page">Fulano</a>
+        <a mat-list-item routerLink="/products">Produtos</a>
+        <a mat-list-item routerLink="/sales">Vendas</a>
+        <a mat-list-item routerLink="/users">Usuários</a>
+        <a mat-list-item routerLink="/login">Sair</a>
+      </mat-nav-list>
+    </mat-sidenav>
 
-        <mat-sidenav-content>
-            <h1>Admin Users</h1>
-            <mat-form-field appearance="standard">
-                <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-            </mat-form-field>
+    <mat-sidenav-content>
+      <h1>Admin Users</h1>
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
 
-            <table mat-table [dataSource]="dataSource" class="table">
+      <table mat-table [dataSource]="getUsers()" class="table">
 
-                <ng-container matColumnDef="user">
-                  <th mat-header-cell *matHeaderCellDef> Tipo de usuário </th>
-                  <td mat-cell *matCellDef="let element"> {{element.auth}} </td>
-                </ng-container>
-              
-                <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef> Nome </th>
-                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>
-              
-                <ng-container matColumnDef="cpf">
-                  <th mat-header-cell *matHeaderCellDef> CPF </th>
-                  <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
-                </ng-container>
-              
-                <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef> E-mail </th>
-                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-                </ng-container>
-              
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              
-                <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-                </tr>
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef> Tipo de usuário </th>
+          <td mat-cell *matCellDef="let element"> {{element.auth}} </td>
+        </ng-container>
 
-              </table>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-            <ul *ngFor="let user of getUsers()">
-                <li>
-                    <p> Auth : {{ user.auth }}, Nome : {{ user.name }}, CPF : {{ user.cpf }}, Email : {{ user.email }},
-                        Password : {{ user.password
-                        }}, Offers :
-                        {{ user.offers }}</p>
-                </li> 
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef> CPF </th>
+          <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> E-mail </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+
+      </table>
+
+      <ul *ngFor="let user of getUsers()">
+        <li>
+          <p> Auth : {{ user.auth }}, Nome : {{ user.name }}, CPF : {{ user.cpf }}, Email : {{ user.email }},
+            Password : {{ user.password
+            }}, Offers :
+            {{ user.offers }}</p>
+        </li>
 
 
-            </ul>
-            <a mat-raised-button color="primary" (click)="makeDataSource()" target="_blank">Click</a>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
+      </ul>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
 
-    </mat-sidenav-container>
+  </mat-sidenav-container>
 
 </div>

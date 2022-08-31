@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -17,7 +17,6 @@ export class AdminUsersComponent implements OnInit {
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
-  public data: employee[] = []
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private usersService: UsersService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -39,16 +38,10 @@ export class AdminUsersComponent implements OnInit {
     return users;
   }
 
-  makeDataSource(){
-    for(let user of this.getUsers()){
-      let newUser = {user: user.auth, name: user.name, cpf: user.cpf, email: user.email}
-      this.data.push(newUser)
-      console.log(this.data);
-    }
-  }
+
 
   displayedColumns: string[] = ['user', 'name', 'cpf', 'email'];
-  dataSource = new MatTableDataSource(this.data);
+  dataSource = new MatTableDataSource(this.getUsers());
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -57,11 +50,6 @@ export class AdminUsersComponent implements OnInit {
 
 }
 
-export interface employee {
-  user: string;
-  name: string;
-  cpf: string;
-  email: string;
-}
+
 
 
