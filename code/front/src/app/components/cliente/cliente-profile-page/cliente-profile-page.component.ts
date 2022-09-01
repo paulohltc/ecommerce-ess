@@ -20,9 +20,7 @@ export class ClienteProfilePageComponent implements OnInit {
   msgEditDisplay = false;
 
 
-  currUserName: string = '';
-  currUserEmail: string = '';
-  currUserPassword: string = '';
+
 
   errorMsg = false;
   showPassword: boolean = false;
@@ -39,9 +37,11 @@ export class ClienteProfilePageComponent implements OnInit {
   ngOnInit(): void {
     let userCPF: string = this.loggedCPFService.getCPF();
     let currUser: User = this.usersService.getUserFromCPF(userCPF);
-    this.currUserName = currUser.name;
-    this.currUserEmail = currUser.email;
-    this.currUserPassword = currUser.password;
+    this.userEditForm.patchValue({
+      name: [currUser.name],
+      email: [currUser.email],
+      password: [currUser.password],
+    })
   }
 
   togglePasswordVisibility(): void {
