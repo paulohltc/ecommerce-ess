@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public showPassword: boolean = false;
 
   public userForm: FormGroup = this.formBuilder.group({
-    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),
+    CPF: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),
     password: new FormControl('', [Validators.required]),
   });
 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   cleanUserForm(): void {
     this.userForm.setValue({
-      cpf: [''],
+      CPF: [''],
       password: [''],
     });
   }
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
   loginRoute(): void {
     let route = '';
-    if (this.usersService.userExists(this.userForm.value.cpf)) {
+    if (this.usersService.userExists(this.userForm.value.CPF)) {
       this.wrongAccount = false;
       let response = this.usersService.authPassword(this.userForm.value);
       let auth = response[1];

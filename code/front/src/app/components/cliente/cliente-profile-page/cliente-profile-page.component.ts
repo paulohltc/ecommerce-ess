@@ -1,6 +1,8 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/users/users.service';
+import { User } from 'src/app/models/user';
 
 
 
@@ -20,12 +22,12 @@ export class ClienteProfilePageComponent implements OnInit {
 
   public userEditForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
+    CPF: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService) { }
 
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class ClienteProfilePageComponent implements OnInit {
   cleanUserForm(): void {
     this.userEditForm.patchValue({
       name: [''],
-      cpf: [''],
+      CPF: [''],
       email: [''],
       password: [''],
     });
@@ -54,11 +56,17 @@ export class ClienteProfilePageComponent implements OnInit {
 
   saveEdit(): void {
     if (this.validForm()) {
-      // edita
-      this.errorMsg = false;
+      let formCPF: string = this.userEditForm.value.CPF;
+      console.log(formCPF);
+      if (this.usersService.userExists(formCPF)) {
+        this.usersService.updateUser(this.userEditForm.value);
+        this.errorMsg = false;
+      } else {
+        // erro, editando de CPF que nao existe
+        this.errorMsg = true;
+      }
     }
     else {
-      console.log('batatinha')
       this.errorMsg = true;
     }
   }

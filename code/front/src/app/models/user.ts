@@ -1,7 +1,7 @@
 export interface User {
 
     name: string;
-    cpf: string;
+    CPF: string;
     email: string;
     password: string;
     offers: boolean;

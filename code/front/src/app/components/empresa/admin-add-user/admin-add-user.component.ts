@@ -16,7 +16,7 @@ export class AdminAddUserComponent implements OnInit {
 
   public userForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
+    CPF: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     offers: [false],
@@ -32,7 +32,7 @@ export class AdminAddUserComponent implements OnInit {
   cleanUserForm(): void {
     this.userForm.patchValue({
       name: [''],
-      cpf: [''],
+      CPF: [''],
       email: [''],
       password: [''],
       offers: [false],

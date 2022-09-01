@@ -31,6 +31,7 @@ import { AdminProfilePageComponent } from './components/empresa/admin-profile-pa
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin-add-user.component';
+import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 
 
 
@@ -48,6 +49,7 @@ import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin
     AdminUsersComponent,
     AdminProfilePageComponent,
     AdminAddUserComponent,
+    AdminAddProductComponent,
   ],
   imports: [
     BrowserModule,

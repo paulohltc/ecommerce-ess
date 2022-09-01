@@ -20,7 +20,7 @@ export class AdminUsersComponent implements OnInit {
   private _mobileQueryListener: () => void;
   formatCPF = formatCPF;
 
-  displayedColumns: string[] = ['user', 'name', 'cpf', 'email', 'delete'];
+  displayedColumns: string[] = ['user', 'name', 'CPF', 'email', 'delete'];
   dataSource = new MatTableDataSource(this.getUsers())
 
   constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private usersService: UsersService) {
@@ -38,12 +38,13 @@ export class AdminUsersComponent implements OnInit {
   }
 
   getCPFfromIndex(index: number): string {
-    return this.dataSource.data[index].cpf;
+    return this.dataSource.data[index].CPF;
   }
 
   getUsers(): User[] {
     let users: Map<string, User> = new Map([]);
     this.usersService.getUsers().subscribe(usersList => users = usersList);
+    console.log(Array.from(users.values()));
     return Array.from(users.values());
   }
 
@@ -54,8 +55,8 @@ export class AdminUsersComponent implements OnInit {
     })
   }
 
-  removeUser(cpf: string): void {
-    this.usersService.removeUser(cpf);
+  removeUser(CPF: string): void {
+    this.usersService.removeUser(CPF);
     this.refresh();
   }
 

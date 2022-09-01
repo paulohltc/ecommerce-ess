@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   public userForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
+    CPF: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     offers: [true],
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   cleanUserForm(): void {
     this.userForm.patchValue({
       name: [''],
-      cpf: [''],
+      CPF: [''],
       email: [''],
       password: [''],
       offers: [true],
@@ -54,11 +54,16 @@ export class RegisterComponent implements OnInit {
     return valid;
   }
 
-  createUser() {
+  createUser(): void {
     if (this.validForm()) {
-      this.usersService.addUser(this.userForm.value);
-      this.cleanUserForm()
-      this.router.navigate(['login'])
+      if (!this.usersService.userExists(this.userForm.value.CPF)) {
+        this.usersService.addUser(this.userForm.value);
+        this.cleanUserForm()
+        this.router.navigate(['login'])
+      }
+      else {
+        // erro, registrando CPF que ja existe
+      }
     } else {
       this.errorMsg = true;
     }

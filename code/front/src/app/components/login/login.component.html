@@ -5,12 +5,12 @@
             <h2>Login</h2>
             <mat-form-field class="teste" appearance="fill">
                 <mat-label>CPF</mat-label>
-                <input matInput type="text" matInput formControlName="cpf" name="cpf">
-                <!-- <mat-error *ngIf="this.userForm.controls.cpf.hasError">Favor preencher CPF</mat-error> -->
-                <!-- <mat-error *ngIf="userForm.get('cpf').hasError('required')"></mat-error> -->
-                <mat-error *ngIf="userForm.get('cpf')?.errors?.required">Favor preencher CPF</mat-error>
-                <mat-error *ngIf="userForm.get('cpf')?.errors?.minLenght">Favor preencher CPF corretamente</mat-error>
-                <mat-error *ngIf="userForm.get('cpf')?.errors?.maxLenght">Favor preencher CPF corretamente</mat-error>
+                <input matInput type="text" matInput formControlName="CPF" name="CPF">
+                <!-- <mat-error *ngIf="this.userForm.controls.CPF.hasError">Favor preencher CPF</mat-error> -->
+                <!-- <mat-error *ngIf="userForm.get('CPF').hasError('required')"></mat-error> -->
+                <mat-error *ngIf="userForm.get('CPF')?.errors?.required">Favor preencher CPF</mat-error>
+                <mat-error *ngIf="userForm.get('CPF')?.errors?.minLenght">Favor preencher CPF corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('CPF')?.errors?.maxLenght">Favor preencher CPF corretamente</mat-error>
 
             </mat-form-field>
             <mat-form-field appearance="fill">

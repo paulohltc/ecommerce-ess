@@ -30,13 +30,13 @@
         <div class="grand-parent">
             <div class="cointainer">
                 <form class="register-form" [formGroup]="userEditForm">
-                    <mat-form-field class="seu-cpf" appearance="fill">
+                    <mat-form-field class="seu-CPF" appearance="fill">
                         <mat-label>CPF</mat-label>
-                        <input matInput placeholder="CPF" maxlength="11" matInput formControlName="cpf" name="cpf">
-                        <mat-error *ngIf="userEditForm.get('cpf')?.errors?.required">Favor preencher CPF corretamente
+                        <input matInput placeholder="CPF" maxlength="11" matInput formControlName="CPF" name="CPF">
+                        <mat-error *ngIf="userEditForm.get('CPF')?.errors?.required">Favor preencher CPF corretamente
                         </mat-error>
-                        <mat-error *ngIf="userEditForm.get('cpf')?.errors?.minLenght"></mat-error>
-                        <mat-error *ngIf="userEditForm.get('cpf')?.errors?.maxLenght"></mat-error>
+                        <mat-error *ngIf="userEditForm.get('CPF')?.errors?.minLenght"></mat-error>
+                        <mat-error *ngIf="userEditForm.get('CPF')?.errors?.maxLenght"></mat-error>
                     </mat-form-field>
                     <mat-form-field class="seu-nome" appearance="fill">
                         <mat-label>Nome</mat-label>
