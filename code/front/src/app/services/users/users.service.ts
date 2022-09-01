@@ -10,40 +10,43 @@ import { User } from 'src/app/models/user';
 
 export class UsersService {
 
-  users: User[];
+  users: Map<string, User>;
 
   private admin: User = { name: 'admin', cpf: '01234567899', email: 'admin@admin.com', password: '123', auth: 'Admin', offers: false };
-  constructor() { this.users = [this.admin]; }
+  constructor() {
+    this.users = new Map([
+      [this.admin.cpf, this.admin]]);
+  }
 
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<Map<string, User>> {
     const users = of(this.users);
     return users;
   }
 
-  userExists(cpf: string): boolean {
-    let exists = false
-    for (let user of this.users)
-      if (user.cpf == cpf) exists = true;
-
-    return exists;
+  userExists(CPF: string): boolean {
+    for (let [cpfKey, userValue] of this.users) {
+      if (cpfKey == CPF) return true;
+    }
+    return false;
   }
 
   authPassword(login: Login): [boolean, string] {
     let response = [false, ''];
-    for (let user of this.users) {
-      if (login.cpf == user.cpf) {
-        let samePassword: boolean = (login.password == user.password);
-        response = [samePassword, user.auth];
+    for (let [cpfKey, userValue] of this.users) {
+      if (login.cpf == cpfKey) {
+        let samePassword: boolean = (login.password == userValue.password);
+        response = [samePassword, userValue.auth];
       }
     }
     return response as [boolean, string];
   }
 
   addUser(user: User): void {
-    this.users.push(user);
+    this.users.set(user.cpf, user);
   }
 
-  removeUser(index: number): void {
-    this.users.splice(index, 1);
+  removeUser(cpf: string): void {
+    if (cpf != this.admin.cpf)
+      this.users.delete(cpf);
   }
 }
