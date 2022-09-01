@@ -13,10 +13,15 @@ export class UsersService {
 
   users: Map<string, User>;
 
-  private admin: User = { name: 'admin', CPF: '01234567899', email: 'admin@admin.com', password: '123', auth: 'Admin', offers: false };
+  private admin: User = { name: 'admin', CPF: '00000000000', email: 'admin@admin.com', password: '123', auth: 'Admin', offers: false };
+  private client: User = { name: 'client-test', CPF: '00000000001', email: 'client@test.com', password: '123', auth: 'Cliente', offers: false };
+  private employee: User = { name: 'employee-test', CPF: '00000000002', email: 'employee@test.com', password: '123', auth: 'Funcionário', offers: false };
   constructor() {
     this.users = new Map([
-      [this.admin.CPF, this.admin]]);
+      [this.admin.CPF, this.admin],
+      [this.client.CPF, this.client],
+      [this.employee.CPF, this.employee],
+    ]);
   }
 
   getUserFromCPF(CPF: string): User {

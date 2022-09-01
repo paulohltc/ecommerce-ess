@@ -8,7 +8,9 @@
         <a mat-list-item routerLink="/admin-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
         <a mat-list-item routerLink="/products">Produtos<mat-icon class="meio">store</mat-icon></a>
         <a mat-list-item routerLink="/sales">Vendas<mat-icon class="meio">attach_money</mat-icon></a>
-        <a mat-list-item routerLink="'/users'">Usuários <mat-icon class="meio">event_note</mat-icon></a>
+        <div *ngIf="isAdmin">
+          <a mat-list-item routerLink="/users">Usuários <mat-icon class="meio">event_note</mat-icon></a>
+        </div>
         <div class="absolute"><a mat-list-item (click)="logOut()" routerLink="/login">Sair</a></div>
       </mat-nav-list>
     </mat-sidenav>

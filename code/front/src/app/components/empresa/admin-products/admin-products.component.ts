@@ -15,8 +15,7 @@ export class AdminProductsComponent implements OnInit {
 
 
   mobileQuery: MediaQueryList;
-
-
+  isAdmin: boolean = false;
 
   private _mobileQueryListener: () => void;
 
@@ -28,7 +27,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.isAdmin = this.loggedService.getAuth() == 'Admin';
   }
 
   ngOnDestroy(): void {

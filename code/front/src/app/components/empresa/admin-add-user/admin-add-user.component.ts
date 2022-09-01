@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class AdminAddUserComponent implements OnInit {
   numberRegEx = /\-?\d*\.?\d{1,2}/;
   errorMsg = false;
   showPassword: boolean = false;
+
 
   public userForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
@@ -44,7 +46,6 @@ export class AdminAddUserComponent implements OnInit {
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-
   }
 
   validForm(): boolean {

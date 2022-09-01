@@ -11,6 +11,7 @@ import { LoggedService } from 'src/app/services/logged/logged.service';
 })
 export class AdminSalesComponent implements OnInit {
   mobileQuery: MediaQueryList;
+  isAdmin: boolean = false;
 
   private _mobileQueryListener: () => void;
 
@@ -22,7 +23,7 @@ export class AdminSalesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.isAdmin = this.loggedService.getAuth() == 'Admin';
   }
 
   ngOnDestroy(): void {
