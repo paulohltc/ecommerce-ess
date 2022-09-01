@@ -12,7 +12,7 @@ export class UsersService {
 
   users: User[];
 
-  private admin: User = { name: 'admin', cpf: '01234567899', email: 'admin@admin.com', password: '123', auth: 'admin', offers: false };
+  private admin: User = { name: 'admin', cpf: '01234567899', email: 'admin@admin.com', password: '123', auth: 'Admin', offers: false };
   constructor() { this.users = [this.admin]; }
 
   getUsers(): Observable<User[]> {

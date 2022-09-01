@@ -16,13 +16,14 @@
     <mat-sidenav-content>
       <h1>Admin Users</h1>
       <div class="sec1">
-        <mat-form-field appearance="standard" >
+        <mat-form-field appearance="standard">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
         </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" class="addUser">Adicionar usuário</button>
+        <button mat-raised-button type="submit" color="primary" class="addUser" [routerLink]="'/add-user'">Adicionar
+          usuário</button>
       </div>
-      
+
       <table mat-table [dataSource]="dataSource" class="table">
 
         <ng-container matColumnDef="user">

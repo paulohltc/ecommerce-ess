@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route, Router, RouterModule, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-admin-add-user',
+  templateUrl: './admin-add-user.component.html',
+  styleUrls: ['./admin-add-user.component.css']
 })
-
-
-export class RegisterComponent implements OnInit {
+export class AdminAddUserComponent implements OnInit {
 
   numberRegEx = /\-?\d*\.?\d{1,2}/;
   errorMsg = false;
@@ -21,16 +19,11 @@ export class RegisterComponent implements OnInit {
     cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    offers: [true],
-    auth: ['Cliente'],
-  });;
+    offers: [false],
+    auth: ['Funcionário'],
+  });
 
 
-  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
-
-  ngOnInit(): void {
-
-  }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -42,8 +35,16 @@ export class RegisterComponent implements OnInit {
       cpf: [''],
       email: [''],
       password: [''],
-      offers: [true],
+      offers: [false],
+      auth: ['Funcionário'],
     });
+  }
+
+
+  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
+
+  ngOnInit(): void {
+
   }
 
   validForm(): boolean {
@@ -57,13 +58,11 @@ export class RegisterComponent implements OnInit {
   createUser() {
     if (this.validForm()) {
       this.usersService.addUser(this.userForm.value);
-      this.cleanUserForm()
-      this.router.navigate(['login'])
+      this.router.navigate(['users'])
+      this.cleanUserForm();
     } else {
       this.errorMsg = true;
     }
-
   }
 
 }
-

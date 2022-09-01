@@ -1,0 +1,44 @@
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.grand-parent {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 35vw;
+}
+
+.mat-form-field {
+    padding-top: 2vh;
+}
+
+.mat-button {
+    margin-top: 2vh;
+}
+
+.mat-raised-button {
+    margin-top: 2vh;
+}
+
+.section {
+    margin-top: 2vh;
+}
+
+.errorMsg {
+    margin-top: 1vh;
+}

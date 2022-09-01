@@ -28,6 +28,7 @@ import { AdminUsersComponent } from './components/empresa/admin-users/admin-user
 import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin-add-user.component';
 
 
 
@@ -44,6 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminSalesComponent,
     AdminUsersComponent,
     AdminProfilePageComponent,
+    AdminAddUserComponent,
   ],
   imports: [
     BrowserModule,

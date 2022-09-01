@@ -11,6 +11,7 @@ import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sale
 import { AdminUsersComponent } from './components/empresa/admin-users/admin-users.component';
 import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin-add-user.component';
 
 
 
@@ -45,6 +46,9 @@ const routes: Routes = [
   },
   {
     path: 'users', component: AdminUsersComponent
+  },
+  {
+    path: 'add-user', component: AdminAddUserComponent
   },
   {
     path: 'admin-profile-page', component: AdminProfilePageComponent
