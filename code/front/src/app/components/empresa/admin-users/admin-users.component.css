@@ -31,14 +31,31 @@ table {
     margin-right: auto;
 }
 
-.mat-form-field {
+
+.sec1 {
     font-size: 14px;
     width: 90%;
     margin-left: 4vw;
+    display: inline-flex;
+}
 
+.mat-form-field {
+    font-size: 14px;
+    width: 85%;
+    margin-right: 7vw;
+
+}
+
+.addUser {
+    height: 3vh;
+    margin-top: 1.5vh;
 }
 
 .removeBtn {
     font-size: 20px;
     border: 1px solid #aaaaaa;
+}
+
+h1{
+    margin-left: 4vw;
 }
