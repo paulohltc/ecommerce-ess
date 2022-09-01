@@ -10,6 +10,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,6 +64,7 @@ import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin
     MatToolbarModule,
     MatListModule,
     MatTableModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

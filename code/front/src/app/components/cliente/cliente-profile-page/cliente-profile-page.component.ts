@@ -1,5 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { NomesService } from 'src/app/services/nomes.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
@@ -10,9 +12,16 @@ export class ClienteProfilePageComponent implements OnInit {
 
   nome: string = "palao";
   idade: number = 21;
+  editProfileDisplay = true;
+  myShopsDisplay = false;
+  
+  public userEditForm: FormGroup = this.formBuilder.group({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
-
-  constructor(private nomesService: NomesService) { }
+  constructor(private nomesService: NomesService, private formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +34,16 @@ export class ClienteProfilePageComponent implements OnInit {
     this.nomesService.adicionarNome(this.nome);
     this.nome = "";
 
+  }
+
+  editProfile() {
+    this.editProfileDisplay = true;
+    this.myShopsDisplay = false;
+  }
+
+  myShops(){
+    this.editProfileDisplay = false;
+    this.myShopsDisplay = true;
   }
 
   removerNome(index: number): void {
