@@ -20,7 +20,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
       </mat-form-field>
 
-      <table mat-table [dataSource]="getUsers()" class="table">
+      <table mat-table [dataSource]="dataSource" class="table">
 
         <ng-container matColumnDef="user">
           <th mat-header-cell *matHeaderCellDef> Tipo de usuário </th>
@@ -34,12 +34,19 @@
 
         <ng-container matColumnDef="cpf">
           <th mat-header-cell *matHeaderCellDef> CPF </th>
-          <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+          <td mat-cell *matCellDef="let element"> {{formatCPF(element.cpf)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> E-mail </th>
           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Deletar </th>
+          <td mat-cell *matCellDef="let i=index">
+            <button class="removeBtn" type="button" (click)="removeUser(i)">x</button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -51,16 +58,7 @@
 
       </table>
 
-      <ul *ngFor="let user of getUsers()">
-        <li>
-          <p> Auth : {{ user.auth }}, Nome : {{ user.name }}, CPF : {{ user.cpf }}, Email : {{ user.email }},
-            Password : {{ user.password
-            }}, Offers :
-            {{ user.offers }}</p>
-        </li>
 
-
-      </ul>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 

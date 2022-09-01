@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Login } from 'src/app/models/login';
 import { User } from 'src/app/models/user';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class UsersService {
 
   users: User[];
 
-  private admin: User = new User('admin', '01234567899', 'admin@admin.com', '123', false, 'Admin');
+  private admin: User = { name: 'admin', cpf: '01234567899', email: 'admin@admin.com', password: '123', auth: 'admin', offers: false };
   constructor() { this.users = [this.admin]; }
 
   getUsers(): Observable<User[]> {
