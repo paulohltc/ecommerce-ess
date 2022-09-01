@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 
 @Component({
   selector: 'app-cliente-shopping-cart',
@@ -8,12 +8,12 @@ import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service'
 })
 export class ClienteShoppingCartComponent implements OnInit {
 
-  constructor(private loggedCPFService: LoggedCPFService) { }
+  constructor(private loggedService: LoggedService) { }
 
   ngOnInit(): void {
   }
 
   logOut(): void {
-    this.loggedCPFService.logOut();
+    this.loggedService.logOut();
   }
 }

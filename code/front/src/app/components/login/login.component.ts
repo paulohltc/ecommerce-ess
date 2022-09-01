@@ -4,7 +4,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 
 
 @Component({
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  constructor(private loggedCPFService: LoggedCPFService, private router: Router, private usersService: UsersService, private formBuilder: FormBuilder) { }
+  constructor(private loggedService: LoggedService, private router: Router, private usersService: UsersService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       if (response[0]) {
         this.wrongPassword = false;
         route = this.authRouteMap.get(auth) as string;
-        this.loggedCPFService.logCPF(CPF);
+        this.loggedService.logCPF(CPF, auth);
         this.router.navigateByUrl(route);
       }
       else {

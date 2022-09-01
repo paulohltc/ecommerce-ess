@@ -3,7 +3,7 @@ import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users/users.service';
 import { User } from 'src/app/models/user';
-import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 
 
 
@@ -31,11 +31,11 @@ export class ClienteProfilePageComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private loggedCPFService: LoggedCPFService, private formBuilder: FormBuilder, private usersService: UsersService) { }
+  constructor(private loggedService: LoggedService, private formBuilder: FormBuilder, private usersService: UsersService) { }
 
 
   ngOnInit(): void {
-    let userCPF: string = this.loggedCPFService.getCPF();
+    let userCPF: string = this.loggedService.getCPF();
     let currUser: User = this.usersService.getUserFromCPF(userCPF);
     this.userEditForm.patchValue({
       name: [currUser.name],
@@ -66,7 +66,7 @@ export class ClienteProfilePageComponent implements OnInit {
 
   saveEdit(): void {
     if (this.validForm()) {
-      let userCPF: string = this.loggedCPFService.getCPF();
+      let userCPF: string = this.loggedService.getCPF();
       this.usersService.updateUser(userCPF, this.userEditForm.value);
       this.msgEditDisplay = true;
       this.errorMsg = false;
@@ -87,7 +87,7 @@ export class ClienteProfilePageComponent implements OnInit {
   }
 
   logOut(): void {
-    this.loggedCPFService.logOut();
+    this.loggedService.logOut();
   }
 
 }

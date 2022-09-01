@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LoggedCPFService } from './logged-cpf.service';
+import { LoggedService } from './logged.service';
 
-describe('LoggedCPFService', () => {
-  let service: LoggedCPFService;
+describe('LoggedService', () => {
+  let service: LoggedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LoggedCPFService);
+    service = TestBed.inject(LoggedService);
   });
 
   it('should be created', () => {

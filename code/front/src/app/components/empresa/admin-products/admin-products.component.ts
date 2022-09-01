@@ -3,7 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Navigation, NavigationExtras, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -20,7 +20,7 @@ export class AdminProductsComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(private loggedCPFService: LoggedCPFService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
+  constructor(private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -36,6 +36,6 @@ export class AdminProductsComponent implements OnInit {
   }
 
   logOut(): void {
-    this.loggedCPFService.logOut();
+    this.loggedService.logOut();
   }
 }

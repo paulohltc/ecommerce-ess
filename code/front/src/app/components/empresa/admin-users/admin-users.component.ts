@@ -6,7 +6,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatCPF } from 'src/app/utils/utils';
 import { Router } from '@angular/router';
-import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class AdminUsersComponent implements OnInit {
   dataSource = new MatTableDataSource(this.getUsers())
 
 
-  constructor(private loggedCPFService: LoggedCPFService, private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private usersService: UsersService) {
+  constructor(private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private usersService: UsersService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -70,7 +70,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   logOut(): void {
-    this.loggedCPFService.logOut();
+    this.loggedService.logOut();
   }
 
 }

@@ -1,23 +1,30 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedCPFService {
+export class LoggedService {
+
 
   CPF: string = '';
+  auth: string = '';
+
   constructor() { }
 
-  logCPF(CPF: string) {
+  logCPF(CPF: string, auth: string): void {
     this.CPF = CPF;
+    this.auth = auth;
   }
 
   getCPF(): string {
     return this.CPF;
   }
 
-  logOut() {
+  getAuth(): string {
+    return this.auth;
+  }
+
+  logOut(): void {
     this.CPF = '';
   }
 }

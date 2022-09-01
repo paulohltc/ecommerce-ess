@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
+import { LoggedService } from 'src/app/services/logged/logged.service';
 
 
 @Component({
@@ -13,13 +13,13 @@ export class ClienteHomeComponent implements OnInit {
   idade: number = 21;
 
 
-  constructor(private loggedCPFService: LoggedCPFService) { }
+  constructor(private loggedService: LoggedService) { }
 
   ngOnInit(): void {
   }
 
   logOut(): void {
-    this.loggedCPFService.logOut();
+    this.loggedService.logOut();
   }
 
 
