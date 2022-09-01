@@ -15,14 +15,14 @@
 </mat-toolbar>
 
 <h1>Cliente Profile Page</h1>
-<p>cliente-profile-page works!</p>
 
-<div  class="toggle">
+
+<div class="toggle">
     <mat-button-toggle-group #whatUser="matButtonToggleGroup" name="whatUser" aria-label="Favorite Color">
         <mat-button-toggle (click)="editProfile()" value="esse">Editar perfil</mat-button-toggle>
-        
+
         <mat-button-toggle (click)="myShops()" value="Meus pedidos">Meus pedidos</mat-button-toggle>
-      </mat-button-toggle-group>
+    </mat-button-toggle-group>
 </div>
 
 <body>
@@ -30,17 +30,24 @@
         <div class="grand-parent">
             <div class="cointainer">
                 <form class="register-form" [formGroup]="userEditForm">
+                    <mat-form-field class="seu-cpf" appearance="fill">
+                        <mat-label>CPF</mat-label>
+                        <input matInput placeholder="CPF" maxlength="35" matInput formControlName="cpf" name="cpf">
+                    </mat-form-field>
                     <mat-form-field class="seu-nome" appearance="fill">
                         <mat-label>Nome</mat-label>
-                        <input matInput placeholder="NOME DO USUARIO" maxlength="35" matInput formControlName="name" name="password">
+                        <input matInput placeholder="NOME DO USUARIO" maxlength="35" matInput formControlName="name"
+                            name="password">
                     </mat-form-field>
                     <mat-form-field class="seu-email" appearance="fill">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="EMAIL DO USUARIO" maxlength="35" matInput formControlName="email" name="password">
+                        <input matInput placeholder="EMAIL DO USUARIO" maxlength="35" matInput formControlName="email"
+                            name="password">
                     </mat-form-field>
                     <mat-form-field class="sua-senha" appearance="fill">
                         <mat-label>Senha</mat-label>
-                        <input matInput placeholder="SENHA DO USUARIO" maxlength="35" matInput formControlName="password" name="password">
+                        <input matInput placeholder="SENHA DO USUARIO" maxlength="35" matInput
+                            formControlName="password" name="password">
                     </mat-form-field>
                 </form>
             </div>
@@ -50,10 +57,10 @@
         </div>
     </div>
     <div *ngIf="myShopsDisplay">
-    
+
         <p>MEUS PEDIDOS PORRA</p>
-    
-      </div>
+
+    </div>
 </body>
 
 </html>

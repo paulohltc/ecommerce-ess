@@ -11,18 +11,17 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ClienteProfilePageComponent implements OnInit {
 
-  nome: string = "palao";
-  idade: number = 21;
   editProfileDisplay = true;
   myShopsDisplay = false;
-  
+
   public userEditForm: FormGroup = this.formBuilder.group({
+    cpf: new FormControl(''),
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private formBuilder : FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
 
   ngOnInit(): void {
@@ -34,7 +33,7 @@ export class ClienteProfilePageComponent implements OnInit {
     this.myShopsDisplay = false;
   }
 
-  myShops(){
+  myShops() {
     this.editProfileDisplay = false;
     this.myShopsDisplay = true;
   }
