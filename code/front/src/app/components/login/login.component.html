@@ -5,7 +5,7 @@
             <h2>Login</h2>
             <mat-form-field class="teste" appearance="fill">
                 <mat-label>CPF</mat-label>
-                <input matInput type="text" matInput formControlName="CPF" name="CPF">
+                <input matInput type="text" maxlength="11" matInput formControlName="CPF" name="CPF">
                 <!-- <mat-error *ngIf="this.userForm.controls.CPF.hasError">Favor preencher CPF</mat-error> -->
                 <!-- <mat-error *ngIf="userForm.get('CPF').hasError('required')"></mat-error> -->
                 <mat-error *ngIf="userForm.get('CPF')?.errors?.required">Favor preencher CPF</mat-error>

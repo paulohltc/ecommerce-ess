@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
 
 
 @Component({
@@ -16,7 +17,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
 export class LoginComponent implements OnInit {
 
   public showPassword: boolean = false;
-
   public userForm: FormGroup = this.formBuilder.group({
     CPF: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]),
     password: new FormControl('', [Validators.required]),
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  constructor(private router: Router, private usersService: UsersService, private formBuilder: FormBuilder) { }
+  constructor(private loggedCPFService: LoggedCPFService, private router: Router, private usersService: UsersService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -47,19 +47,19 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  // public getUsers(): User[] {
-  //   return this.usersService.getUsers();
-  // }
 
   loginRoute(): void {
-    let route = '';
-    if (this.usersService.userExists(this.userForm.value.CPF)) {
+    let route: string = '';
+    let CPF: string = this.userForm.value.CPF;
+    if (this.usersService.userExists(CPF)) {
       this.wrongAccount = false;
       let response = this.usersService.authPassword(this.userForm.value);
       let auth = response[1];
       if (response[0]) {
         this.wrongPassword = false;
         route = this.authRouteMap.get(auth) as string;
+        this.loggedCPFService.logCPF(CPF);
+        this.router.navigateByUrl(route);
       }
       else {
         this.wrongPassword = true;
@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
     else {
       this.wrongAccount = true;
     }
-    this.router.navigateByUrl(route);
   }
 
 }

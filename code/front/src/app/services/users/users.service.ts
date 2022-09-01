@@ -56,10 +56,10 @@ export class UsersService {
       this.users.delete(CPF);
   }
 
-  updateUser(edit: Edit): void {
-    let CPF: string = edit.CPF;
+  updateUser(CPF: string, edit: Edit): void {
     let prevUser: User = this.getUserFromCPF(CPF);
-    let newUser: User = { ...edit, auth: prevUser.auth, offers: prevUser.offers };
+    console.log(prevUser);
+    let newUser: User = { CPF: CPF, ...edit, auth: prevUser.auth, offers: prevUser.offers };
     this.users.set(CPF, newUser);
   }
 }

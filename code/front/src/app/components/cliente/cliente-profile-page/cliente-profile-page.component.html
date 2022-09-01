@@ -9,7 +9,7 @@
     <a mat-button routerLink="/shopping-cart">
         <mat-icon class="meio">shopping_cart</mat-icon> Carrinho
     </a>
-    <a mat-button routerLink="/login">Sair</a>
+    <a mat-list-item (click)="logOut()" routerLink="/login">Sair</a>
 
     <router-outlet></router-outlet>
 </mat-toolbar>
@@ -30,14 +30,6 @@
         <div class="grand-parent">
             <div class="cointainer">
                 <form class="register-form" [formGroup]="userEditForm">
-                    <mat-form-field class="seu-CPF" appearance="fill">
-                        <mat-label>CPF</mat-label>
-                        <input matInput placeholder="CPF" maxlength="11" matInput formControlName="CPF" name="CPF">
-                        <mat-error *ngIf="userEditForm.get('CPF')?.errors?.required">Favor preencher CPF corretamente
-                        </mat-error>
-                        <mat-error *ngIf="userEditForm.get('CPF')?.errors?.minLenght"></mat-error>
-                        <mat-error *ngIf="userEditForm.get('CPF')?.errors?.maxLenght"></mat-error>
-                    </mat-form-field>
                     <mat-form-field class="seu-nome" appearance="fill">
                         <mat-label>Nome</mat-label>
                         <input matInput placeholder="Nome" maxlength="35" matInput formControlName="name"

@@ -5,6 +5,8 @@ import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatCPF } from 'src/app/utils/utils';
+import { Router } from '@angular/router';
+import { LoggedCPFService } from 'src/app/services/loggedCPF/logged-cpf.service';
 
 
 @Component({
@@ -20,10 +22,12 @@ export class AdminUsersComponent implements OnInit {
   private _mobileQueryListener: () => void;
   formatCPF = formatCPF;
 
+
   displayedColumns: string[] = ['user', 'name', 'CPF', 'email', 'delete'];
   dataSource = new MatTableDataSource(this.getUsers())
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private usersService: UsersService) {
+
+  constructor(private loggedCPFService: LoggedCPFService, private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private usersService: UsersService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -44,7 +48,6 @@ export class AdminUsersComponent implements OnInit {
   getUsers(): User[] {
     let users: Map<string, User> = new Map([]);
     this.usersService.getUsers().subscribe(usersList => users = usersList);
-    console.log(Array.from(users.values()));
     return Array.from(users.values());
   }
 
@@ -64,6 +67,10 @@ export class AdminUsersComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  logOut(): void {
+    this.loggedCPFService.logOut();
   }
 
 }

@@ -1,8 +1,9 @@
-.navbar{
+.navbar {
     background-color: grey;
     overflow: hidden;
-    
+
 }
+
 .spacer {
     flex: 1 1 auto;
 }
@@ -10,57 +11,58 @@
 
 .navbar a {
     padding: 14px 16px;
-    
+
     color: antiquewhite;
     text-align: center;
     font-size: 17px;
     text-decoration: none;
 }
 
-.navbar a:hover{
+.navbar a:hover {
     background-color: darkgoldenrod;
     color: black;
 }
 
 
-.navbar h1.center{
-    font-family:cursive;
+.navbar h1.center {
+    font-family: cursive;
     color: antiquewhite;
     text-align: center;
     font-size: 25px;
     flex: 20;
 }
 
-.meio{
+.meio {
     vertical-align: middle;
     font-size: 24px;
 }
-html{
+
+html {
     height: 100%;
     margin: 0;
     padding: 0;
     justify-content: center;
-  }
-  
-  .grand-parent{
+}
+
+.grand-parent {
     display: table;
     height: 100%;
     margin: 0 auto;
-  }
-  
-  .container{
+}
+
+.container {
     display: table-cell;
     vertical-align: middle;
-  }
-  
-  .register-form{
+}
+
+.register-form {
     display: flex;
     flex-direction: column;
     padding: 50px;
     width: 35vw;
-  }
+}
 
-.toggle{
+.toggle {
     display: flex;
     justify-content: center;
 }
@@ -72,4 +74,14 @@ html{
 
 .button {
     width: 4vw;
+}
+
+.msgEditDisplay {
+    color: green;
+}
+
+mat-error {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
 }
