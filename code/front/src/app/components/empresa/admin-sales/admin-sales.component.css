@@ -24,3 +24,44 @@ h1.example-app-name {
 .example-is-mobile .example-sidenav-container {
     flex: 1 0 auto;
 }
+h1{
+    margin-left: 4vw;
+}
+/*Sidenav css start*/
+mat-sidenav a:hover{
+    background-color: darkgoldenrod;
+    color: black;
+}
+mat-sidenav a{
+    padding: 14px 10px;
+    flex: auto;
+    color: antiquewhite;
+    text-align: center;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.box{
+    background: grey;
+}
+mat-nav-list{
+    overflow: hidden;
+    
+}
+.meio{
+    vertical-align: middle;
+    font-size: 24px;
+    padding-left: 5%;
+}
+.push{
+    margin-top: auto;
+}
+.absolute{
+    position: absolute;
+    bottom: 0;
+    
+    width: auto;
+    text-align: center;
+}
+
+/*Sidenav css end*/
