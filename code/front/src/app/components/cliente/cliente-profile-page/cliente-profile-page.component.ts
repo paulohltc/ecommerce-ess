@@ -17,6 +17,12 @@ export class ClienteProfilePageComponent implements OnInit {
 
   editProfileDisplay = true;
   myShopsDisplay = false;
+  msgEditDisplay = false;
+
+
+  currUserName: string = '';
+  currUserEmail: string = '';
+  currUserPassword: string = '';
 
   errorMsg = false;
   showPassword: boolean = false;
@@ -31,6 +37,11 @@ export class ClienteProfilePageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let userCPF: string = this.loggedCPFService.getCPF();
+    let currUser: User = this.usersService.getUserFromCPF(userCPF);
+    this.currUserName = currUser.name;
+    this.currUserEmail = currUser.email;
+    this.currUserPassword = currUser.password;
   }
 
   togglePasswordVisibility(): void {
@@ -56,13 +67,9 @@ export class ClienteProfilePageComponent implements OnInit {
   saveEdit(): void {
     if (this.validForm()) {
       let userCPF: string = this.loggedCPFService.getCPF();
-      if (this.usersService.userExists(userCPF)) {
-        this.usersService.updateUser(userCPF, this.userEditForm.value);
-        this.errorMsg = false;
-      } else {
-        // erro, editando de CPF que nao existe
-        this.errorMsg = true;
-      }
+      this.usersService.updateUser(userCPF, this.userEditForm.value);
+      this.msgEditDisplay = true;
+      this.errorMsg = false;
     }
     else {
       this.errorMsg = true;
