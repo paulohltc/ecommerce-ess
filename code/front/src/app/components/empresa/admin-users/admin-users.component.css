@@ -27,13 +27,15 @@ h1.example-app-name {
 
 table {
     width: 90%;
-    margin-left: auto;
+    margin-left: 4vw;
     margin-right: auto;
 }
 
 .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    width: 90%;
+    margin-left: 4vw;
+
 }
 
 .removeBtn {

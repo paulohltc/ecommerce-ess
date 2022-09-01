@@ -56,11 +56,9 @@ export class AdminUsersComponent implements OnInit {
   }
 
 
-
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    // this.users.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
