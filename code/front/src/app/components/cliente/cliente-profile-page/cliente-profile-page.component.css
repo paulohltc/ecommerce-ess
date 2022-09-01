@@ -73,3 +73,13 @@ html{
 .button {
     width: 4vw;
 }
+
+.msgEditDisplay{
+    color: green;
+}
+
+mat-error {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
+}

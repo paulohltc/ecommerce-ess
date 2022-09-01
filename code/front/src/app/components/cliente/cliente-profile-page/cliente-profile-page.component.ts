@@ -15,6 +15,8 @@ export class ClienteProfilePageComponent implements OnInit {
 
   editProfileDisplay = true;
   myShopsDisplay = false;
+  msgEditDisplay = false;
+  msgCpfDontExist = false;
 
   numberRegEx = /\-?\d*\.?\d{1,2}/;
   errorMsg = false;
@@ -60,9 +62,13 @@ export class ClienteProfilePageComponent implements OnInit {
       console.log(formCPF);
       if (this.usersService.userExists(formCPF)) {
         this.usersService.updateUser(this.userEditForm.value);
+        this.msgEditDisplay = true;
+        this.msgCpfDontExist = false;
         this.errorMsg = false;
       } else {
         // erro, editando de CPF que nao existe
+        this.msgCpfDontExist = true;
+        this.msgEditDisplay = false;
         this.errorMsg = true;
       }
     }
