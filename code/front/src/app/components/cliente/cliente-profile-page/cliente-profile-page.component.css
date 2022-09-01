@@ -64,3 +64,12 @@ html{
     display: flex;
     justify-content: center;
 }
+
+.saveButton {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    width: 4vw;
+}
