@@ -32,28 +32,38 @@
                 <form class="register-form" [formGroup]="userEditForm">
                     <mat-form-field class="seu-cpf" appearance="fill">
                         <mat-label>CPF</mat-label>
-                        <input matInput placeholder="CPF" maxlength="35" matInput formControlName="cpf" name="cpf">
+                        <input matInput placeholder="CPF" maxlength="11" matInput formControlName="cpf" name="cpf">
+                        <mat-error *ngIf="userEditForm.get('cpf')?.errors?.required">Favor preencher CPF corretamente
+                        </mat-error>
+                        <mat-error *ngIf="userEditForm.get('cpf')?.errors?.minLenght"></mat-error>
+                        <mat-error *ngIf="userEditForm.get('cpf')?.errors?.maxLenght"></mat-error>
                     </mat-form-field>
                     <mat-form-field class="seu-nome" appearance="fill">
                         <mat-label>Nome</mat-label>
-                        <input matInput placeholder="NOME DO USUARIO" maxlength="35" matInput formControlName="name"
+                        <input matInput placeholder="Nome" maxlength="35" matInput formControlName="name"
                             name="password">
+                        <mat-error *ngIf="this.userEditForm.controls.name.hasError">Favor fornecer nome</mat-error>
                     </mat-form-field>
                     <mat-form-field class="seu-email" appearance="fill">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="EMAIL DO USUARIO" maxlength="35" matInput formControlName="email"
+                        <input matInput placeholder="Email" maxlength="55" matInput formControlName="email"
                             name="password">
+                        <mat-error *ngIf="this.userEditForm.controls.email.hasError">Favor preencher email corretamente
+                        </mat-error>
+                        <mat-error *ngIf="userEditForm.get('email')?.errors?.email"></mat-error>
                     </mat-form-field>
                     <mat-form-field class="sua-senha" appearance="fill">
                         <mat-label>Senha</mat-label>
-                        <input matInput placeholder="SENHA DO USUARIO" maxlength="35" matInput
+                        <input matInput [type]="showPassword ? 'text' : 'password'" maxlength="20" matInput
                             formControlName="password" name="password">
+                        <mat-error *ngIf="this.userEditForm.controls.password.hasError">Favor fornecer senha</mat-error>
                     </mat-form-field>
                 </form>
             </div>
         </div>
+        <mat-error class="errorMsg" *ngIf="errorMsg">Favor preencher as informações corretamente!</mat-error>
         <div class="saveButton">
-            <a mat-raised-button color="primary" target="_blank" class="button">Salvar</a>
+            <a mat-raised-button color="primary" (click)="saveEdit()" target="_blank" class="button">Salvar</a>
         </div>
     </div>
     <div *ngIf="myShopsDisplay">

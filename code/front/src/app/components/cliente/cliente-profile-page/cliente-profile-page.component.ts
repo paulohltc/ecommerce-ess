@@ -14,11 +14,15 @@ export class ClienteProfilePageComponent implements OnInit {
   editProfileDisplay = true;
   myShopsDisplay = false;
 
+  numberRegEx = /\-?\d*\.?\d{1,2}/;
+  errorMsg = false;
+  showPassword: boolean = false;
+
   public userEditForm: FormGroup = this.formBuilder.group({
-    cpf: new FormControl(''),
-    name: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
 
   constructor(private formBuilder: FormBuilder) { }
@@ -27,6 +31,37 @@ export class ClienteProfilePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  cleanUserForm(): void {
+    this.userEditForm.patchValue({
+      name: [''],
+      cpf: [''],
+      email: [''],
+      password: [''],
+    });
+  }
+
+  validForm(): boolean {
+    let valid = true;
+    Object.keys(this.userEditForm.controls).forEach(key => {
+      valid = (this.userEditForm.controls[key].status == "VALID") && valid;
+    });
+    return valid;
+  }
+
+  saveEdit(): void {
+    if (this.validForm()) {
+      // edita
+      this.errorMsg = false;
+    }
+    else {
+      console.log('batatinha')
+      this.errorMsg = true;
+    }
+  }
 
   editProfile() {
     this.editProfileDisplay = true;

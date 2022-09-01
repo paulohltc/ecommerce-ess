@@ -33,7 +33,7 @@
                 <input matInput placeholder="Ex. meunome@gmail.com" maxlength="55" matInput formControlName="email"
                     name="email">
                 <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
-                <mat-error *ngIf="userForm.get('cpf')?.errors?.email"></mat-error>
+                <mat-error *ngIf="userForm.get('email')?.errors?.email"></mat-error>
 
             </mat-form-field>
 
