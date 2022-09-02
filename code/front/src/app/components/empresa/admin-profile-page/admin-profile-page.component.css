@@ -177,6 +177,12 @@ html {
     width: 35vw;
 }
 
+h1 {
+    font-family: 'Roboto';
+    font-size: 36px;
+    font-weight: 500;
+}
+
 .toggle {
     display: flex;
     justify-content: center;
