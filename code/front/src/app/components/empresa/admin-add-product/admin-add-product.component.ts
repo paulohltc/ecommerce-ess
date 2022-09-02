@@ -14,7 +14,6 @@ export class AdminAddProductComponent implements OnInit {
 
   showPassword: boolean = false;
   productForm: FormGroup = this.formBuilder.group({
-    code: new FormControl('',Validators.required),
     name: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
@@ -39,7 +38,6 @@ export class AdminAddProductComponent implements OnInit {
 
   cleanProductForm(): void {
     this.productForm.patchValue({
-      code: [''],
       name: [''],
       category: [''],
       stock: [''],
