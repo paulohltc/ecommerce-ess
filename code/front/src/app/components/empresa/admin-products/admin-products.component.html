@@ -15,7 +15,11 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+
       <h1>Admin Products</h1>
+      <button mat-raised-button type="submit" color="primary" class="addProduct" [routerLink]="'/add-product'">Adicionar
+        Produto</button>
+
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
