@@ -1,7 +1,9 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Sale } from 'src/app/models/sale';
 import { LoggedService } from 'src/app/services/logged/logged.service';
+import { SalesService } from 'src/app/services/sales/sales.service';
 
 
 @Component({
@@ -16,10 +18,14 @@ export class AdminSalesComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
 
-  constructor(private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
+  constructor(private salesService: SalesService, private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  getSales(): Sale[] {
+    return this.salesService.getSales();
   }
 
   ngOnInit(): void {
