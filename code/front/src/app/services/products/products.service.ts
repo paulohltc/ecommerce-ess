@@ -6,28 +6,27 @@ import { Product } from 'src/app/models/product';
   providedIn: 'root'
 })
 export class ProductsService {
-  products: Map<string, Product>;
-  constructor() { this.products = new Map([]); }
+  products: Product[];
+  constructor() { this.products = []; }
 
 
-  getProducts(): Observable<Map<string, Product>> {
+  getProducts(): Observable<Product[]> {
     const products = of(this.products);
     return products;
   }
 
   productExists(code: string): boolean {
-    for (let [codeKey, userValue] of this.products) {
-      if (codeKey == code) return true;
-    }
-    return false;
+    return +code < this.products.length
   }
 
   addProduct(product: Product): void {
-    this.products.set(product.code, product);
+    this.products.push(product);
   }
 
   removeProduct(code: string): void {
-    this.products.delete(code);
+    if (this.productExists(code)) {
+      this.products.splice(+code, 1);;
+    }
   }
 
 }

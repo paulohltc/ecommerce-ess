@@ -1,47 +1,38 @@
 <html>
 <div class="grand-parent">
     <div class="cointainer">
-        <form class="register-form" [formGroup]="userForm">
+        <form class="register-form" [formGroup]="productForm">
             <h1>Cadastre um produto</h1>
             <button mat-raised-button type="submit" color="primary" class="voltar" routerLink="/products">Voltar
             </button>
-            <mat-form-field class="seu-nome" appearance="fill">
+            <mat-form-field class="name" appearance="fill">
                 <mat-label>Nome</mat-label>
-                <input matInput placeholder="Ex. Paulo" maxlength="35" matInput formControlName="name" name="password">
-                <mat-error *ngIf="this.userForm.controls.name.hasError">Favor fornecer nome</mat-error>
+                <input matInput placeholder="Ex. Geladeira" maxlength="35" matInput formControlName="name" name="name">
             </mat-form-field>
 
-            <mat-form-field class="seu-CPF" appearance="fill">
-                <mat-label>CPF</mat-label>
-                <input matInput placeholder="Ex. 12323434556" maxlength="11" matInput formControlName="CPF" name="CPF">
-                <mat-error *ngIf="userForm.get('CPF')?.errors?.required">Favor preencher CPF corretamente</mat-error>
-                <mat-error *ngIf="userForm.get('CPF')?.errors?.minLenght"></mat-error>
-                <mat-error *ngIf="userForm.get('CPF')?.errors?.maxLenght"></mat-error>
+            <mat-form-field class="category" appearance="fill">
+                <mat-label>Categoria</mat-label>
+                <input matInput placeholder="Ex. Eletrônico" maxlength="11" matInput formControlName="category"
+                    name="category">
 
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Senha</mat-label>
-                <input matInput [type]="showPassword ? 'text' : 'password'" maxlength="20" matInput
-                    formControlName="password" name="password">
-                <mat-error *ngIf="this.userForm.controls.password.hasError">Favor fornecer senha</mat-error>
-                <mat-icon matSuffix (click)="togglePasswordVisibility()">
-                    {{showPassword?'visibility_off':'visibility'}}
-                </mat-icon>
+                <mat-label>Quantidade em estoque</mat-label>
+                <input matInput [type]="'text'" maxlength="20" matInput formControlName="stock" name="stock">
             </mat-form-field>
 
-            <mat-form-field class="seu-email" appearance="fill">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Ex. meunome@gmail.com" maxlength="55" matInput formControlName="email"
-                    name="email">
-                <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
-                <mat-error *ngIf="userForm.get('email')?.errors?.email"></mat-error>
+            <mat-form-field class="description" appearance="fill">
+                <mat-label>Descrição</mat-label>
+                <input matInput placeholder="Ex. Eletrônico de alta qualidade..." maxlength="55" matInput
+                    formControlName="description" name="description">
 
             </mat-form-field>
-
+            <mat-form-field class="price" appearance="fill">
+                <mat-label>Preço</mat-label>
+                <input matInput placeholder="Ex. 50" maxlength="55" matInput formControlName="price" name="price">
+            </mat-form-field>
             <a mat-raised-button color="primary" target="_blank">Cadastrar</a>
-            <mat-error class="errorMsg" *ngIf="errorMsg">Favor preencher as informações corretamente!</mat-error>
-
         </form>
     </div>
 </div>

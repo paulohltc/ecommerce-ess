@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -11,22 +13,47 @@ export class AdminAddProductComponent implements OnInit {
   errorMsg = false;
 
   showPassword: boolean = false;
-  public userForm: FormGroup = this.formBuilder.group({
+  productForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    CPF: new FormControl(''),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    offers: [false],
-    auth: ['Funcionário'],
+    category: new FormControl('', [Validators.required]),
+    stock: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+    description: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
   });
 
-  constructor(private formBuilder: FormBuilder) { }
 
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
-  }
+
+  constructor(private router: Router, private productsServices: ProductsService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
+  validForm(): boolean {
+    let valid = true;
+    Object.keys(this.productForm.controls).forEach(key => {
+      valid = (this.productForm.controls[key].status == "VALID") && valid;
+    });
+    return valid;
+  }
+
+  cleanProductForm(): void {
+    this.productForm.patchValue({
+      name: [''],
+      category: [''],
+      stock: [''],
+      description: [''],
+      price: ['']
+    })
+  }
+
+  createProduct(): void {
+    if (this.validForm()) {
+      this.productsServices.addProduct(this.productForm.value);
+      this.router.navigate(['users'])
+      this.cleanProductForm();
+    } else {
+      this.errorMsg = true;
+    }
+  }
 }
+
