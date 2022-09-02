@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Shop } from 'src/app/models/shop';
 import { LoggedService } from 'src/app/services/logged/logged.service';
 import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { formatPrice } from 'src/app/utils/utils';
+import { SalesService } from 'src/app/services/sales/sales.service';
 
 
 @Component({
@@ -13,10 +15,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ClienteShoppingCartComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'preco', 'delete'];
+  displayedColumns: string[] = ['name', 'price', 'qty', 'delete'];
   dataSource = new MatTableDataSource(this.getCart())
+  formatPrice = formatPrice;
 
-  constructor(private shoppingCartService: ShoppingCartService, private loggedService: LoggedService) { }
+  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private shoppingCartService: ShoppingCartService, private loggedService: LoggedService) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +31,20 @@ export class ClienteShoppingCartComponent implements OnInit {
   }
 
   refresh(): void {
+    this.shoppingCartService.getCart().subscribe((res) => {
+      this.dataSource.data = Array.from(res.values());
+      this.changeDetectorRef.detectChanges();
+    })
+  }
 
+  purchase(): void {
+    for (let shop of this.getCart()) {
+      let loggedCPF = this.loggedService.getCPF();
+      let totalPrice = shop.qty * shop.product.price;
+      this.salesService.addSale({ shop: shop, CPFuser: loggedCPF, code: 'define-later', totalPrice: totalPrice });
+    }
+    this.shoppingCartService.clearCart();
+    this.refresh();
   }
 
   logOut(): void {

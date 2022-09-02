@@ -16,7 +16,7 @@ export class ShoppingCartService {
   }
 
   getShopFromCode(code: string): Shop {
-    // assumindo que CPF existe
+    // assumindo que code existe
     return this.cart.get(code)!;
   }
 
@@ -39,13 +39,17 @@ export class ShoppingCartService {
     this.cart.delete(code);
   }
 
-  changeQty(code: string, increase: boolean): void {
-    let shop = this.getShopFromCode(code);
-    if (increase) {
-      shop.qty++;
-    }
-    else if (shop.qty != 1) {
-      shop.qty--;
-    }
+  clearCart(): void {
+    this.cart = new Map([]);
   }
+
+  // changeQty(code: string, increase: boolean): void {
+  //   let shop = this.getShopFromCode(code);
+  //   if (increase) {
+  //     shop.qty++;
+  //   }
+  //   else if (shop.qty != 1) {
+  //     shop.qty--;
+  //   }
+  // }
 }
