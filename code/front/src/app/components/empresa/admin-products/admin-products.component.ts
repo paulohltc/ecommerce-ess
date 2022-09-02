@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatTableDataSource } from '@angular/material/table';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Navigation, NavigationExtras, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
@@ -16,6 +17,9 @@ export class AdminProductsComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
   isAdmin: boolean = false;
+
+  displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'delete'];
+  dataSourceProducts = new MatTableDataSource(["lalal", "fgdg"]);
 
   private _mobileQueryListener: () => void;
 
@@ -37,4 +41,10 @@ export class AdminProductsComponent implements OnInit {
   logOut(): void {
     this.loggedService.logOut();
   }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
+  }
+
 }

@@ -81,4 +81,30 @@ mat-nav-list {
     text-align: center;
 }
 
+table {
+    width: 90%;
+    margin-left: 4vw;
+    margin-right: auto;
+}
+
+
+.sec1 {
+    font-size: 14px;
+    width: 90%;
+    margin-left: 4vw;
+    display: inline-flex;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 85%;
+    margin-right: 7vw;
+
+}
+
+.addUser {
+    height: 3vh;
+    margin-top: 1.5vh;
+}
+
 /*Sidenav css end*/
