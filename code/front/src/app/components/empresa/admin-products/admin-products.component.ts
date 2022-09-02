@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 import { LoggedService } from 'src/app/services/logged/logged.service';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
+import { formatPrice } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-admin-products',
@@ -19,6 +20,7 @@ export class AdminProductsComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
   isAdmin: boolean = false;
+  formatPrice = formatPrice;
 
   displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'edit', 'delete'];
   dataSourceProducts = new MatTableDataSource(this.getProducts());
