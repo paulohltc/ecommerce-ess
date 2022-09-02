@@ -35,6 +35,12 @@ html {
     margin-top: 2vh;
 }
 
+h1 {
+    font-family: 'Roboto';
+    font-size: 36px;
+    font-weight: 500;
+}
+
 .section {
     margin-top: 2vh;
 }

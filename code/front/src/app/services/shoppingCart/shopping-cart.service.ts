@@ -8,6 +8,7 @@ import { Shop } from 'src/app/models/shop';
 export class ShoppingCartService {
 
   cart: Map<string, Shop> = new Map([]);
+
   constructor() { }
 
   shopExists(code: string): boolean {

@@ -18,14 +18,19 @@
     margin-top: 1.5vh;
 }
 
+h1 {
+    font-family: 'Roboto';
+    font-size: 36px;
+    font-weight: 500;
+    margin-left: 4vw;
+}
+
 .voltar {
     height: 3vh;
     margin-top: 1.5vh;
 }
 
-h1.example-app-name {
-    margin-left: 8px;
-}
+
 
 .example-sidenav-container {
     flex: 1;
@@ -35,9 +40,7 @@ h1.example-app-name {
     flex: 1 0 auto;
 }
 
-h1 {
-    margin-left: 4vw;
-}
+
 
 /*Sidenav css start*/
 mat-sidenav a:hover {
@@ -76,13 +79,15 @@ mat-nav-list {
 .absolute {
     position: absolute;
     bottom: 0;
-    
+
     width: auto;
     text-align: center;
 }
-.absolute a:hover{
+
+.absolute a:hover {
     width: 125px;
 }
+
 table {
     width: 90%;
     margin-left: 4vw;

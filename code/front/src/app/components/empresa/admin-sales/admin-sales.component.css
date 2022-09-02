@@ -24,15 +24,21 @@ h1.example-app-name {
 .example-is-mobile .example-sidenav-container {
     flex: 1 0 auto;
 }
-h1{
+
+h1 {
+    font-family: 'Roboto';
+    font-size: 36px;
+    font-weight: 500;
     margin-left: 4vw;
 }
+
 /*Sidenav css start*/
-mat-sidenav a:hover{
+mat-sidenav a:hover {
     background-color: darkgoldenrod;
     color: black;
 }
-mat-sidenav a{
+
+mat-sidenav a {
     padding: 14px 10px;
     flex: auto;
     color: antiquewhite;
@@ -41,29 +47,35 @@ mat-sidenav a{
     text-decoration: none;
 }
 
-.box{
+.box {
     background: grey;
 }
-mat-nav-list{
+
+mat-nav-list {
     overflow: hidden;
-    
+
 }
-.meio{
+
+.meio {
     vertical-align: middle;
     font-size: 24px;
     padding-left: 5%;
 }
-.push{
+
+.push {
     margin-top: auto;
 }
-.absolute{
+
+.absolute {
     position: absolute;
     bottom: 0;
-    
+
     width: auto;
     text-align: center;
 }
-.absolute a:hover{
+
+.absolute a:hover {
     width: 125px;
 }
+
 /*Sidenav css end*/
