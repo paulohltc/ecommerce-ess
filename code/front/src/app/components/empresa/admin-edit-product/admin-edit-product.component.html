@@ -1,0 +1,40 @@
+<html>
+<div class="grand-parent">
+    <div class="cointainer">
+        <form class="register-form" [formGroup]="productForm">
+            <h1>Edite seu produto</h1>
+            <button mat-raised-button type="submit" color="primary" class="voltar" routerLink="/products">Voltar
+            </button>
+            <mat-form-field class="name" appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Ex. Geladeira" maxlength="35" matInput formControlName="name" name="name">
+            </mat-form-field>
+
+            <mat-form-field class="category" appearance="fill">
+                <mat-label>Categoria</mat-label>
+                <input matInput placeholder="Ex. Eletrônico" maxlength="11" matInput formControlName="category"
+                    name="category">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Quantidade em estoque</mat-label>
+                <input matInput [type]="'text'" maxlength="20" matInput formControlName="stock" name="stock">
+            </mat-form-field>
+
+            <mat-form-field class="description" appearance="fill">
+                <mat-label>Descrição</mat-label>
+                <input matInput placeholder="Ex. Eletrônico de alta qualidade..." maxlength="55" matInput
+                    formControlName="description" name="description">
+
+            </mat-form-field>
+            <mat-form-field class="price" appearance="fill">
+                <mat-label>Preço</mat-label>
+                <input matInput placeholder="Ex. 50" maxlength="55" matInput formControlName="price" name="price">
+            </mat-form-field>
+            <a mat-raised-button color="primary" (click)="editProduct()" target="_blank">Salvar alterações</a>
+        </form>
+    </div>
+</div>
+
+</html>

@@ -15,14 +15,15 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-     
+
       <h1>Admin Products</h1>
       <div class="sec1">
         <mat-form-field appearance="standard">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
         </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" class="addProduct" [routerLink]="'/add-product'">Adicionar
+        <button mat-raised-button type="submit" color="primary" class="addProduct"
+          [routerLink]="'/add-product'">Adicionar
           produto</button>
       </div>
 
@@ -53,6 +54,13 @@
           <td mat-cell *matCellDef="let element"> {{element.price}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> Editar </th>
+          <td mat-cell *matCellDef="let i=index">
+            <button class="removeBtn" type="button" (click)="editProduct(getcodefromIndex(i))">Edit</button>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef> Deletar </th>
           <td mat-cell *matCellDef="let i=index">
@@ -68,7 +76,7 @@
         </tr>
 
       </table>
-      
+
 
       <router-outlet></router-outlet>
     </mat-sidenav-content>

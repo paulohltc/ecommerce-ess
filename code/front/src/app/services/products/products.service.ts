@@ -6,8 +6,11 @@ import { Product } from 'src/app/models/product';
   providedIn: 'root'
 })
 export class ProductsService {
+
   products: Product[];
   size: number = 0;
+  editingProduct: string = '';
+
   private geladeira: Product = { code: '0', stock: 10, name: 'Geladeira', category: 'Doméstico', price: 1550, description: '400W muito boa', rating: 4.5 }
   private microondas: Product = { code: '1', stock: 50, name: 'Microondas', category: 'Doméstico', price: 435, description: '400W muito boa', rating: 4.5 }
   private fogao: Product = { code: '2', stock: 15, name: 'Fogão quatro bocas', category: 'Doméstico', price: 900, description: '400W muito boa', rating: 4.5 }
@@ -41,6 +44,23 @@ export class ProductsService {
     if (this.productExists(code)) {
       this.products.splice(+code, 1);;
     }
+  }
+
+  getEditingProduct(): Product {
+    return this.products[+this.editingProduct];
+  }
+
+  loginEditProduct(code: string): void {
+    this.editingProduct = code;
+  }
+
+  logoutEditProduct(): void {
+    this.editingProduct = '';
+  }
+
+  updateProduct(code: string, product: Product): void {
+    product.code = code;
+    this.products[+code] = product;
   }
 
 }
