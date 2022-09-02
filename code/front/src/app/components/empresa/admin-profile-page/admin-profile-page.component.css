@@ -34,5 +34,7 @@ mat-nav-list{
     width: auto;
     text-align: center;
 }
-
+.absolute a:hover{
+    width: 125px;
+}
 /*Sidenav css end*/

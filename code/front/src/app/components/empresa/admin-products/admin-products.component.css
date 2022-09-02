@@ -76,11 +76,13 @@ mat-nav-list {
 .absolute {
     position: absolute;
     bottom: 0;
-
+    
     width: auto;
     text-align: center;
 }
-
+.absolute a:hover{
+    width: 125px;
+}
 table {
     width: 90%;
     margin-left: 4vw;
