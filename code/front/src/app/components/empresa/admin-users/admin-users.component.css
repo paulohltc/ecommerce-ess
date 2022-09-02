@@ -76,6 +76,7 @@ mat-sidenav a{
 
 .box{
     background: grey;
+    
 }
 mat-nav-list{
     overflow: hidden;
@@ -86,13 +87,10 @@ mat-nav-list{
     font-size: 24px;
     padding-left: 5%;
 }
-.push{
-    margin-top: auto;
-}
+
 .absolute{
     position: absolute;
     bottom: 0;
-    
     width: auto;
     text-align: center;
 }

@@ -5,6 +5,8 @@ import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Navigation, NavigationExtras, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { LoggedService } from 'src/app/services/logged/logged.service';
+import { Product } from 'src/app/models/product';
+import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -19,11 +21,11 @@ export class AdminProductsComponent implements OnInit {
   isAdmin: boolean = false;
 
   displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'delete'];
-  dataSourceProducts = new MatTableDataSource(["lalal", "fgdg"]);
+  dataSourceProducts = new MatTableDataSource(this.getProducts());
 
   private _mobileQueryListener: () => void;
 
-  constructor(private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
+  constructor(private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private productsService: ProductsService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -41,10 +43,27 @@ export class AdminProductsComponent implements OnInit {
   logOut(): void {
     this.loggedService.logOut();
   }
-
+  getcodefromIndex(index: number): string {
+    console.log(this.dataSourceProducts.data[index].code);
+    return this.dataSourceProducts.data[index].code;
+  }
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
   }
-
+  getProducts(): Product[] {
+    let  products: Product[] = [];
+    this.productsService.getProducts().subscribe(productsList => products = productsList);
+    return Array.from(products.values());
+  }
+  refresh(): void {
+    this.productsService.getProducts().subscribe((res)=>{
+      this.dataSourceProducts.data = Array.from(res.values());
+      this.changeDetectorRef.detectChanges();
+    })
+  }
+  removeProduct(code: string): void {
+    this.productsService.removeProduct(code);
+    this.refresh();
+    }
 }

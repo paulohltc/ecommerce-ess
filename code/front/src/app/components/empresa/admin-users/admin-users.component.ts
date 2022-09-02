@@ -42,6 +42,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   getCPFfromIndex(index: number): string {
+    console.log(this.dataSource.data[index].CPF);
     return this.dataSource.data[index].CPF;
   }
 
