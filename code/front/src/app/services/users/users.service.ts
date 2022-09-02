@@ -35,10 +35,7 @@ export class UsersService {
   }
 
   userExists(CPF: string): boolean {
-    for (let [CPFKey, userValue] of this.users) {
-      if (CPFKey == CPF) return true;
-    }
-    return false;
+    return this.users.has(CPF);
   }
 
   authPassword(login: Login): [boolean, string] {

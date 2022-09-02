@@ -4,5 +4,5 @@ export function formatCPF(CPF: string): string {
 
 export function formatPrice(price: number): string {
     let priceStr: string = price.toString();
-    return priceStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return 'R$ ' + priceStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }

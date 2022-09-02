@@ -40,11 +40,11 @@ export class ProductsService {
     this.size++;
   }
 
-  removeProduct(code: string): void {
-    if (this.productExists(code)) {
-      this.products.splice(+code, 1);;
-    }
-  }
+  // removeProduct(code: string): void {
+  //   if (this.productExists(code)) {
+  //     this.products.splice(+code, 1);;
+  //   }
+  // }
 
   getEditingProduct(): Product {
     return this.products[+this.editingProduct];

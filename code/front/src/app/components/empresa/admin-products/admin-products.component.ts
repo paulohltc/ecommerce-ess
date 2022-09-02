@@ -22,7 +22,7 @@ export class AdminProductsComponent implements OnInit {
   isAdmin: boolean = false;
   formatPrice = formatPrice;
 
-  displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'edit', 'delete'];
+  displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'edit'];
   dataSourceProducts = new MatTableDataSource(this.getProducts());
 
   private _mobileQueryListener: () => void;
@@ -68,10 +68,10 @@ export class AdminProductsComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
     })
   }
-  removeProduct(code: string): void {
-    this.productsService.removeProduct(code);
-    this.refresh();
-  }
+  // removeProduct(code: string): void {
+  //   this.productsService.removeProduct(code);
+  //   this.refresh();
+  // }
 
   editProduct(code: string): void {
     this.productsService.loginEditProduct(code); // passar para servico o produto atual
