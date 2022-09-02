@@ -173,7 +173,7 @@ html {
 .register-form {
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    vertical-align: middle;
     width: 35vw;
 }
 
@@ -190,7 +190,6 @@ html {
 .button {
     width: 4vw;
 }
-
 
 .msgEditDisplay {
     color: green;

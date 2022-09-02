@@ -6,6 +6,7 @@ import { formatPrice } from 'src/app/utils/utils';
 import { Navigation, NavigationExtras, Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatTableDataSource } from '@angular/material/table';
+import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ClienteHomeComponent implements OnInit {
   displayedColumns: string[] = ['name', 'category', 'price', 'carrinho'];
   dataSourceProducts = new MatTableDataSource(this.getProducts());
 
-  constructor(private loggedService: LoggedService, private media: MediaMatcher, private productsService: ProductsService, private router: Router) { }
+  constructor(private shoppingCartService: ShoppingCartService, private loggedService: LoggedService, private media: MediaMatcher, private productsService: ProductsService, private router: Router) { }
 
   getProducts(): Product[] {
     let products: Product[] = [];
@@ -41,7 +42,8 @@ export class ClienteHomeComponent implements OnInit {
   }
 
   addProductToCart(code: string): void {
-    //  servico do carrinho
+    let product = this.productsService.getProduct(code);
+    this.shoppingCartService.addShop({ qty: 1, product: product });
     this.router.navigateByUrl('/shopping-cart')
   }
 

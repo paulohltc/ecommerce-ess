@@ -33,6 +33,10 @@ export class ProductsService {
     return +code < this.products.length
   }
 
+  getProduct(code: string): Product {
+    return this.products[+code];
+  }
+
   addProduct(product: Product): void {
     product.code = this.size.toString();
     product.rating = 5;

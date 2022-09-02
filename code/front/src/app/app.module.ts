@@ -11,6 +11,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -69,6 +71,7 @@ import { AdminEditProductComponent } from './components/empresa/admin-edit-produ
     MatListModule,
     MatTableModule,
     MatButtonToggleModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

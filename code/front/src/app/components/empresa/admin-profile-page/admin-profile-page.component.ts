@@ -16,7 +16,7 @@ export class AdminProfilePageComponent implements OnInit {
   editProfileDisplay = true;
   myShopsDisplay = false;
   msgEditDisplay = false;
-
+  isAdmin: boolean = false;
 
   mobileQuery: MediaQueryList;
 
@@ -39,6 +39,7 @@ export class AdminProfilePageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.isAdmin = this.loggedService.getAuth() == 'Admin';
     let userCPF: string = this.loggedService.getCPF();
     let currUser: User = this.usersService.getUserFromCPF(userCPF);
     this.userEditForm.patchValue({

@@ -9,7 +9,7 @@
                 </a>
                 <a mat-list-item routerLink="/products">Produtos<mat-icon class="meio">store</mat-icon></a>
                 <a mat-list-item routerLink="/sales">Vendas<mat-icon class="meio">attach_money</mat-icon></a>
-                <div *ngIf="false">
+                <div *ngIf="isAdmin">
                     <a mat-list-item routerLink="/users">Usuários <mat-icon class="meio">event_note</mat-icon></a>
                 </div>
                 <div class="absolute"><a mat-list-item (click)="logOut()" routerLink="/login">Sair</a></div>
@@ -44,6 +44,10 @@
                             </mat-error>
                         </mat-form-field>
                     </form>
+                    <div class="saveButton">
+                        <a mat-raised-button color="primary" (click)="saveEdit()" target="_blank"
+                            class="button">Salvar</a>
+                    </div>
                 </div>
             </div>
             <router-outlet></router-outlet>
