@@ -5,6 +5,10 @@
             <h1>Cadastre um produto</h1>
             <button mat-raised-button type="submit" color="primary" class="voltar" routerLink="/products">Voltar
             </button>
+            <mat-form-field class="code" appearance="fill">
+                <mat-label>Código do produto</mat-label>
+                <input matInput placeholder="Ex. 123" maxlength="35" matInput formControlName="code" name="code">
+            </mat-form-field>
             <mat-form-field class="name" appearance="fill">
                 <mat-label>Nome</mat-label>
                 <input matInput placeholder="Ex. Geladeira" maxlength="35" matInput formControlName="name" name="name">
@@ -32,7 +36,7 @@
                 <mat-label>Preço</mat-label>
                 <input matInput placeholder="Ex. 50" maxlength="55" matInput formControlName="price" name="price">
             </mat-form-field>
-            <a mat-raised-button color="primary" target="_blank">Cadastrar</a>
+            <a mat-raised-button color="primary" (click)="createProduct()" target="_blank">Cadastrar</a>
         </form>
     </div>
 </div>
