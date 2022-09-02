@@ -1,4 +1,4 @@
-<html>
+<html (mousemove)="onMove()">
     <mat-toolbar class="navbar">
         <a mat-button routerLink="/cliente-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
         <a mat-button routerLink="/cliente-home">Home <mat-icon class="meio">home</mat-icon></a>
@@ -20,6 +20,10 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
         </mat-form-field>
     </div>
+
+    <p *ngIf="msgAddShopDisplay">
+        Item adicionado ao carrinho com sucesso!
+      </p>
 
     <table mat-table [dataSource]="dataSourceProducts" class="table">
 

@@ -7,6 +7,7 @@ import { Navigation, NavigationExtras, Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatTableDataSource } from '@angular/material/table';
 import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
+import { delay, timeout } from 'rxjs';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ClienteHomeComponent implements OnInit {
   nome: string = "palao";
   idade: number = 21;
   formatPrice = formatPrice;
+  msgAddShopDisplay = false;
 
   displayedColumns: string[] = ['name', 'category', 'price', 'carrinho'];
   dataSourceProducts = new MatTableDataSource(this.getProducts());
@@ -44,7 +46,8 @@ export class ClienteHomeComponent implements OnInit {
   addProductToCart(code: string): void {
     let product = this.productsService.getProduct(code);
     this.shoppingCartService.addShop({ qty: 1, product: product });
-    this.router.navigateByUrl('/shopping-cart')
+    // this.router.navigateByUrl('/shopping-cart');
+    this.msgAddShopDisplay = true;
   }
 
   ngOnInit(): void {
@@ -54,6 +57,9 @@ export class ClienteHomeComponent implements OnInit {
     this.loggedService.logOut();
   }
 
+  onMove(): void {
+    this.msgAddShopDisplay = false;
+}
 
 
 }
