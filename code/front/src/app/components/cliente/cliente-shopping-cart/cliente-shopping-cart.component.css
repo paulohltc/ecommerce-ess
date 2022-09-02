@@ -35,3 +35,29 @@
     vertical-align: middle;
     font-size: 24px;
 }
+
+table {
+    width: 90%;
+    margin-left: 4vw;
+    margin-right: auto;
+}
+
+
+.sec1 {
+    font-size: 14px;
+    width: 90%;
+    margin-left: 4vw;
+    display: inline-flex;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 85%;
+    margin-right: 7vw;
+
+}
+
+.shopButton {
+    display: flex;
+    justify-content: center;
+}
