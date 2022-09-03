@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Sale } from 'src/app/models/sale';
+import { Shop } from 'src/app/models/shop';
+import { Product } from 'src/app/models/product';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SalesService {
   sales: Sale[] = [];
   size: number = 0;
-  constructor() { }
+
+  private granada: Sale = { code : '1234', CPFuser: '00000000001', shop: {qty: 2, product: {code: '00000', stock: 3, name: "granada", category: "violencia", price: 1000, description: "faz muito barulho", rating: 5.0}}, totalPrice: 1000}
+
+
+  constructor() { 
+    this.sales = [this.granada]
+    this.size = 1
+
+  }
 
   getSales(): Sale[] {
     return this.sales;

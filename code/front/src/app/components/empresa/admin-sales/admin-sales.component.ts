@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Sale } from 'src/app/models/sale';
 import { LoggedService } from 'src/app/services/logged/logged.service';
 import { SalesService } from 'src/app/services/sales/sales.service';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 
 @Component({
@@ -14,6 +16,9 @@ import { SalesService } from 'src/app/services/sales/sales.service';
 export class AdminSalesComponent implements OnInit {
   mobileQuery: MediaQueryList;
   isAdmin: boolean = false;
+
+  displayedColumns: string[] = ['codigoSale', 'codigoProduct', 'name', 'qty', 'value', 'cpf', 'info'];
+  dataSourceSales = new MatTableDataSource(this.getSales())
 
   private _mobileQueryListener: () => void;
 
@@ -38,5 +43,10 @@ export class AdminSalesComponent implements OnInit {
 
   logOut(): void {
     this.loggedService.logOut();
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceSales.filter = filterValue.trim().toLowerCase();
   }
 }

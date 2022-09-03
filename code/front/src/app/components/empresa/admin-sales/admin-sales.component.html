@@ -16,6 +16,60 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <h1>Admin Sales</h1>
+      <div class="sec1">
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
+        </mat-form-field>
+      </div>
+
+      <table mat-table [dataSource]="dataSourceSales" class="table">
+
+        <ng-container matColumnDef="codigoSale">
+          <th mat-header-cell *matHeaderCellDef> Código da venda </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codigoProduct">
+          <th mat-header-cell *matHeaderCellDef> Código do produto </th>
+          <td mat-cell *matCellDef="let element"> {{element.shop.product.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nome do produto </th>
+          <td mat-cell *matCellDef="let element"> {{(element.shop.product.name)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qty">
+          <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+          <td mat-cell *matCellDef="let element"> {{element.shop.qty}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> Valor total </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef> CPF usuário </th>
+          <td mat-cell *matCellDef="let element"> {{element.CPFuser}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="info">
+          <th mat-header-cell *matHeaderCellDef> Informações </th>
+          <td mat-cell *matCellDef="let i=index">
+            <button class="removeBtn" type="button">+</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+
+      </table>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
