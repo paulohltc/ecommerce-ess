@@ -14,7 +14,29 @@
         <router-outlet></router-outlet>
     </mat-toolbar>
 
-    <div class="sec1">
+    <div class="content">
+      <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7]">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>Produto {{num}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class= "image-photo" src="\assets\images\pc-gamer.jpg">
+            <!-- "\assets\images\pc-gamer.jpg" -->
+            <mat-card-content>
+              <p>
+                The Himalayas is a mountain range in Asia.The Himalayas is a mountain range in Asia.
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>Adicionar ao carrinho</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>    
+
+    <!-- <div class="sec1">
         <mat-form-field appearance="standard">
         <mat-label>Procurar por produto</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
@@ -57,6 +79,6 @@
           <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
 
-    </table>
+    </table> -->
 
 </html>
