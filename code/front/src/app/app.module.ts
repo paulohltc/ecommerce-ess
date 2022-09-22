@@ -12,6 +12,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule} from '@angular/material/card';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 
 
@@ -74,6 +77,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatTableModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    MatCardModule,
+    FlexLayoutModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

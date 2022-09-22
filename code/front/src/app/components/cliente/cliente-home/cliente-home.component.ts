@@ -18,6 +18,7 @@ import { delay, timeout } from 'rxjs';
 export class ClienteHomeComponent implements OnInit {
 
   nome: string = "palao";
+  gridColumns = 5;
   idade: number = 21;
   formatPrice = formatPrice;
   msgAddShopDisplay = false;
@@ -58,6 +59,12 @@ export class ClienteHomeComponent implements OnInit {
   onMove(): void {
     this.msgAddShopDisplay = false;
 }
+
+  
+
+  toggleGridColumns() {
+    this.gridColumns = this.gridColumns === 5 ? 6 : 5;
+  }
 
 
 }

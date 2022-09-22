@@ -21,5 +21,25 @@ table {
 
 p{
     color: green;
-    margin-left: 4vw;
+}
+
+mat-toolbar {
+    justify-content: space-between;
+}
+
+.content {
+    padding: 2vw;
+
+}
+
+.content > mat-card {
+    margin-bottom: 2vw;
+}
+
+.image-photo {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+
+    padding-left: 1vw;
 }
