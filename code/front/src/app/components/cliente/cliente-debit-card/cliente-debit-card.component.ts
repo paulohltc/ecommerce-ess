@@ -13,7 +13,5 @@ export class ClienteDebitCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
-  }
+
 }

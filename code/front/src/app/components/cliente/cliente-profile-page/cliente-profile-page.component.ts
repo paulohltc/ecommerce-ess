@@ -86,8 +86,4 @@ export class ClienteProfilePageComponent implements OnInit {
     this.myShopsDisplay = true;
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
-  }
-
 }

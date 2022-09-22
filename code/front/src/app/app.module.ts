@@ -35,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin-add-user.component';
 import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -54,6 +55,7 @@ import { AdminEditProductComponent } from './components/empresa/admin-edit-produ
     AdminAddUserComponent,
     AdminAddProductComponent,
     AdminEditProductComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

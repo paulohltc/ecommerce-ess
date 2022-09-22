@@ -53,9 +53,7 @@ export class ClienteHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
-  }
+
 
   onMove(): void {
     this.msgAddShopDisplay = false;

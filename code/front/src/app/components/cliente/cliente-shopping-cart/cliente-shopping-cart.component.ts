@@ -47,7 +47,4 @@ export class ClienteShoppingCartComponent implements OnInit {
     this.refresh();
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
-  }
 }
