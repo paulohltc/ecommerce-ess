@@ -13,5 +13,5 @@ export class ClienteDebitCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  
 }
