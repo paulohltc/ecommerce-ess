@@ -1,12 +1,12 @@
 <html>
-    
+
 <div class="grand-parent">
     <div class="container">
         <form class="login-form" [formGroup]="userForm">
             <h1>Login</h1>
             <mat-form-field class="teste" appearance="fill">
                 <mat-label>CPF</mat-label>
-                <input matInput type="text" maxlength="11" matInput formControlName="CPF" name="CPF">
+                <input id="cpfInput" matInput type="text" maxlength="11" matInput formControlName="CPF" name="CPF">
                 <!-- <mat-error *ngIf="this.userForm.controls.CPF.hasError">Favor preencher CPF</mat-error> -->
                 <!-- <mat-error *ngIf="userForm.get('CPF').hasError('required')"></mat-error> -->
                 <mat-error *ngIf="userForm.get('CPF')?.errors?.required">Favor preencher CPF</mat-error>
@@ -16,19 +16,19 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>
-                <input matInput [type]="showPassword ? 'text' : 'password'" matInput formControlName="password"
-                    name="password">
+                <input id="passwordInput" matInput [type]="showPassword ? 'text' : 'password'" matInput
+                    formControlName="password" name="password">
                 <mat-error *ngIf="this.userForm.controls.password.hasError">Favor preencher senha</mat-error>
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
                     {{showPassword?'visibility_off':'visibility'}}
                 </mat-icon>
             </mat-form-field>
-            <button (click)="loginRoute()" mat-raised-button type="submit" color="primary">Entrar</button>
+            <button id="loginBtn" (click)="loginRoute()" mat-raised-button type="submit" color="primary">Entrar</button>
             <mat-error class="errorMsg" *ngIf="wrongAccount">Conta não existente!</mat-error>
             <mat-error class="errorMsg" *ngIf="wrongPassword">Senha incorreta!</mat-error>
 
 
-            <a mat-button routerLink="/register">Não tem conta? Cadastre-se!</a>
+            <a id="registerBtn" mat-button routerLink="/register">Não tem conta? Cadastre-se!</a>
         </form>
     </div>
 </div>
