@@ -5,7 +5,6 @@ from selenium.webdriver.common.by import By
 
 
 
-
 @given('I am using the Chrome browser')
 def launchBrowser(context):
     context.driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -16,10 +15,7 @@ def loadPage(context,page):
     base = 'http://localhost:4200/'
     url = base + page
     context.driver.get(url)
-
-
-
-
+image.png
 @when('I fill the CPF box with "{cpf}"')
 def fillCPF(context,cpf):
     context.driver.find_element(By.ID, 'cpfInput').send_keys(cpf)
