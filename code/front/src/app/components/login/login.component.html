@@ -7,8 +7,6 @@
             <mat-form-field class="teste" appearance="fill">
                 <mat-label>CPF</mat-label>
                 <input id="cpfInput" matInput type="text" maxlength="11" matInput formControlName="CPF" name="CPF">
-                <!-- <mat-error *ngIf="this.userForm.controls.CPF.hasError">Favor preencher CPF</mat-error> -->
-                <!-- <mat-error *ngIf="userForm.get('CPF').hasError('required')"></mat-error> -->
                 <mat-error *ngIf="userForm.get('CPF')?.errors?.required">Favor preencher CPF</mat-error>
                 <mat-error *ngIf="userForm.get('CPF')?.errors?.minLenght">Favor preencher CPF corretamente</mat-error>
                 <mat-error *ngIf="userForm.get('CPF')?.errors?.maxLenght">Favor preencher CPF corretamente</mat-error>
@@ -23,9 +21,10 @@
                     {{showPassword?'visibility_off':'visibility'}}
                 </mat-icon>
             </mat-form-field>
-            <button id="loginBtn" (click)="loginRoute()" mat-raised-button type="submit" color="primary">Entrar</button>
-            <mat-error id="wrongCPF" class="errorMsg" *ngIf="wrongAccount">Conta não existente!</mat-error>
-            <mat-error id="wrongPassword" class="errorMsg" *ngIf="wrongPassword">Senha incorreta!</mat-error>
+            <button id="btnSubmit" (click)="loginRoute()" mat-raised-button type="submit"
+                color="primary">Entrar</button>
+            <mat-error id="errorMsg" class="errorMsg" *ngIf="wrongAccount">Conta não existente!</mat-error>
+            <mat-error id="errorMsg" class="errorMsg" *ngIf="wrongPassword">Senha incorreta!</mat-error>
 
 
             <a id="registerBtn" mat-button routerLink="/register">Não tem conta? Cadastre-se!</a>

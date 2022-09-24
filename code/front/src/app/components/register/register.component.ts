@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   numberRegEx = /\-?\d*\.?\d{1,2}/;
   errorMsg = false;
+  cpfExists = false;
   showPassword: boolean = false;
 
   public userForm: FormGroup = this.formBuilder.group({
@@ -56,13 +57,14 @@ export class RegisterComponent implements OnInit {
 
   createUser(): void {
     if (this.validForm()) {
+      this.errorMsg = false;
       if (!this.usersService.userExists(this.userForm.value.CPF)) {
         this.usersService.addUser(this.userForm.value);
         this.cleanUserForm()
         this.router.navigate(['login'])
       }
       else {
-        // erro, registrando CPF que ja existe
+        this.cpfExists = true;
       }
     } else {
       this.errorMsg = true;

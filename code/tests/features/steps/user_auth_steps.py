@@ -16,6 +16,10 @@ def loadPage(context,page):
     url = base + page
     context.driver.get(url)
 
+@when('I fill the name box with "{name}"')
+def fillName(context,name):
+    context.driver.find_element(By.ID, 'nameInput').send_keys(name)
+
 @when('I fill the CPF box with "{cpf}"')
 def fillCPF(context,cpf):
     context.driver.find_element(By.ID, 'cpfInput').send_keys(cpf)
@@ -26,9 +30,13 @@ def fillPassword(context,password):
     context.driver.find_element(By.ID, 'passwordInput').send_keys(password)
 
 
+@when('I fill the email box with "{email}"')
+def fillEmail(context,email):
+    context.driver.find_element(By.ID, 'emailInput').send_keys(email)
+
 @when('I submit my credentials')
 def submitCredentials(context):
-    context.driver.find_element(By.ID, 'loginBtn').click()
+    context.driver.find_element(By.ID, 'btnSubmit').click()
 
 
 @then('I don\'t see the item Usuários in the sidenav')
@@ -46,10 +54,10 @@ def checkPage(context,page):
 
 @then('A message "{message}" comes to my screen')
 def checkError(context, message):
-    error = context.driver.find_element(By.ID, 'wrongPassword')
+    error = context.driver.find_element(By.ID, 'errorMsg')
     status = message == error.text
     assert status is True
 
-@then('I close my browser')
-def checkClienteHomePage(context):
-    context.driver.close()
+# @then('I close my browser')
+# def checkClienteHomePage(context):
+#     context.driver.close()
