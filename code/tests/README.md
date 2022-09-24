@@ -1,5 +1,5 @@
 # Testes
-Utilizamos majoritariamente o Behave para o BDD com Selenium para fazer os testes pelo Chrome. Não há necessidade de instalação do driver, utilizamos o ChromeDriverManager para facilita
+Utilizamos majoritariamente o Behave para o BDD com Selenium para fazer os testes pelo Chrome. Não há necessidade de instalação do driver, usamos o ChromeDriverManager para facilitar esse processo.
 
 
 ## Instalação
