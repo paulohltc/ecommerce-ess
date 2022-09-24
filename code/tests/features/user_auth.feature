@@ -15,32 +15,30 @@ Feature: User Authentication
         Then I am now at "cliente-home" page
         And I close my browser
 
-# Scenario: Successful login as a Employee
-#     And I am a employee
-#     When I fill the CPF box with "432156789-01"
-#     And I fill the password box with "employeepassword"
-#     And I submit my credentials
-#     Then A message "Successful login" comes to my screen
-#     And I am now logged in
-#     And I am now at "Home page"
+    Scenario: Successful login as a Employee
+        When I fill the CPF box with "00000000002"
+        And I fill the password box with "123"
+        And I submit my credentials
+        Then I am now at "products" page
+        And I don't see the item Usuários in the sidenav
+        And I close my browser
 
-# Scenario: Unsuccessful login as a Client
-#     And I am a client
-#     When I fill the CPF box with "123456789-01"
-#     And I fill the password box with "clientpasswor"
-#     And I submit my credentials
-#     Then A message "Wrong credentials" comes to my screen
-#     And I am not logged in
-#     And I go back to "Login page"
 
-# Scenario: Unsuccessful login as a Employee
-#     And I am a employee
-#     When I fill the CPF box with "432156789-01"
-#     And I fill the password box with "employeepasswor"
-#     And I submit my credentials
-#     Then A message "Wrong credentials" comes to my screen
-#     And I am not logged in
-#     And I go back to "Login page"
+    Scenario: Unsuccessful login as a Client
+        When I fill the CPF box with "00000000001"
+        And I fill the password box with "wrongpassword"
+        And I submit my credentials
+        Then I am now at "login" page
+        And A message "Senha incorreta!" comes to my screen
+        And I close my browser
+
+    Scenario: Unsuccessful login as a Employee
+        When I fill the CPF box with "00000000002"
+        And I fill the password box with "wrongpassword"
+        And I submit my credentials
+        Then I am now at "login" page
+        And A message "Senha incorreta!" comes to my screen
+        And I close my browser
 
 # Scenario: Unsuccessful login with unregistered CPF
 #     And I am not a registered user

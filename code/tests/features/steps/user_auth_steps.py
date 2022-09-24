@@ -15,7 +15,7 @@ def loadPage(context,page):
     base = 'http://localhost:4200/'
     url = base + page
     context.driver.get(url)
-image.png
+
 @when('I fill the CPF box with "{cpf}"')
 def fillCPF(context,cpf):
     context.driver.find_element(By.ID, 'cpfInput').send_keys(cpf)
@@ -31,10 +31,23 @@ def submitCredentials(context):
     context.driver.find_element(By.ID, 'loginBtn').click()
 
 
+@then('I don\'t see the item Usuários in the sidenav')
+def checkUsuariosSidenav(context):
+    users = context.driver.find_elements(By.ID, 'sideNavUsers')
+    isClient = len(users) == 0
+    assert isClient is True
 
 @then('I am now at "{page}" page')
 def checkPage(context,page):
-    status = context.driver.current_url == 'http://localhost:4200/cliente-home'
+    base = 'http://localhost:4200/'
+    url = base + page
+    status = context.driver.current_url == url
+    assert status is True
+
+@then('A message "{message}" comes to my screen')
+def checkError(context, message):
+    error = context.driver.find_element(By.ID, 'wrongPassword')
+    status = message == error.text
     assert status is True
 
 @then('I close my browser')

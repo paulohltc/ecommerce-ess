@@ -24,8 +24,8 @@
                 </mat-icon>
             </mat-form-field>
             <button id="loginBtn" (click)="loginRoute()" mat-raised-button type="submit" color="primary">Entrar</button>
-            <mat-error class="errorMsg" *ngIf="wrongAccount">Conta não existente!</mat-error>
-            <mat-error class="errorMsg" *ngIf="wrongPassword">Senha incorreta!</mat-error>
+            <mat-error id="wrongCPF" class="errorMsg" *ngIf="wrongAccount">Conta não existente!</mat-error>
+            <mat-error id="wrongPassword" class="errorMsg" *ngIf="wrongPassword">Senha incorreta!</mat-error>
 
 
             <a id="registerBtn" mat-button routerLink="/register">Não tem conta? Cadastre-se!</a>
