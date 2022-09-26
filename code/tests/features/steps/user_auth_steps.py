@@ -42,8 +42,8 @@ def submitCredentials(context):
 @then('I don\'t see the item Usuários in the sidenav')
 def checkUsuariosSidenav(context):
     users = context.driver.find_elements(By.ID, 'sideNavUsers')
-    isClient = len(users) == 0
-    assert isClient is True
+    isEmployee = len(users) == 0
+    assert isEmployee is True
 
 @then('I am now at "{page}" page')
 def checkPage(context,page):
