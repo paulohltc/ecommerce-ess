@@ -113,5 +113,23 @@ table {
     height: 3vh;
     margin-top: 1.5vh;
 }
+.absolutes button{
+    right: 0;
+    position: absolute;
+    
+}
+.absolutes{
+    background-color: #fafafa;
+}
+@media(max-height: 312px){
+    .absolute{
+        position: inherit;
+    }
+}
+@media(max-width: 600px){
+    .absolutes button{
+        z-index: 2;
+    }
+}
 
 /*Sidenav css end*/
