@@ -1,14 +1,15 @@
 <div class="example-container">
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <div class ="absolutes"><button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button></div>
+  <mat-sidenav-container class="example-sidenav-container">
 
     <mat-sidenav class="box" [opened]=true mode="push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      [fixedInViewport]="mobileQuery.matches">
       <mat-nav-list>
         <a mat-list-item routerLink="/admin-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
         <a mat-list-item routerLink="/products">Produtos<mat-icon class="meio">store</mat-icon></a>
         <a mat-list-item routerLink="/sales">Vendas<mat-icon class="meio">attach_money</mat-icon></a>
-        <a mat-list-item routerLink="/users">Usuários <mat-icon class="meio">event_note</mat-icon></a>
+          <a mat-list-item routerLink="/users">Usuários <mat-icon class="meio">event_note</mat-icon></a>
         <div class="absolute"><a mat-list-item (click)="logOut()" routerLink="/login">Sair</a></div>
       </mat-nav-list>
     </mat-sidenav>
