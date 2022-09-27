@@ -46,6 +46,17 @@ export class AdminUsersComponent implements OnInit {
     return this.dataSource.data[index].CPF;
   }
 
+  getAllUsers() {
+    this.usersService.getAllUsers().subscribe({
+      next: (users) => {
+        console.log(users);
+      },
+      error: () => {
+        alert('teste')
+      }
+    })
+  }
+
   getUsers(): User[] {
     let users: Map<string, User> = new Map([]);
     this.usersService.getUsers().subscribe(usersList => users = usersList);

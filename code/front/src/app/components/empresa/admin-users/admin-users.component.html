@@ -19,7 +19,7 @@
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
         </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" class="addUser" [routerLink]="'/add-user'">Adicionar
+        <button mat-raised-button type="submit" color="primary" class="addUser" (click)="getAllUsers()">Adicionar
           usuário</button>
       </div>
 

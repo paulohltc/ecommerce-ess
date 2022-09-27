@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 
@@ -21,6 +21,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -79,7 +80,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatExpansionModule,
     MatCardModule,
     FlexLayoutModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent],

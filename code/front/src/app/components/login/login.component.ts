@@ -40,14 +40,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private loggedService: LoggedService, private router: Router, private usersService: UsersService, private formBuilder: FormBuilder) { }
 
-  
+
   ngOnInit(): void {
   }
 
   public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-  
+
 
   loginRoute(): void {
     let route: string = '';
