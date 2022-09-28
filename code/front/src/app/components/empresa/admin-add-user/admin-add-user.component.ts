@@ -58,9 +58,17 @@ export class AdminAddUserComponent implements OnInit {
 
   createUser() {
     if (this.validForm()) {
-      this.usersService.addUser(this.userForm.value);
-      this.router.navigate(['users'])
-      this.cleanUserForm();
+      console.log(this.userForm.value)
+      this.usersService.addUser(this.userForm.value).subscribe({
+        next: (message) => {
+          this.cleanUserForm();
+          alert(message.success)
+          this.router.navigate(['users']);
+        },
+        error: (err) => {
+          alert("Não foi possível cadastrar o usuário. " + err.err);
+        }
+      });
     } else {
       this.errorMsg = true;
     }

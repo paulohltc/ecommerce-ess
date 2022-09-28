@@ -15,40 +15,36 @@
     <mat-sidenav-content>
       <h1>Admin Users</h1>
       <div class="sec1">
-        <mat-form-field appearance="standard">
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
-        </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" class="addUser" (click)="getAllUsers()">Adicionar
+        <button mat-raised-button type="submit" color="primary" class="addUser" [routerLink]="'/add-user'">Adicionar
           usuário</button>
       </div>
 
-      <table mat-table [dataSource]="dataSource" class="table">
+      <table mat-table [dataSource]="dataSrc" matSort class="table">
 
-        <ng-container matColumnDef="user">
-          <th mat-header-cell *matHeaderCellDef> Tipo de usuário </th>
+        <ng-container matColumnDef="auth">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de usuário </th>
           <td mat-cell *matCellDef="let element"> {{element.auth}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="CPF">
-          <th mat-header-cell *matHeaderCellDef> CPF </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF </th>
           <td mat-cell *matCellDef="let element"> {{formatCPF(element.CPF)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> E-mail </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef> Deletar </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Deletar </th>
           <td mat-cell *matCellDef="let i=index">
-            <button class="removeBtn" type="button" (click)="removeUser(getCPFfromIndex(i))">x</button>
+            <button class="removeBtn" type="button" (click)="deleteUser(getCPFfromIndex(i))">x</button>
           </td>
         </ng-container>
 
@@ -56,7 +52,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td class="mat-cell" colspan="4">No data </td>
         </tr>
 
       </table>

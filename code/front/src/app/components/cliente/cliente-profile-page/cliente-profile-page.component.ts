@@ -35,13 +35,7 @@ export class ClienteProfilePageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let userCPF: string = this.loggedService.getCPF();
-    let currUser: User = this.usersService.getUserFromCPF(userCPF);
-    this.userEditForm.patchValue({
-      name: [currUser.name],
-      email: [currUser.email],
-      password: [currUser.password],
-    })
+    this.initUserForm();
   }
 
   togglePasswordVisibility(): void {
@@ -62,6 +56,16 @@ export class ClienteProfilePageComponent implements OnInit {
       valid = (this.userEditForm.controls[key].status == "VALID") && valid;
     });
     return valid;
+  }
+
+  initUserForm() {
+    // let userCPF: string = this.loggedService.getCPF();
+    // let currUser: User = this.usersService.getUserFromCPF(userCPF);
+    // this.userEditForm.patchValue({
+    //   name: [currUser.name],
+    //   email: [currUser.email],
+    //   password: [currUser.password],
+    // })
   }
 
   saveEdit(): void {

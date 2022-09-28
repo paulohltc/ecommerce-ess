@@ -16,15 +16,19 @@ export class UserController {
         ]);
     }
 
-    getUsers(): Map<string, User> {
-        return this.users;
+    getUsers(): User[] {
+        return Array.from(this.users.values());
+    }
+
+    getUserByCPF(CPF: string): User | undefined {
+        return this.users.get(CPF);
     }
 
     userExists(CPF: string): boolean {
         return this.users.has(CPF);
     }
 
-    createUser(user: User): boolean {
+    addUser(user: User): boolean {
         var notExist = !this.userExists(user.CPF);
         if (notExist) {
             this.users.set(user.CPF, user);
@@ -32,7 +36,7 @@ export class UserController {
         return notExist;
     }
 
-    removeUser(CPF: string): boolean {
+    deleteUser(CPF: string): boolean {
         var exists = this.userExists(CPF);
         if (exists && CPF != this.admin.CPF)
             this.users.delete(CPF);

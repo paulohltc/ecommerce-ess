@@ -39,14 +39,7 @@ export class AdminProfilePageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.isAdmin = this.loggedService.getAuth() == 'Admin';
-    let userCPF: string = this.loggedService.getCPF();
-    let currUser: User = this.usersService.getUserFromCPF(userCPF);
-    this.userEditForm.patchValue({
-      name: [currUser.name],
-      email: [currUser.email],
-      password: [currUser.password],
-    })
+    this.initUserForm();
   }
 
   togglePasswordVisibility(): void {
@@ -67,6 +60,17 @@ export class AdminProfilePageComponent implements OnInit {
       valid = (this.userEditForm.controls[key].status == "VALID") && valid;
     });
     return valid;
+  }
+
+  initUserForm() {
+    // this.isAdmin = this.loggedService.getAuth() == 'Admin';
+    // let userCPF: string = this.loggedService.getCPF();
+    // let currUser: User = this.usersService.getUserFromCPF(userCPF);
+    // this.userEditForm.patchValue({
+    //   name: [currUser.name],
+    //   email: [currUser.email],
+    //   password: [currUser.password],
+    // })
   }
 
   saveEdit(): void {

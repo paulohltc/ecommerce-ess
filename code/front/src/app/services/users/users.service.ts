@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Edit } from 'src/app/models/edit';
 import { Login } from 'src/app/models/login';
 import { User } from 'src/app/models/user';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,9 +15,9 @@ export class UsersService {
 
   users: Map<string, User>;
 
-  private admin: User = { name: 'admin', CPF: '00000000000', email: 'admin@admin.com', password: '123', auth: 'Admin', offers: false };
-  private client: User = { name: 'client-test', CPF: '00000000001', email: 'client@test.com', password: '123', auth: 'Cliente', offers: false };
-  private employee: User = { name: 'employee-test', CPF: '00000000002', email: 'employee@test.com', password: '123', auth: 'Funcionário', offers: false };
+  private admin: User = { name: 'admin', CPF: '00000000000', email: 'admin@admin.com', password: '123456', auth: 'Admin', offers: false };
+  private client: User = { name: 'client-test', CPF: '00000000001', email: 'client@client.com', password: '123456', auth: 'Cliente', offers: false };
+  private employee: User = { name: 'employee-test', CPF: '00000000002', email: 'employee@employee.com', password: '123456', auth: 'Funcionário', offers: false };
   constructor(private http: HttpClient) {
     this.users = new Map([
       [this.admin.CPF, this.admin],
@@ -26,19 +26,14 @@ export class UsersService {
     ]);
   }
 
-  getUserFromCPF(CPF: string): User {
-    // assumindo que CPF existe
-    return this.users.get(CPF)!;
+  getUserFromCPF(CPF: string): Observable<User> {
+    return this.http.get<User>(environment.url + '/users/' + CPF)
   }
 
-  getAllUsers(): Observable<Map<string, User>> {
-    return this.http.get<Map<string, User>>(environment.url + '/users')
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(environment.url + '/users')
   }
 
-  getUsers(): Observable<Map<string, User>> {
-    const users = of(this.users);
-    return users;
-  }
 
   userExists(CPF: string): boolean {
     return this.users.has(CPF);
@@ -55,18 +50,15 @@ export class UsersService {
     return response as [boolean, string];
   }
 
-  addUser(user: User): void {
-    this.users.set(user.CPF, user);
+  addUser(user: User): Observable<any> {
+    return this.http.post<any>(environment.url + '/users', user);
   }
 
-  removeUser(CPF: string): void {
-    if (CPF != this.admin.CPF)
-      this.users.delete(CPF);
+  deleteUser(CPF: string): Observable<any> {
+    return this.http.delete<any>(environment.url + '/users/' + CPF);
   }
 
-  updateUser(CPF: string, edit: Edit): void {
-    let prevUser: User = this.getUserFromCPF(CPF);
-    let newUser: User = { CPF: CPF, ...edit, auth: prevUser.auth, offers: prevUser.offers };
-    this.users.set(CPF, newUser);
+  updateUser(CPF: string, edit: Edit): Observable<any> {
+    return this.http.put<any>(environment.url + '/users/' + CPF, edit);
   }
 }

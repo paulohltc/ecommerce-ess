@@ -10,6 +10,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
@@ -17,6 +19,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 
+import { AngularFireModule } from '@angular/fire/compat';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +43,7 @@ import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin
 import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -62,6 +66,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -74,12 +79,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatListModule,
     MatTableModule,
     MatButtonToggleModule,
     MatExpansionModule,
     MatCardModule,
     FlexLayoutModule,
+    HttpClientModule
 
   ],
   providers: [],
