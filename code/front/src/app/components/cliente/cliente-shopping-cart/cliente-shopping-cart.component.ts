@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Shop } from 'src/app/models/shop';
-import { LoggedService } from 'src/app/services/logged/logged.service';
 import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatPrice } from 'src/app/utils/utils';
@@ -19,7 +18,7 @@ export class ClienteShoppingCartComponent implements OnInit {
   dataSource = new MatTableDataSource(this.getCart())
   formatPrice = formatPrice;
 
-  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private shoppingCartService: ShoppingCartService, private loggedService: LoggedService) { }
+  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
   }
@@ -37,11 +36,10 @@ export class ClienteShoppingCartComponent implements OnInit {
     })
   }
 
-  purchase(): void {
+  purchase(CPF: string): void {
     for (let shop of this.getCart()) {
-      let loggedCPF = this.loggedService.getCPF();
       let totalPrice = shop.qty * shop.product.price;
-      this.salesService.addSale({ shop: shop, CPFuser: loggedCPF, code: 'define-later', totalPrice: totalPrice });
+      this.salesService.addSale({ shop: shop, CPFuser: CPF, code: 'define-later', totalPrice: totalPrice });
     }
     this.shoppingCartService.clearCart();
     this.refresh();

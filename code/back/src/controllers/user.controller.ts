@@ -4,51 +4,63 @@ import { Edit } from "../models/edit";
 export class UserController {
     users: Map<string, User>;
 
-    private admin: User = { name: 'admin', CPF: '00000000000', email: 'admin@admin.com', password: '123', auth: 'Admin', offers: false };
-    private client: User = { name: 'client-test', CPF: '00000000001', email: 'client@test.com', password: '123', auth: 'Cliente', offers: false };
-    private employee: User = { name: 'employee-test', CPF: '00000000002', email: 'employee@test.com', password: '123', auth: 'Funcionário', offers: false };
+    private admin: User = { name: 'admin', CPF: '00000000001', email: 'admin@admin.com', auth: 'Admin', offers: false };
+    private client: User = { name: 'client-test', CPF: '00000000002', email: 'client@client.com', auth: 'Cliente', offers: false };
+
+    private loginError: object = { errorMsg: '' };
 
     constructor() {
         this.users = new Map([
-            [this.admin.CPF, this.admin],
-            [this.client.CPF, this.client],
-            [this.employee.CPF, this.employee],
+            [this.admin.email, this.admin],
+            [this.client.email, this.client]
         ]);
+    }
+
+
+    getLoginError(): object {
+        return this.loginError;
+    }
+
+    setLoginError(error: object) {
+        this.loginError = error;
     }
 
     getUsers(): User[] {
         return Array.from(this.users.values());
     }
 
-    getUserByCPF(CPF: string): User | undefined {
-        return this.users.get(CPF);
+    getUserByEmail(email: string): User | undefined {
+        return this.users.get(email);
     }
 
-    userExists(CPF: string): boolean {
-        return this.users.has(CPF);
+    userExists(email: string): boolean {
+        return this.users.has(email);
     }
 
-    addUser(user: User): boolean {
-        var notExist = !this.userExists(user.CPF);
+    addUser(userParam: User): boolean {
+        const map = new Map(Object.entries(userParam));
+        var user = map.get('user')!;
+        delete user.password;
+        var notExist = !this.userExists(user.email);
         if (notExist) {
-            this.users.set(user.CPF, user);
+            this.users.set(user.email, user);
         }
         return notExist;
     }
 
-    deleteUser(CPF: string): boolean {
-        var exists = this.userExists(CPF);
-        if (exists && CPF != this.admin.CPF)
-            this.users.delete(CPF);
+    deleteUser(email: string): boolean {
+        var exists = this.userExists(email);
+        if (exists && email != this.admin.email)
+            this.users.delete(email);
         return exists;
     }
 
-    updateUser(CPF: string, edit: Edit): boolean {
-        var exists = this.userExists(CPF);
+    updateUser(email: string, edit: Edit): boolean {
+        var exists = this.userExists(email);
         if (exists) {
-            let prevUser: User = this.users.get(CPF)!;
-            let newUser: User = { CPF: CPF, ...edit, auth: prevUser.auth, offers: prevUser.offers };
-            this.users.set(CPF, newUser);
+            let prevUser: User = this.users.get(email)!;
+            let newUser: User = { email: email, ...edit, CPF: prevUser.CPF, auth: prevUser.auth, offers: prevUser.offers };
+            this.users.set(email, newUser);
         }
         return exists;
     }

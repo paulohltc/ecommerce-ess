@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router, RouterModule, Routes } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
   });;
 
 
-  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private auth: AuthService, private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -56,19 +57,19 @@ export class RegisterComponent implements OnInit {
 
   createUser(): void {
     if (this.validForm()) {
-      if (!this.usersService.userExists(this.userForm.value.CPF)) {
-        this.usersService.addUser(this.userForm.value);
-        this.cleanUserForm()
-        this.router.navigate(['login'])
-      }
-      else {
-        // erro, registrando CPF que ja existe
-      }
-    } else {
-      this.errorMsg = true;
+      //   if (!this.usersService.userExists(this.userForm.value.CPF)) {
+      //     this.usersService.addUser(this.userForm.value);
+      //     this.cleanUserForm()
+      //     this.router.navigate(['login'])
+      //   }
+      //   else {
+      //     // erro, registrando CPF que ja existe
+      //   }
+      // } else {
+      //   this.errorMsg = true;
+      // }
+      this.auth.registerUser(this.userForm.value);
     }
-
   }
-
 }
 

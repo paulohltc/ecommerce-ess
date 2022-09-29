@@ -1,17 +1,19 @@
 <html>
-    
+
 <div class="grand-parent">
     <div class="container">
         <form class="login-form" [formGroup]="userForm">
             <h1>Login</h1>
             <mat-form-field class="teste" appearance="fill">
-                <mat-label>CPF</mat-label>
-                <input matInput type="text" maxlength="11" matInput formControlName="CPF" name="CPF">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" maxlength="100" matInput formControlName="email" name="email">
                 <!-- <mat-error *ngIf="this.userForm.controls.CPF.hasError">Favor preencher CPF</mat-error> -->
                 <!-- <mat-error *ngIf="userForm.get('CPF').hasError('required')"></mat-error> -->
-                <mat-error *ngIf="userForm.get('CPF')?.errors?.required">Favor preencher CPF</mat-error>
-                <mat-error *ngIf="userForm.get('CPF')?.errors?.minLenght">Favor preencher CPF corretamente</mat-error>
-                <mat-error *ngIf="userForm.get('CPF')?.errors?.maxLenght">Favor preencher CPF corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('email')?.errors?.required">Favor preencher Email</mat-error>
+                <mat-error *ngIf="userForm.get('email')?.errors?.minLenght">Favor preencher Email corretamente
+                </mat-error>
+                <mat-error *ngIf="userForm.get('email')?.errors?.maxLenght">Favor preencher Email corretamente
+                </mat-error>
 
             </mat-form-field>
             <mat-form-field appearance="fill">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggedService } from 'src/app/services/logged/logged.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,17 +9,17 @@ import { LoggedService } from 'src/app/services/logged/logged.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private loggedService: LoggedService) { }
+  constructor(private auth: AuthService) { }
 
   menu_icon_variable: boolean = false;
   menuVariable: boolean = false;
   ngOnInit(): void {
   }
   openMenu() {
-    this.menuVariable =! this.menuVariable;
-    this.menu_icon_variable =! this.menu_icon_variable;
+    this.menuVariable = !this.menuVariable;
+    this.menu_icon_variable = !this.menu_icon_variable;
   }
-  logOut(): void {
-    this.loggedService.logOut();
+  logout(): void {
+    this.auth.logout();
   }
 }

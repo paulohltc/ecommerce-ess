@@ -35,11 +35,8 @@ import { ClienteDebitCardComponent } from './components/cliente/cliente-debit-ca
 import { ClienteProfilePageComponent } from './components/cliente/cliente-profile-page/cliente-profile-page.component';
 import { AdminProductsComponent } from './components/empresa/admin-products/admin-products.component';
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
-import { AdminUsersComponent } from './components/empresa/admin-users/admin-users.component';
-import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin-add-user.component';
 import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -58,9 +55,6 @@ import { environment } from 'src/environments/environment';
     ClienteProfilePageComponent,
     AdminProductsComponent,
     AdminSalesComponent,
-    AdminUsersComponent,
-    AdminProfilePageComponent,
-    AdminAddUserComponent,
     AdminAddProductComponent,
     AdminEditProductComponent,
     NavbarComponent,

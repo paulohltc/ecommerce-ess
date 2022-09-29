@@ -1,35 +1,35 @@
 <header>
-    <div  class="container">
-  
-      <div class="row">
-        <div class="col-md-9 col-sm-9 col-9 text-end">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-9 col-sm-9 col-9 text-end">
         <div class="menu_icon" [class.menu_iconClass]="menu_icon_variable" (click)="openMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
 
-          <div class="menu" [class.menuClasse]="menuVariable">
-            <mat-toolbar class="navbar">
-              <a mat-button routerLink="/cliente-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
-              <a mat-button routerLink="/cliente-home">Home <mat-icon class="meio">home</mat-icon></a>
-              <h1 class="center">
-                  <mat-icon>eco</mat-icon>Magali
-              </h1>
-              <div class="spacer"></div>
-              <a mat-button routerLink="/shopping-cart">
-                  <mat-icon class="meio">shopping_cart</mat-icon> Carrinho
-              </a>
-              <a mat-list-item (click)="logOut()" routerLink="/login">Sair</a>
-      
-              <router-outlet></router-outlet>
+        <div class="menu" [class.menuClasse]="menuVariable">
+          <mat-toolbar class="navbar">
+            <a mat-button routerLink="/cliente-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
+            <a mat-button routerLink="/cliente-home">Home <mat-icon class="meio">home</mat-icon></a>
+            <h1 class="center">
+              <mat-icon>eco</mat-icon>Magali
+            </h1>
+            <div class="spacer"></div>
+            <a mat-button routerLink="/shopping-cart">
+              <mat-icon class="meio">shopping_cart</mat-icon> Carrinho
+            </a>
+            <a mat-list-item (click)="logout()" routerLink="/login">Sair</a>
+
+            <router-outlet></router-outlet>
           </mat-toolbar>
-            
-          </div>
-  
+
         </div>
-  
+
       </div>
-  
+
     </div>
-  </header>
+
+  </div>
+</header>
