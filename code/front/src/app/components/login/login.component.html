@@ -7,8 +7,6 @@
             <mat-form-field class="teste" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput type="text" maxlength="100" matInput formControlName="email" name="email">
-                <!-- <mat-error *ngIf="this.userForm.controls.CPF.hasError">Favor preencher CPF</mat-error> -->
-                <!-- <mat-error *ngIf="userForm.get('CPF').hasError('required')"></mat-error> -->
                 <mat-error *ngIf="userForm.get('email')?.errors?.required">Favor preencher Email</mat-error>
                 <mat-error *ngIf="userForm.get('email')?.errors?.minLenght">Favor preencher Email corretamente
                 </mat-error>
@@ -26,9 +24,6 @@
                 </mat-icon>
             </mat-form-field>
             <button (click)="loginRoute()" mat-raised-button type="submit" color="primary">Entrar</button>
-            <mat-error class="errorMsg" *ngIf="wrongAccount">Conta não existente!</mat-error>
-            <mat-error class="errorMsg" *ngIf="wrongPassword">Senha incorreta!</mat-error>
-
 
             <a mat-button routerLink="/register">Não tem conta? Cadastre-se!</a>
         </form>
