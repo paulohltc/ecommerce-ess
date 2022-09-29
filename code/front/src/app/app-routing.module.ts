@@ -8,10 +8,7 @@ import { ClienteDebitCardComponent } from './components/cliente/cliente-debit-ca
 import { ClienteProfilePageComponent } from './components/cliente/cliente-profile-page/cliente-profile-page.component';
 import { AdminProductsComponent } from './components/empresa/admin-products/admin-products.component';
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
-import { AdminUsersComponent } from './components/empresa/admin-users/admin-users.component';
-import { AdminProfilePageComponent } from './components/empresa/admin-profile-page/admin-profile-page.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AdminAddUserComponent } from './components/empresa/admin-add-user/admin-add-user.component';
 import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
 
@@ -47,21 +44,11 @@ const routes: Routes = [
     path: 'sales', component: AdminSalesComponent
   },
   {
-    path: 'users', component: AdminUsersComponent
-  },
-  {
-    path: 'add-user', component: AdminAddUserComponent
-  },
-  {
     path: 'add-product', component: AdminAddProductComponent
   },
   {
     path: 'edit-product', component: AdminEditProductComponent
   },
-  {
-    path: 'admin-profile-page', component: AdminProfilePageComponent
-  },
-
 
 
   // redirect to home

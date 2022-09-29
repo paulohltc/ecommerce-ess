@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route, Router, RouterModule, Routes } from '@angular/router';
-import { UsersService } from 'src/app/services/users/users.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,20 +13,15 @@ import { UsersService } from 'src/app/services/users/users.service';
 export class RegisterComponent implements OnInit {
 
   numberRegEx = /\-?\d*\.?\d{1,2}/;
-  errorMsg = false;
   showPassword: boolean = false;
 
   public userForm: FormGroup = this.formBuilder.group({
-    name: new FormControl('', [Validators.required]),
-    CPF: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern(this.numberRegEx)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    offers: [true],
-    auth: ['Cliente'],
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });;
 
 
-  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private auth: AuthService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -38,11 +33,8 @@ export class RegisterComponent implements OnInit {
 
   cleanUserForm(): void {
     this.userForm.patchValue({
-      name: [''],
-      CPF: [''],
       email: [''],
       password: [''],
-      offers: [true],
     });
   }
 
@@ -56,19 +48,8 @@ export class RegisterComponent implements OnInit {
 
   createUser(): void {
     if (this.validForm()) {
-      if (!this.usersService.userExists(this.userForm.value.CPF)) {
-        this.usersService.addUser(this.userForm.value);
-        this.cleanUserForm()
-        this.router.navigate(['login'])
-      }
-      else {
-        // erro, registrando CPF que ja existe
-      }
-    } else {
-      this.errorMsg = true;
+      this.auth.registerUser(this.userForm.value);
     }
-
   }
-
 }
 

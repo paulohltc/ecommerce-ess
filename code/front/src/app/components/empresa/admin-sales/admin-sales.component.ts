@@ -1,10 +1,9 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Sale } from 'src/app/models/sale';
-import { LoggedService } from 'src/app/services/logged/logged.service';
 import { SalesService } from 'src/app/services/sales/sales.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 
@@ -15,7 +14,6 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class AdminSalesComponent implements OnInit {
   mobileQuery: MediaQueryList;
-  isAdmin: boolean = false;
 
   displayedColumns: string[] = ['codigoSale', 'codigoProduct', 'name', 'qty', 'value', 'cpf', 'info'];
   dataSourceSales = new MatTableDataSource(this.getSales())
@@ -23,7 +21,7 @@ export class AdminSalesComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
 
-  constructor(private salesService: SalesService, private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
+  constructor(private auth: AuthService, private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,15 +32,15 @@ export class AdminSalesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isAdmin = this.loggedService.getAuth() == 'Admin';
+
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
+  logout(): void {
+    this.auth.logout();
   }
 
   applyFilter(event: Event): void {

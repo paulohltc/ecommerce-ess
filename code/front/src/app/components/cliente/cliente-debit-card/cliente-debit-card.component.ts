@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggedService } from 'src/app/services/logged/logged.service';
+
 
 @Component({
   selector: 'app-cliente-debit-card',
@@ -8,12 +8,10 @@ import { LoggedService } from 'src/app/services/logged/logged.service';
 })
 export class ClienteDebitCardComponent implements OnInit {
 
-  constructor(private loggedService: LoggedService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
-  }
+
 }
