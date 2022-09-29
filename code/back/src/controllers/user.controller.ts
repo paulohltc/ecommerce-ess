@@ -1,5 +1,4 @@
 import { User } from "../models/user";
-import { Edit } from "../models/edit";
 
 export class UserController {
     users: Map<string, User>;
@@ -55,14 +54,14 @@ export class UserController {
         return exists;
     }
 
-    updateUser(email: string, edit: Edit): boolean {
-        var exists = this.userExists(email);
-        if (exists) {
-            let prevUser: User = this.users.get(email)!;
-            let newUser: User = { email: email, ...edit, CPF: prevUser.CPF, auth: prevUser.auth, offers: prevUser.offers };
-            this.users.set(email, newUser);
-        }
-        return exists;
-    }
+    // updateUser(email: string, edit: User): boolean {
+    //     var exists = this.userExists(email);
+    //     if (exists) {
+    //         let prevUser: User = this.users.get(email)!;
+    //         let newUser: User = { email: email, ...edit, CPF: prevUser.CPF, auth: prevUser.auth, offers: prevUser.offers };
+    //         this.users.set(email, newUser);
+    //     }
+    //     return exists;
+    // }
 
 }

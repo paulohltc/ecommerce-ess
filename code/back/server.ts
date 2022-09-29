@@ -17,6 +17,7 @@ server.use(express.json());
 
 server.use('/users', userRouter);
 server.use('/products', productsRouter);
+
 server.listen(port, () => {
     console.log('Server escutando na porta ' + port);
 })
