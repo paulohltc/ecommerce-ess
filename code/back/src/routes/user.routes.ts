@@ -45,15 +45,15 @@ userRouter.route("/:email")
         }
         return res.json({ user });
     })
-    .put((req: Request, res: Response) => {
-        const email = req.params.email;
-        const edit = req.body;
-        const successEdit = userController.updateUser(email, edit);
-        if (!successEdit) {
-            return res.status(404).json({ err: "Usuário não encontrado " });
-        }
-        return res.json({ success: "Usuário atualizado com sucesso" });
-    })
+    // .put((req: Request, res: Response) => {
+    //     const email = req.params.email;
+    //     const edit = req.body;
+    //     const successEdit = userController.updateUser(email, edit);
+    //     if (!successEdit) {
+    //         return res.status(404).json({ err: "Usuário não encontrado " });
+    //     }
+    //     return res.json({ success: "Usuário atualizado com sucesso" });
+    // })
     .delete((req: Request, res: Response) => {
         var email = req.params.email;
         var successDelete = userController.deleteUser(email);
