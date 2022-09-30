@@ -1,8 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from 'src/app/services/users/users.service';
-import { User } from 'src/app/models/user';
+
 
 
 
@@ -15,7 +14,7 @@ import { User } from 'src/app/models/user';
 })
 export class ClienteProfilePageComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 

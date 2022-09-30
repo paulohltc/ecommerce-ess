@@ -14,10 +14,6 @@
 
       <h1>Admin Products</h1>
       <div class="sec1">
-        <mat-form-field appearance="standard">
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
-        </mat-form-field>
         <button mat-raised-button type="submit" color="primary" class="addProduct"
           [routerLink]="'/add-product'">Adicionar
           produto</button>
@@ -53,7 +49,7 @@
         <ng-container matColumnDef="edit">
           <th mat-header-cell *matHeaderCellDef> Editar </th>
           <td mat-cell *matCellDef="let i=index">
-            <button class="removeBtn" type="button" (click)="editProduct(getcodefromIndex(i))">Edit</button>
+            <button class="removeBtn" type="button">Edit</button>
           </td>
         </ng-container>
 
@@ -62,7 +58,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td class="mat-cell" colspan="4">No data</td>
         </tr>
 
       </table>

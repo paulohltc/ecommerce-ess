@@ -1,6 +1,7 @@
 import { Product } from "../models/product";
 
 export class ProductsController {
+
     private products: Map<string, Product>;
     private geladeira: Product = { code: '0', stock: 10, name: 'Geladeira', price: 1550, description: '400W muito boa' };
     private microondas: Product = { code: '1', stock: 50, name: 'Microondas', price: 435, description: '400W muito boa' };

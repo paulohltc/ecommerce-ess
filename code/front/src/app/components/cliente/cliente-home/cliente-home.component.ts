@@ -23,32 +23,32 @@ export class ClienteHomeComponent implements OnInit {
   msgAddShopDisplay = false;
 
   displayedColumns: string[] = ['name', 'category', 'price', 'carrinho'];
-  dataSourceProducts = new MatTableDataSource(this.getProducts());
+  dataSourceProducts = new MatTableDataSource();
 
   constructor(private shoppingCartService: ShoppingCartService, private media: MediaMatcher, private productsService: ProductsService, private router: Router) { }
 
-  getProducts(): Product[] {
-    let products: Product[] = [];
-    this.productsService.getProducts().subscribe(productsList => products = productsList);
-    return Array.from(products.values());
-  }
+  // getProducts(): Product[] {
+  //   let products: Product[] = [];
+  //   this.productsService.getProducts().subscribe(productsList => products = productsList);
+  //   return Array.from(products.values());
+  // }
 
-  getcodefromIndex(index: number): string {
-    console.log(this.dataSourceProducts.data[index].code);
-    return this.dataSourceProducts.data[index].code;
-  }
+  // getcodefromIndex(index: number): string {
+  //   console.log(this.dataSourceProducts.data[index].code);
+  //   return this.dataSourceProducts.data[index].code;
+  // }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
   }
 
-  addProductToCart(code: string): void {
-    let product = this.productsService.getProduct(code);
-    this.shoppingCartService.addShop({ qty: 1, product: product });
-    // this.router.navigateByUrl('/shopping-cart');
-    this.msgAddShopDisplay = true;
-  }
+  // addProductToCart(code: string): void {
+  //   let product = this.productsService.getProduct(code);
+  //   this.shoppingCartService.addShop({ qty: 1, product: product });
+  //   // this.router.navigateByUrl('/shopping-cart');
+  //   this.msgAddShopDisplay = true;
+  // }
 
   ngOnInit(): void {
   }
