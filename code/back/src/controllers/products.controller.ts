@@ -10,6 +10,8 @@ export class ProductsController {
     private liqui: Product = { code: '4', stock: 85, name: 'Liquidificador 500W', price: 245, description: '400W muito boa' };
     private codeNum: number = 5;
 
+    private shoppingCart: string[] = []; // codes
+
     private editingProductCode: string | undefined;
 
     constructor() {
@@ -25,6 +27,15 @@ export class ProductsController {
     getStock(code: string): number | undefined {
         return this.products.get(code)?.stock;
     }
+    updateStock(code: string, stock: number): boolean {
+        if (!this.productExists(code)) {
+            return false;
+        }
+        var prod: Product = this.getProduct(code)!;
+        prod.stock = stock;
+        this.products.set(code, prod);
+        return true;
+    }
 
     getEditingProduct(): Product | undefined {
         if (!this.editingProductCode) return undefined;
@@ -39,15 +50,30 @@ export class ProductsController {
         return exists;
     }
 
-    updateStock(code: string, stock: number): boolean {
-        if (!this.productExists(code)) {
-            return false;
+    // getShoppingCart(): Product[] {
+    //     return this.shoppingCart;
+    // }
+
+    addProductToCart(code: string): boolean {
+        var existsProduct = this.productExists(code);
+        var index = this.shoppingCart.indexOf(code);
+        var notExistsShoppingCart = index <= -1;
+        if (notExistsShoppingCart) {
+            this.shoppingCart.push(code);
         }
-        var prod: Product = this.getProduct(code)!;
-        prod.stock = stock;
-        this.products.set(code, prod);
-        return true;
+        return notExistsShoppingCart && existsProduct;
     }
+
+    deleteProductFromCart(code: string): boolean {
+        var exists = false;
+        var index = this.shoppingCart.indexOf(code);
+        if (index > -1) {
+            exists = true;
+            this.shoppingCart.splice(index, 1);
+        }
+        return exists;
+    }
+
 
     getProduct(code: string): Product | undefined {
         return this.products.get(code);
