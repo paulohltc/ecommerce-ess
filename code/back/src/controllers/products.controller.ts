@@ -57,6 +57,16 @@ export class ProductsController {
         return this.products;
     }
 
+    getAvailableProducts(): Map<string, Product> {
+        var available = this.products;
+        available.forEach((value: Product, key: string) => {
+            if (value.stock <= 0) {
+                available.delete(key);
+            }
+        })
+        return available;
+    }
+
     productExists(code: string): boolean {
         return this.products.has(code);
     }

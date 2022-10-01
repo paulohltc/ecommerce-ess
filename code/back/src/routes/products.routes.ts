@@ -44,8 +44,17 @@ productsRouter.route("/editing")
         return res.json({ success: "Produto atualizado com sucesso" });
     })
 
+// query by stock > 0
+productsRouter.route("/available")
+    .get((req: Request, res: Response) => {
+        const filter = req.params.filter;
+        const mapProducts = productsController.getAvailableProducts();
+        const productsJson = Object.fromEntries(mapProducts);
+        return res.json(productsJson);
+    })
+
 // specific product
-productsRouter.route("/:code")
+productsRouter.route("/code/:code")
     .get((req: Request, res: Response) => {
         const code = req.params.code;
         const product = productsController.getProduct(code);
@@ -63,7 +72,7 @@ productsRouter.route("/:code")
         return res.json({ success: "Produto removido com sucesso" });
     })
 
-productsRouter.route("/:code/stock")
+productsRouter.route("/code/:code/stock")
     .get((req: Request, res: Response) => {
         const code = req.params.code;
         const stock = productsController.getStock(code);

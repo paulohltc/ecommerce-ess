@@ -18,15 +18,19 @@ export class ProductsService {
     return this.http.get<any>(environment.url + '/products');
   }
 
+  getAvailableProducts(): Observable<Map<string, Product>> {
+    return this.http.get<any>(environment.url + '/products/available');
+  }
+
   getProduct(code: string): Observable<Product> {
-    return this.http.get<any>(environment.url + '/products/' + code);
+    return this.http.get<any>(environment.url + '/products/code/' + code);
   }
 
   addProduct(product: Product): Observable<any> {
     return this.http.post<any>(environment.url + '/products', product);
   }
   deleteProduct(code: string): Observable<any> {
-    return this.http.delete<any>(environment.url + '/products/' + code);
+    return this.http.delete<any>(environment.url + '/products/code/' + code);
   }
 
   getEditingProduct(): Observable<any> {
