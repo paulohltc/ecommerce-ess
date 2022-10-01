@@ -19,9 +19,6 @@ table {
 
 }
 
-p{
-    color: green;
-}
 
 mat-toolbar {
     justify-content: space-between;
@@ -42,4 +39,10 @@ mat-toolbar {
     width: auto;
 
     padding-left: 1vw;
+}
+
+.price {
+    color: black;
+    font-size:large;
+    font-weight: bold;
 }

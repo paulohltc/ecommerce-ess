@@ -9,18 +9,18 @@
         <mat-card-header>
           <mat-card-title>{{product.name}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image class="image-photo" src="\assets\images\pc-gamer.jpg">
+        <img mat-card-image class="image-photo" src="\assets\images\product-image.png">
         <!-- "\assets\images\pc-gamer.jpg" -->
         <mat-card-content>
+          <p class="price">
+            {{formatPrice(product.price)}}
+          </p>
           <p>
             {{product.description}}
           </p>
-          <p>
-            {{formatPrice(product.price)}}
-          </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Adicionar ao carrinho</button>
+          <button mat-button class="buttonAddProduct">Adicionar ao carrinho</button>
         </mat-card-actions>
       </mat-card>
     </div>
