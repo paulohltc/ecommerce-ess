@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatTableDataSource } from '@angular/material/table';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
@@ -20,7 +19,7 @@ export class AdminProductsComponent implements OnInit {
   mobileQuery: MediaQueryList;
   formatPrice = formatPrice;
 
-  displayedColumns: string[] = ['code', 'stock', 'name', 'price', 'edit'];
+  displayedColumns: string[] = ['code', 'stock', 'name', 'price', 'edit', 'remove'];
   products: Product[] = [];
   dataSourceProducts = this.products;
 
@@ -46,15 +45,6 @@ export class AdminProductsComponent implements OnInit {
   }
 
 
-  // getcodefromIndex(index: number): string {
-  //   console.log(this.dataSourceProducts.data[index].code);
-  //   return this.dataSourceProducts.data[index].code;
-  // }
-  // applyFilter(event: Event): void {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
-  // }
-
   getProducts() {
     this.productsService.getProducts().subscribe({
       next: (products: Map<string, Product>) => {
@@ -72,13 +62,25 @@ export class AdminProductsComponent implements OnInit {
     this.getProducts();
     this.changeDetectorRef.detectChanges();
   }
-  // removeProduct(code: string): void {
-  //   this.productsService.removeProduct(code);
-  //   this.refresh();
-  // }
+  deleteProduct(index: string): void {
+    var code = this.products[+index].code;
+    this.productsService.deleteProduct(code).subscribe({
+      next: () => {
+        this.refresh();
+      }, error: () => {
+        alert("Error");
+      }
+    });
+  }
 
-  // editProduct(code: string): void {
-  //   this.productsService.loginEditProduct(code); // passar para servico o produto atual
-  //   this.router.navigateByUrl('/edit-product')
-  // }
+  editProduct(index: string): void {
+    var code = this.products[+index].code;
+    this.productsService.setEditingProduct(code).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/edit-product')
+      }, error: () => {
+        alert('Error');
+      }
+    });
+  }
 }

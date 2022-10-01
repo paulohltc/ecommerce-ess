@@ -13,10 +13,9 @@ export class AdminEditProductComponent implements OnInit {
   errorMsg = false;
 
 
-  showPassword: boolean = false;
+
   productForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     description: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
@@ -27,6 +26,7 @@ export class AdminEditProductComponent implements OnInit {
   constructor(private router: Router, private productsServices: ProductsService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getEditingProduct();
   }
 
   validForm(): boolean {
@@ -37,23 +37,42 @@ export class AdminEditProductComponent implements OnInit {
     return valid;
   }
 
-  cleanProductForm(): void {
+  clearProductForm(): void {
     this.productForm.patchValue({
       name: [''],
-      category: [''],
       stock: [''],
       description: [''],
       price: ['']
     })
   }
 
+  getEditingProduct() {
+    this.productsServices.getEditingProduct().subscribe({
+      next: (product) => {
+        console.log(product);
+        this.productForm.patchValue({
+          name: [product.name],
+          stock: [product.stock],
+          description: [product.description],
+          price: [product.price]
+        });
+      }, error: () => {
+        alert('Error');
+      }
+    })
+  }
+
 
   editProduct(): void {
     if (this.validForm()) {
-      let code = 0;
-      // this.productsServices.updateProduct(code, this.productForm.value);
-      this.router.navigate(['products'])
-      this.cleanProductForm();
+      this.productsServices.editProduct(this.productForm.value).subscribe({
+        next: () => {
+          this.clearProductForm();
+          this.router.navigateByUrl('/products');
+        }, error: () => {
+          alert('Error');
+        }
+      })
     } else {
       this.errorMsg = true;
     }

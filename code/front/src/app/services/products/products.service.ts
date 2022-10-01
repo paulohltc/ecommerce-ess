@@ -9,15 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductsService {
 
-
-
-  // private geladeira: Product = { code: '0', stock: 10, name: 'Geladeira', category: 'Doméstico', price: 1550, description: '400W muito boa', rating: 4.5 }
-  // private microondas: Product = { code: '1', stock: 50, name: 'Microondas', category: 'Doméstico', price: 435, description: '400W muito boa', rating: 4.5 }
-  // private fogao: Product = { code: '2', stock: 15, name: 'Fogão quatro bocas', category: 'Doméstico', price: 900, description: '400W muito boa', rating: 4.5 }
-  // private tv: Product = { code: '3', stock: 4, name: 'Televisão 75"', category: 'Eletrônico', price: 6300, description: '400W muito boa', rating: 4.5 }
-  // private liqui: Product = { code: '4', stock: 85, name: 'Liquidificador 500W', category: 'Doméstico', price: 245, description: '400W muito boa', rating: 4.5 }
-
-
   constructor(private http: HttpClient) {
 
   }
@@ -34,13 +25,21 @@ export class ProductsService {
   addProduct(product: Product): Observable<any> {
     return this.http.post<any>(environment.url + '/products', product);
   }
-  // deleteProduct(code: string): Observable<any> {
+  deleteProduct(code: string): Observable<any> {
+    return this.http.delete<any>(environment.url + '/products/' + code);
+  }
 
-  // }
+  getEditingProduct(): Observable<any> {
+    return this.http.get<any>(environment.url + '/products/editing');
+  }
 
-  // updateProduct(code: string, product: Product): void {
-  //   product.code = code;
-  //   this.products[+code] = product;
-  // }
+  setEditingProduct(code: string): Observable<any> {
+    var body = { code: code };
+    return this.http.post<any>(environment.url + '/products/editing', body);
+  }
+
+  editProduct(product: Product): Observable<any> {
+    return this.http.put<any>(environment.url + '/products/editing', product);
+  }
 
 }

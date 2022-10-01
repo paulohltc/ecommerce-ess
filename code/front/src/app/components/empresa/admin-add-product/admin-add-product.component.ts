@@ -15,7 +15,6 @@ export class AdminAddProductComponent implements OnInit {
   showPassword: boolean = false;
   productForm: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
     stock: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     description: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
@@ -39,7 +38,6 @@ export class AdminAddProductComponent implements OnInit {
   cleanProductForm(): void {
     this.productForm.patchValue({
       name: [''],
-      category: [''],
       stock: [''],
       description: [''],
       price: ['']
@@ -48,9 +46,14 @@ export class AdminAddProductComponent implements OnInit {
 
   createProduct(): void {
     if (this.validForm()) {
-      this.productsServices.addProduct(this.productForm.value);
-      this.router.navigate(['products'])
-      this.cleanProductForm();
+      this.productsServices.addProduct(this.productForm.value).subscribe({
+        next: () => {
+          this.cleanProductForm();
+          this.router.navigate(['products'])
+        }, error: () => {
+          alert("Error");
+        }
+      });
     } else {
       this.errorMsg = true;
     }
