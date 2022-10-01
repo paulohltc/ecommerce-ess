@@ -16,41 +16,16 @@ import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart
 })
 export class ClienteHomeComponent implements OnInit {
 
-  nome: string = "palao";
   gridColumns = 5;
-  idade: number = 21;
   formatPrice = formatPrice;
   msgAddShopDisplay = false;
-
-  displayedColumns: string[] = ['name', 'category', 'price', 'carrinho'];
-  dataSourceProducts = new MatTableDataSource(this.getProducts());
+  availableProducts: Product[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService, private media: MediaMatcher, private productsService: ProductsService, private router: Router) { }
 
-  getProducts(): Product[] {
-    let products: Product[] = [];
-    this.productsService.getProducts().subscribe(productsList => products = productsList);
-    return Array.from(products.values());
-  }
-
-  getcodefromIndex(index: number): string {
-    console.log(this.dataSourceProducts.data[index].code);
-    return this.dataSourceProducts.data[index].code;
-  }
-
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
-  }
-
-  addProductToCart(code: string): void {
-    let product = this.productsService.getProduct(code);
-    this.shoppingCartService.addShop({ qty: 1, product: product });
-    // this.router.navigateByUrl('/shopping-cart');
-    this.msgAddShopDisplay = true;
-  }
 
   ngOnInit(): void {
+    this.getAvailableProducts();
   }
 
 
@@ -59,6 +34,16 @@ export class ClienteHomeComponent implements OnInit {
     this.msgAddShopDisplay = false;
   }
 
+  getAvailableProducts() {
+    this.productsService.getAvailableProducts().subscribe({
+      next: (products) => {
+        console.log(products);
+        this.availableProducts = Object.values(products);
+      }, error: () => {
+        alert('Error');
+      }
+    })
+  }
 
 
   toggleGridColumns() {

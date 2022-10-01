@@ -5,9 +5,10 @@ const productsRouter = Router();
 
 const productsController = new ProductsController();
 
+// all products + add product
 productsRouter.route("/")
     .get((req: Request, res: Response) => {
-        const mapProducts = productsController.getProducts()
+        const mapProducts = productsController.getProducts();
         const productsJson = Object.fromEntries(mapProducts);
         return res.json(productsJson);
     })
@@ -16,48 +17,76 @@ productsRouter.route("/")
         productsController.addProduct(product);
         return res.json({ success: "Produto cadastrado com sucesso" });
     })
-productsRouter.route("/:code")
+
+// editing product data
+productsRouter.route("/editing")
     .get((req: Request, res: Response) => {
-        const code = req.params.code
-        const product = productsController.getProduct(code);
-        if (!product) {
-            return res.status(404).json({ err: "Produto não encontrado " });
+        const editingProductCode = productsController.getEditingProduct();
+        if (!editingProductCode) {
+            return res.status(404).json({ err: "Produto não encontrado" });
         }
-        return res.json(product);
+        return res.json(editingProductCode);
+    })
+    .post((req: Request, res: Response) => {
+        const codeJson = req.body;
+        const valid = productsController.setEditingProductCode(codeJson.code);
+        if (!valid) {
+            return res.status(404).json({ err: "Produto não encontrado" });
+        }
+        return res.json({ success: "Dados do produto enviados com sucesso" });
     })
     .put((req: Request, res: Response) => {
-        const code = req.params.code
         const product = req.body;
-        const update = productsController.updateProduct(code, product);
+        const update = productsController.updateProduct(product);
         if (!update) {
-            return res.status(404).json({ err: "Produto não encontrado " });
+            return res.status(404).json({ err: "Produto não encontrado" });
         }
         return res.json({ success: "Produto atualizado com sucesso" });
     })
+
+// query by stock > 0
+productsRouter.route("/available")
+    .get((req: Request, res: Response) => {
+        const filter = req.params.filter;
+        const mapProducts = productsController.getAvailableProducts();
+        const productsJson = Object.fromEntries(mapProducts);
+        return res.json(productsJson);
+    })
+
+// specific product
+productsRouter.route("/code/:code")
+    .get((req: Request, res: Response) => {
+        const code = req.params.code;
+        const product = productsController.getProduct(code);
+        if (!product) {
+            return res.status(404).json({ err: "Produto não encontrado" });
+        }
+        return res.json(product);
+    })
     .delete((req: Request, res: Response) => {
-        const code = req.params.code
+        const code = req.params.code;
         const del = productsController.deleteProduct(code);
         if (!del) {
-            return res.status(404).json({ err: "Produto não encontrado " });
+            return res.status(404).json({ err: "Produto não encontrado" });
         }
         return res.json({ success: "Produto removido com sucesso" });
     })
 
-productsRouter.route("/:code/stock")
+productsRouter.route("/code/:code/stock")
     .get((req: Request, res: Response) => {
         const code = req.params.code;
         const stock = productsController.getStock(code);
         if (!stock) {
-            return res.status(404).json({ err: "Produto não encontrado " });
+            return res.status(404).json({ err: "Produto não encontrado" });
         }
         return res.json({ stock });
     })
     .put((req: Request, res: Response) => {
-        const code = req.params.code
+        const code = req.params.code;
         const stock = req.body.stock;
         const update = productsController.updateStock(code, stock);
         if (!update) {
-            return res.status(404).json({ err: "Produto não encontrado " });
+            return res.status(404).json({ err: "Produto não encontrado" });
         }
         return res.json({ success: "Produto atualizado com sucesso" });
     })

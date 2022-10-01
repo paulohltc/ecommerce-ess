@@ -1,6 +1,7 @@
 import { Product } from "../models/product";
 
 export class ProductsController {
+
     private products: Map<string, Product>;
     private geladeira: Product = { code: '0', stock: 10, name: 'Geladeira', price: 1550, description: '400W muito boa' };
     private microondas: Product = { code: '1', stock: 50, name: 'Microondas', price: 435, description: '400W muito boa' };
@@ -8,6 +9,8 @@ export class ProductsController {
     private tv: Product = { code: '3', stock: 4, name: 'Televisão 75"', price: 6300, description: '400W muito boa' };
     private liqui: Product = { code: '4', stock: 85, name: 'Liquidificador 500W', price: 245, description: '400W muito boa' };
     private codeNum: number = 5;
+
+    private editingProductCode: string | undefined;
 
     constructor() {
         this.products = new Map([
@@ -21,6 +24,19 @@ export class ProductsController {
 
     getStock(code: string): number | undefined {
         return this.products.get(code)?.stock;
+    }
+
+    getEditingProduct(): Product | undefined {
+        if (!this.editingProductCode) return undefined;
+        return this.getProduct(this.editingProductCode!);
+    }
+
+    setEditingProductCode(code: string): boolean {
+        var exists = this.productExists(code);
+        if (exists) {
+            this.editingProductCode = code;
+        }
+        return exists;
     }
 
     updateStock(code: string, stock: number): boolean {
@@ -41,6 +57,16 @@ export class ProductsController {
         return this.products;
     }
 
+    getAvailableProducts(): Map<string, Product> {
+        var available = this.products;
+        available.forEach((value: Product, key: string) => {
+            if (value.stock <= 0) {
+                available.delete(key);
+            }
+        })
+        return available;
+    }
+
     productExists(code: string): boolean {
         return this.products.has(code);
     }
@@ -59,10 +85,11 @@ export class ProductsController {
         return exists;
     }
 
-    updateProduct(code: string, product: Product): boolean {
-        var exists = this.productExists(code);
+    updateProduct(product: Product): boolean {
+        var exists = this.productExists(this.editingProductCode!);
         if (exists) {
-            this.products.set(code, product);
+            product.code = this.editingProductCode!;
+            this.products.set(this.editingProductCode!, product);
         }
         return exists;
     }

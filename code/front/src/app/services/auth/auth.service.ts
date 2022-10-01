@@ -30,6 +30,8 @@ export class AuthService {
   loginUser(login: User) {
     if (login.email == 'admin@admin.com') {
       this.roleAuth = 'Admin';
+    } else {
+      this.roleAuth = 'Cliente';
     }
     this.fireauth.signInWithEmailAndPassword(login.email, login.password).then((user) => {
       localStorage.setItem('token', 'true');

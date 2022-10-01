@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatTableDataSource } from '@angular/material/table';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { formatPrice } from 'src/app/utils/utils';
@@ -21,8 +19,9 @@ export class AdminProductsComponent implements OnInit {
   mobileQuery: MediaQueryList;
   formatPrice = formatPrice;
 
-  displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'edit'];
-  dataSourceProducts = new MatTableDataSource(this.getProducts());
+  displayedColumns: string[] = ['code', 'stock', 'name', 'price', 'edit', 'remove'];
+  products: Product[] = [];
+  dataSourceProducts = this.products;
 
   private _mobileQueryListener: () => void;
 
@@ -34,7 +33,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.refresh();
   }
 
   ngOnDestroy(): void {
@@ -46,34 +45,42 @@ export class AdminProductsComponent implements OnInit {
   }
 
 
-  getcodefromIndex(index: number): string {
-    console.log(this.dataSourceProducts.data[index].code);
-    return this.dataSourceProducts.data[index].code;
-  }
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
+  getProducts() {
+    this.productsService.getProducts().subscribe({
+      next: (products: Map<string, Product>) => {
+        this.products = Object.values(products);
+        this.dataSourceProducts = this.products;
+      }, error: () => {
+        alert("Error");
+      }
+    }
+
+    );
   }
 
-  getProducts(): Product[] {
-    let products: Product[] = [];
-    this.productsService.getProducts().subscribe(productsList => products = productsList);
-    return Array.from(products.values());
+  refresh() {
+    this.getProducts();
+    this.changeDetectorRef.detectChanges();
+  }
+  deleteProduct(index: string): void {
+    var code = this.products[+index].code;
+    this.productsService.deleteProduct(code).subscribe({
+      next: () => {
+        this.refresh();
+      }, error: () => {
+        alert("Error");
+      }
+    });
   }
 
-  refresh(): void {
-    this.productsService.getProducts().subscribe((res) => {
-      this.dataSourceProducts.data = Array.from(res.values());
-      this.changeDetectorRef.detectChanges();
-    })
-  }
-  // removeProduct(code: string): void {
-  //   this.productsService.removeProduct(code);
-  //   this.refresh();
-  // }
-
-  editProduct(code: string): void {
-    this.productsService.loginEditProduct(code); // passar para servico o produto atual
-    this.router.navigateByUrl('/edit-product')
+  editProduct(index: string): void {
+    var code = this.products[+index].code;
+    this.productsService.setEditingProduct(code).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/edit-product')
+      }, error: () => {
+        alert('Error');
+      }
+    });
   }
 }
