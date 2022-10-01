@@ -19,6 +19,7 @@ export class ClienteProfilePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   teste() {
     // const sgMail = require('@sendgrid/mail')
     // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -34,6 +35,7 @@ export class ClienteProfilePageComponent implements OnInit {
     //   .then(() => {
     //     console.log('Email sent')
     //   })
+
 
   }
 
