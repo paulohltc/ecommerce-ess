@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteHomeComponent } from './components/cliente/cliente-home/cliente-home.component';
 import { ClienteShoppingCartComponent } from './components/cliente/cliente-shopping-cart/cliente-shopping-cart.component';
-import { ClienteDebitCardComponent } from './components/cliente/cliente-debit-card/cliente-debit-card.component';
 import { ClienteProfilePageComponent } from './components/cliente/cliente-profile-page/cliente-profile-page.component';
 import { AdminProductsComponent } from './components/empresa/admin-products/admin-products.component';
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
+import { ClientePurchaseComponent } from './components/cliente/cliente-purchase/cliente-purchase.component';
 
 
 
@@ -30,7 +30,7 @@ const routes: Routes = [
     path: 'shopping-cart', component: ClienteShoppingCartComponent
   },
   {
-    path: 'debit-card', component: ClienteDebitCardComponent
+    path: 'cliente-purchase', component: ClientePurchaseComponent
   },
   {
     path: 'cliente-profile-page', component: ClienteProfilePageComponent

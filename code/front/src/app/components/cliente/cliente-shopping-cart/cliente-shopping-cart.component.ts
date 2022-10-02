@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { formatPrice } from 'src/app/utils/utils';
 import { SalesService } from 'src/app/services/sales/sales.service';
 import { ProductsService } from 'src/app/services/products/products.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ClienteShoppingCartComponent implements OnInit {
   dataSource = this.shoppingCart;
   formatPrice = formatPrice;
 
-  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private productsService: ProductsService) { }
+  constructor(private router: Router, private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private productsService: ProductsService) { }
 
   ngOnInit() {
     this.refresh();
@@ -40,13 +41,8 @@ export class ClienteShoppingCartComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
   }
 
-  purchase(CPF: string): void {
-    // for (let shop of this.getCart()) {
-    //   let totalPrice = shop.qty * shop.product.price;
-    //   this.salesService.addSale({ shop: shop, CPFuser: CPF, code: 'define-later', totalPrice: totalPrice });
-    // }
-    // this.shoppingCartService.clearCart();
-    // this.refresh();
+  continuePurchase() {
+    this.router.navigateByUrl('/cliente-purchase')
   }
 
 }
