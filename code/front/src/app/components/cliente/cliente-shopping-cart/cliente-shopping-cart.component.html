@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 
 <mat-accordion class="parent">
-    <mat-expansion-panel class="example-headers-align" *ngFor="let product of dataSource">
+    <mat-expansion-panel class="example-headers-align" *ngFor="let product of dataSource; let i = index;">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 {{product.name}}
@@ -14,17 +14,17 @@
 
         <mat-form-field appearance="fill">
             <mat-label placeholder="1">Quantidade</mat-label>
-            <input matInput type="number" min="1">
+            <input matInput type="number" [(ngModel)]="quantities[i]" min="1">
         </mat-form-field>
 
         <p>Total deste item:</p>
-        <p class="price">R$ 345,00</p>
+        <p class="price">{{formatPrice(quantities[i]*product.price)}}</p>
 
     </mat-expansion-panel>
 </mat-accordion>
 
 <p class="totalAmountText">Subtotal do carrinho:</p>
-<p class="totalAmount">R$ 145,00</p>
+<p class="totalAmount">{{formatPrice(totalPrice())}}</p>
 
 <div class="shopButton">
     <a mat-raised-button color="primary" target="_blank" (click)="continuePurchase()">Continuar</a>

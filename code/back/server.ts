@@ -1,5 +1,6 @@
 import express from "express";
 import productsRouter from "./src/routes/products.routes";
+import shopsRouter from "./src/routes/shops.routes";
 
 
 const server = express();
@@ -16,6 +17,7 @@ server.use(function (req, res, next) {
 server.use(express.json());
 
 server.use('/products', productsRouter);
+server.use('/shops', shopsRouter);
 
 
 server.listen(port, () => {

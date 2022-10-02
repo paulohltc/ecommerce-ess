@@ -53,7 +53,7 @@
                 <mat-error *ngIf="enderecoForm.get('complemento')?.errors?.complemento"></mat-error>
             </mat-form-field>
 
-            <a mat-raised-button color="primary" target="_blank">Concluir compra!</a>
+            <a mat-raised-button color="primary" (click)="purchase()" target="_blank">Concluir compra!</a>
         </form>
     </div>
 </div>

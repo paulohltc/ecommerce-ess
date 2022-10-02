@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/models/product';
+import { Product } from '../../../../../../models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { formatPrice } from 'src/app/utils/utils';
 import { AuthService } from 'src/app/services/auth/auth.service';

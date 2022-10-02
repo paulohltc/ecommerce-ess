@@ -1,10 +1,11 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
+import { Product } from '../../../../../../models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { formatPrice } from 'src/app/utils/utils';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatTableDataSource } from '@angular/material/table';
+
 
 
 
@@ -46,7 +47,7 @@ export class ClienteHomeComponent implements OnInit {
     var code = this.availableProducts[index].code;
     this.productsService.addProductToCart(code).subscribe({
       next: () => {
-        console.log('Produto adicionado com sucesso')
+        alert('Produto adicionado com sucesso')
       }, error: () => {
         alert('Error');
       }

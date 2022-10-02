@@ -1,4 +1,4 @@
-import { Product } from "../models/product";
+import { Product } from "../../../models/product";
 
 export class ProductsController {
 
@@ -7,11 +7,11 @@ export class ProductsController {
     private fogao: Product = { code: '2', stock: 15, name: 'Fogão quatro bocas', price: 900, description: '400W muito boa' };
     private tv: Product = { code: '3', stock: 4, name: 'Televisão 75"', price: 6300, description: '400W muito boa' };
     private liqui: Product = { code: '4', stock: 85, name: 'Liquidificador 500W', price: 245, description: '400W muito boa' };
-    private codeNum: number = 5;
+    private teclado: Product = { code: '5', stock: 100, name: 'Teclado gamer', price: 545, description: 'Gamer' };
+    private codeNum: number = 6;
 
     private shoppingCart: Map<string, Product>; // codes
     private products: Map<string, Product>;
-    private editingProductCode: string | undefined;
 
     constructor() {
         this.products = new Map([
@@ -36,20 +36,6 @@ export class ProductsController {
         this.products.set(code, prod);
         return true;
     }
-
-    getEditingProduct(): Product | undefined {
-        if (!this.editingProductCode) return undefined;
-        return this.getProduct(this.editingProductCode!);
-    }
-
-    setEditingProductCode(code: string): boolean {
-        var exists = this.productExists(code);
-        if (exists) {
-            this.editingProductCode = code;
-        }
-        return exists;
-    }
-
     getShoppingCart(): Map<string, Product> {
         return this.shoppingCart;
     }
