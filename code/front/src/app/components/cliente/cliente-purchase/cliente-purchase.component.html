@@ -1,3 +1,61 @@
 <html>
 <app-navbar></app-navbar>
+<div class="grand-parent">
+    <div class="cointainer">
+        <!-- [formGroup]="userForm" -->
+        <form class="register-form" [formGroup]="enderecoForm" > 
+            <h1>Detalhes da compra</h1>
+            <mat-form-field class="name" appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Ex. Cynara Costa" maxlength="55" matInput formControlName="name"
+                    name="name">
+                <!-- <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('nome')?.errors?.email"></mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field class="CPF" appearance="fill">
+                <mat-label>CPF</mat-label>
+                <input matInput placeholder="Ex. 123456789" maxlength="55" matInput formControlName="CPF"
+                    name="CPF">
+                <!-- <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('nome')?.errors?.email"></mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field class="CEP" appearance="fill">
+                <mat-label>CEP</mat-label>
+                <input matInput placeholder="Ex. 51021-450" maxlength="55" matInput formControlName="CEP"
+                    name="CEP">
+                <!-- <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('nome')?.errors?.email"></mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field class="Endereco" appearance="fill">
+                <mat-label>Endereço</mat-label>
+                <input matInput placeholder="Ex. 51021-450" maxlength="55" matInput formControlName="Endereco"
+                    name="Endereco">
+                <!-- <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('nome')?.errors?.email"></mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field class="numero" appearance="fill">
+                <mat-label>Número</mat-label>
+                <input matInput placeholder="Ex. 51021-450" maxlength="55" matInput formControlName="numero"
+                    name="numero">
+                <!-- <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('nome')?.errors?.email"></mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field class="complemento" appearance="fill">
+                <mat-label>Complemento</mat-label>
+                <input matInput placeholder="Ex. 51021-450" maxlength="55" matInput formControlName="complemento"
+                    name="complemento">
+                <!-- <mat-error *ngIf="this.userForm.controls.email.hasError">Favor preencher email corretamente</mat-error>
+                <mat-error *ngIf="userForm.get('nome')?.errors?.email"></mat-error> -->
+            </mat-form-field>
+
+            <a mat-raised-button color="primary" target="_blank">Concluir compra!</a>
+        </form>
+    </div>
+</div>
+
 </html>
