@@ -1,6 +1,10 @@
-import { Product } from "./product";
+import { Item } from "./item";
 
 export interface Shop {
-    product: Product;
-    qty: number;
+    code: string;
+    CPFuser: string;
+    item: Item;
+    totalPrice: number;
+    //address ...
+    // date ..
 }

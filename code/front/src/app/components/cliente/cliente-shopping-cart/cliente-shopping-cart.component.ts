@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatPrice } from 'src/app/utils/utils';
-import { SalesService } from 'src/app/services/sales/sales.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { Router } from '@angular/router';
 
@@ -19,7 +18,7 @@ export class ClienteShoppingCartComponent implements OnInit {
   dataSource = this.shoppingCart;
   formatPrice = formatPrice;
 
-  constructor(private router: Router, private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private productsService: ProductsService) { }
+  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef, private productsService: ProductsService) { }
 
   ngOnInit() {
     this.refresh();
