@@ -1,26 +1,26 @@
 <html>
 <app-navbar></app-navbar>
 
-<!-- <mat-accordion class="example-headers-align">
-        <mat-expansion-panel *ngFor="let shop of getCart()">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    {{shop.product.name}}
-                </mat-panel-title>
-                <mat-panel-description>
-                    Modifique seu pedido
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel *ngFor="let product of dataSource">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{product.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+                Modifique seu pedido
+            </mat-panel-description>
+        </mat-expansion-panel-header>
 
-            <mat-form-field appearance="fill">
-                <mat-label placeholder="1">Quantidade</mat-label>
-                <input matInput type="number" min="1">
-            </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label placeholder="1">Quantidade</mat-label>
+            <input matInput type="number" min="1">
+        </mat-form-field>
 
-        </mat-expansion-panel>
-    </mat-accordion> -->
+    </mat-expansion-panel>
+</mat-accordion>
 
-<table mat-table [dataSource]="dataSource" class="table">
+<!-- <table mat-table [dataSource]="dataSource" class="table">
 
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nome do produto </th>
@@ -46,7 +46,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-</table>
+</table> -->
 
 <div class="shopButton">
     <a mat-raised-button color="primary" target="_blank" (click)="purchase('123')">Comprar</a>

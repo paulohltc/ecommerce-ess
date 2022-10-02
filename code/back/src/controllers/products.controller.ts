@@ -10,7 +10,7 @@ export class ProductsController {
     private liqui: Product = { code: '4', stock: 85, name: 'Liquidificador 500W', price: 245, description: '400W muito boa' };
     private codeNum: number = 5;
 
-    private shoppingCart: string[] = []; // codes
+    private shoppingCart: Map<string, Product>; // codes
 
     private editingProductCode: string | undefined;
 
@@ -22,6 +22,7 @@ export class ProductsController {
             [this.tv.code, this.tv],
             [this.liqui.code, this.liqui]
         ]);
+        this.shoppingCart = new Map([]);
     }
 
     getStock(code: string): number | undefined {
@@ -50,30 +51,29 @@ export class ProductsController {
         return exists;
     }
 
-    // getShoppingCart(): Product[] {
-    //     return this.shoppingCart;
-    // }
+    getShoppingCart(): Map<string, Product> {
+        return this.shoppingCart;
+    }
 
     addProductToCart(code: string): boolean {
         var existsProduct = this.productExists(code);
-        var index = this.shoppingCart.indexOf(code);
-        var notExistsShoppingCart = index <= -1;
-        if (notExistsShoppingCart) {
-            this.shoppingCart.push(code);
+        if (existsProduct) {
+            this.shoppingCart.set(code, this.products.get(code)!);
         }
-        return notExistsShoppingCart && existsProduct;
+        return existsProduct;
     }
 
     deleteProductFromCart(code: string): boolean {
-        var exists = false;
-        var index = this.shoppingCart.indexOf(code);
-        if (index > -1) {
-            exists = true;
-            this.shoppingCart.splice(index, 1);
+        var productInCart = this.isProductInCart(code);
+        if (productInCart) {
+            this.shoppingCart.delete(code);
         }
-        return exists;
+        return productInCart;
     }
 
+    clearCart() {
+        this.shoppingCart = new Map([]);
+    }
 
     getProduct(code: string): Product | undefined {
         return this.products.get(code);
@@ -91,6 +91,10 @@ export class ProductsController {
             }
         })
         return available;
+    }
+
+    isProductInCart(code: string): boolean {
+        return this.shoppingCart.has(code);
     }
 
     productExists(code: string): boolean {

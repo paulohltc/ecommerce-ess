@@ -37,6 +37,7 @@ export class ProductsService {
     return this.http.get<any>(environment.url + '/products/editing');
   }
 
+  // edit product
   setEditingProduct(code: string): Observable<any> {
     var body = { code: code };
     return this.http.post<any>(environment.url + '/products/editing', body);
@@ -44,6 +45,21 @@ export class ProductsService {
 
   editProduct(product: Product): Observable<any> {
     return this.http.put<any>(environment.url + '/products/editing', product);
+  }
+
+  // shopping cart
+  getShoppingCart(): Observable<Map<string, Product>> {
+    return this.http.get<any>(environment.url + '/products/cart');
+  }
+  addProductToCart(code: string): Observable<any> {
+    const codeObj = { code: code };
+    return this.http.post<any>(environment.url + '/products/cart', codeObj);
+  }
+  deleteProductFromCart(code: string): Observable<any> {
+    return this.http.delete<any>(environment.url + '/products/cart/' + code);
+  }
+  clearShoppingCart(): Observable<any> {
+    return this.http.get<any>(environment.url + '/products/cart/clear');
   }
 
 }

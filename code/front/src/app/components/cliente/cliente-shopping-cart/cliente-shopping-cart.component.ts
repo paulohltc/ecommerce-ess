@@ -1,10 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { Shop } from 'src/app/models/shop';
-import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { formatPrice } from 'src/app/utils/utils';
 import { SalesService } from 'src/app/services/sales/sales.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 
 
 @Component({
@@ -15,34 +14,39 @@ import { SalesService } from 'src/app/services/sales/sales.service';
 export class ClienteShoppingCartComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'qty', 'delete'];
-  dataSource = new MatTableDataSource(this.getCart())
+  shoppingCart: Product[] = [];
+  dataSource = this.shoppingCart;
   formatPrice = formatPrice;
 
-  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private shoppingCartService: ShoppingCartService) { }
+  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private productsService: ProductsService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.refresh();
   }
 
-  getCart(): Shop[] {
-    let shop: Map<string, Shop> = new Map([]);
-    this.shoppingCartService.getCart().subscribe(productsList => shop = productsList);
-    return Array.from(shop.values());
-  }
-
-  refresh(): void {
-    this.shoppingCartService.getCart().subscribe((res) => {
-      this.dataSource.data = Array.from(res.values());
-      this.changeDetectorRef.detectChanges();
+  getCart() {
+    this.productsService.getShoppingCart().subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = Object.values(shoppingCart);
+        this.dataSource = this.shoppingCart;
+      }, error: () => {
+        alert('Error');
+      }
     })
   }
 
+  refresh() {
+    this.getCart();
+    this.changeDetectorRef.detectChanges();
+  }
+
   purchase(CPF: string): void {
-    for (let shop of this.getCart()) {
-      let totalPrice = shop.qty * shop.product.price;
-      this.salesService.addSale({ shop: shop, CPFuser: CPF, code: 'define-later', totalPrice: totalPrice });
-    }
-    this.shoppingCartService.clearCart();
-    this.refresh();
+    // for (let shop of this.getCart()) {
+    //   let totalPrice = shop.qty * shop.product.price;
+    //   this.salesService.addSale({ shop: shop, CPFuser: CPF, code: 'define-later', totalPrice: totalPrice });
+    // }
+    // this.shoppingCartService.clearCart();
+    // this.refresh();
   }
 
 }

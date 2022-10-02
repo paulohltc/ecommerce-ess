@@ -4,7 +4,8 @@
 
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let product of availableProducts">
+    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
+      *ngFor="let product of availableProducts; index as i;">
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
           <mat-card-title>{{product.name}}</mat-card-title>
@@ -20,7 +21,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button class="buttonAddProduct">Adicionar ao carrinho</button>
+          <button (click)="addToCart(i)" mat-button class="buttonAddProduct">Adicionar ao carrinho</button>
         </mat-card-actions>
       </mat-card>
     </div>
