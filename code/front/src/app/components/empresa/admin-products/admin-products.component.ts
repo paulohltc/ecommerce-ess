@@ -75,12 +75,7 @@ export class AdminProductsComponent implements OnInit {
 
   editProduct(index: string): void {
     var code = this.products[+index].code;
-    this.productsService.setEditingProduct(code).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/edit-product')
-      }, error: () => {
-        alert('Error');
-      }
-    });
+    this.productsService.setEditingProduct(code);
+    this.router.navigateByUrl('/edit-product');
   }
 }

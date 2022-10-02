@@ -9,8 +9,9 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductsService {
 
+  private editingCode: string;
   constructor(private http: HttpClient) {
-
+    this.editingCode = '';
   }
 
 
@@ -33,18 +34,17 @@ export class ProductsService {
     return this.http.delete<any>(environment.url + '/products/code/' + code);
   }
 
+  // edit product
   getEditingProduct(): Observable<any> {
-    return this.http.get<any>(environment.url + '/products/editing');
+    return this.http.get<any>(environment.url + '/products/code/' + this.editingCode);
   }
 
-  // edit product
-  setEditingProduct(code: string): Observable<any> {
-    var body = { code: code };
-    return this.http.post<any>(environment.url + '/products/editing', body);
+  setEditingProduct(code: string) {
+    this.editingCode = code;
   }
 
   editProduct(product: Product): Observable<any> {
-    return this.http.put<any>(environment.url + '/products/editing', product);
+    return this.http.put<any>(environment.url + '/products/code/' + this.editingCode, product);
   }
 
   // shopping cart

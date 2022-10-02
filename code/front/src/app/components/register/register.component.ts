@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 
 export class RegisterComponent implements OnInit {
 
-  numberRegEx = /\-?\d*\.?\d{1,2}/;
   showPassword: boolean = false;
 
   public userForm: FormGroup = this.formBuilder.group({

@@ -2,9 +2,11 @@ import { Item } from "./item";
 
 export interface Shop {
     code: string;
-    CPFuser: string;
+    CPF: string;
     item: Item;
-    totalPrice: number;
-    //address ...
-    // date ..
+    CEP: string;
+    rua: string;
+    numero: string;
+    complemento: string;
+
 }

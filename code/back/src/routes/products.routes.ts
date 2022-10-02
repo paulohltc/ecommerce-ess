@@ -18,31 +18,6 @@ productsRouter.route("/")
         return res.json({ success: "Produto cadastrado com sucesso" });
     })
 
-// editing product data
-productsRouter.route("/editing")
-    .get((req: Request, res: Response) => {
-        const editingProductCode = productsController.getEditingProduct();
-        if (!editingProductCode) {
-            return res.status(404).json({ err: "Produto não encontrado" });
-        }
-        return res.json(editingProductCode);
-    })
-    .post((req: Request, res: Response) => {
-        const codeJson = req.body;
-        const valid = productsController.setEditingProductCode(codeJson.code);
-        if (!valid) {
-            return res.status(404).json({ err: "Produto não encontrado" });
-        }
-        return res.json({ success: "Dados do produto enviados com sucesso" });
-    })
-    .put((req: Request, res: Response) => {
-        const product = req.body;
-        const update = productsController.updateProduct(product);
-        if (!update) {
-            return res.status(404).json({ err: "Produto não encontrado" });
-        }
-        return res.json({ success: "Produto atualizado com sucesso" });
-    })
 
 // query by stock > 0
 productsRouter.route("/available")
@@ -91,6 +66,15 @@ productsRouter.route("/code/:code")
             return res.status(404).json({ err: "Produto não encontrado" });
         }
         return res.json(product);
+    })
+    .put((req: Request, res: Response) => {
+        const code = req.params.code;
+        const product = req.body;
+        const update = productsController.updateProduct(code, product);
+        if (!update) {
+            return res.status(404).json({ err: "Produto não encontrado" });
+        }
+        return res.json({ success: "Produto atualizado com sucesso" });
     })
     .delete((req: Request, res: Response) => {
         const code = req.params.code;
