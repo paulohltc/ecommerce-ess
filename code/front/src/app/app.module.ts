@@ -31,7 +31,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ClienteHomeComponent } from './components/cliente/cliente-home/cliente-home.component';
 import { ClienteShoppingCartComponent } from './components/cliente/cliente-shopping-cart/cliente-shopping-cart.component';
-import { ClienteDebitCardComponent } from './components/cliente/cliente-debit-card/cliente-debit-card.component';
 import { ClienteProfilePageComponent } from './components/cliente/cliente-profile-page/cliente-profile-page.component';
 import { AdminProductsComponent } from './components/empresa/admin-products/admin-products.component';
 import { AdminSalesComponent } from './components/empresa/admin-sales/admin-sales.component';
@@ -41,6 +40,7 @@ import { AdminAddProductComponent } from './components/empresa/admin-add-product
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { environment } from 'src/environments/environment';
+import { ClientePurchaseComponent } from './components/cliente/cliente-purchase/cliente-purchase.component';
 
 
 
@@ -51,13 +51,13 @@ import { environment } from 'src/environments/environment';
     RegisterComponent,
     ClienteHomeComponent,
     ClienteShoppingCartComponent,
-    ClienteDebitCardComponent,
     ClienteProfilePageComponent,
     AdminProductsComponent,
     AdminSalesComponent,
     AdminAddProductComponent,
     AdminEditProductComponent,
     NavbarComponent,
+    ClientePurchaseComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
