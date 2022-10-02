@@ -4,6 +4,17 @@ table {
     margin-right: auto;
 }
 
+.example-headers-align {
+    width: 80%;
+    margin-top: 2vh;
+}
+
+.parent {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 .sec1 {
     font-size: 14px;

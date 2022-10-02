@@ -1,8 +1,8 @@
 <html>
 <app-navbar></app-navbar>
 
-<mat-accordion class="example-headers-align">
-    <mat-expansion-panel *ngFor="let product of dataSource">
+<mat-accordion class="parent">
+    <mat-expansion-panel class="example-headers-align" *ngFor="let product of dataSource">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 {{product.name}}
