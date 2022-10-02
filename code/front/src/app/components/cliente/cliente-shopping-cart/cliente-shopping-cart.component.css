@@ -14,7 +14,7 @@ table {
 
 .mat-form-field {
     font-size: 14px;
-    width: 85%;
+    width: 75%;
     margin-right: 7vw;
 
 }
@@ -23,4 +23,25 @@ table {
     display: flex;
     justify-content: center;
     margin-top: 2vh;
+}
+
+.price {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.totalAmountText {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.totalAmount {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    font-size: 2rem;
+    font-weight: bold;
 }

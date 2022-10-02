@@ -17,36 +17,14 @@
             <input matInput type="number" min="1">
         </mat-form-field>
 
+        <p>Total deste item:</p>
+        <p class="price">R$ 345,00</p>
+
     </mat-expansion-panel>
 </mat-accordion>
 
-<!-- <table mat-table [dataSource]="dataSource" class="table">
-
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome do produto </th>
-        <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Preço </th>
-        <td mat-cell *matCellDef="let element"> {{formatPrice(element.product.price)}} </td>
-    </ng-container>
-    <ng-container matColumnDef="qty">
-        <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-        <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> Deletar </th>
-        <td mat-cell *matCellDef="let i=index">
-            <button class="removeBtn" type="button">x</button>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-</table> -->
+<p class="totalAmountText">Subtotal do carrinho:</p>
+<p class="totalAmount">R$ 145,00</p>
 
 <div class="shopButton">
     <a mat-raised-button color="primary" target="_blank" (click)="purchase('123')">Comprar</a>
