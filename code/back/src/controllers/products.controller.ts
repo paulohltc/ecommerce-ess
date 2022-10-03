@@ -69,7 +69,7 @@ export class ProductsController {
     }
 
     getAvailableProducts(): Map<string, Product> {
-        var available = this.products;
+        var available = new Map(this.products);
         available.forEach((value: Product, key: string) => {
             if (value.stock <= 0) {
                 available.delete(key);
