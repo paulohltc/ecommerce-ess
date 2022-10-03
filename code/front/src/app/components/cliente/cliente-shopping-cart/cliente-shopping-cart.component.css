@@ -5,7 +5,7 @@ table {
 }
 
 .example-headers-align {
-    width: 80%;
+    width: 30%;
     margin-top: 2vh;
 }
 
@@ -56,3 +56,29 @@ table {
     font-size: 2rem;
     font-weight: bold;
 }
+
+.qty {
+    width: 50%;
+}
+
+.grand-parent {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+  }
+  
+  .container {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 35vw;
+  }
+
+  .buttonRemove {
+    width: 25%;
+  }

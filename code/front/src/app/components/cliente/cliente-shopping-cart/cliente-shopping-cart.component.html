@@ -12,13 +12,24 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <mat-form-field appearance="fill">
-            <mat-label placeholder="1">Quantidade</mat-label>
-            <input matInput type="number" [(ngModel)]="quantities[i]" min="1">
-        </mat-form-field>
-
-        <p>Total deste item:</p>
-        <p class="price">{{formatPrice(quantities[i]*product.price)}}</p>
+        <div class="grand-parent">
+            <div class="container">
+                <div class="productInfo">
+                    <mat-form-field class="qty" appearance="fill">
+                        <mat-label class="qty" placeholder="1">Quantidade</mat-label>
+                        <input matInput type="number" [(ngModel)]="quantities[i]" min="1">
+                    </mat-form-field>
+            
+                    <p>Total deste item:</p>
+                    <p class="price">{{formatPrice(quantities[i]*product.price)}}</p>
+            
+                    <a class="buttonRemove" mat-raised-button color="primary" target="_blank">Remover produto</a>
+                </div>
+            </div>
+            
+        </div>
+        
+        
 
     </mat-expansion-panel>
 </mat-accordion>
