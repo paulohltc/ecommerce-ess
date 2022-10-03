@@ -34,21 +34,21 @@ h1 {
 
 /*Sidenav css start*/
 mat-sidenav a:hover {
-    background-color: darkgoldenrod;
-    color: black;
+    background-color: #20295B;
+    color: white;
 }
 
 mat-sidenav a {
     padding: 14px 10px;
     flex: auto;
-    color: antiquewhite;
+    color: white;
     text-align: center;
     font-size: 17px;
     text-decoration: none;
 }
 
 .box {
-    background: grey;
+    background: #3F51B5;
 }
 
 mat-nav-list {
