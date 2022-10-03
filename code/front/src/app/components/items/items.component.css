@@ -8,12 +8,6 @@
     right: 0;
 }
 
-.sec1 {
-    font-size: 14px;
-    width: 200%;
-    margin-left: 4vw;
-
-}
 
 .voltar {
     width: 10vh;
@@ -21,6 +15,7 @@
     margin-top: 1.5vh;
     justify-content: center;
     text-align: center;
+    margin-left: 25vw;
 }
 
 .example-is-mobile .example-toolbar {
@@ -28,9 +23,9 @@
     z-index: 2;
 }
 
-h1.example-app-name {
-    margin-left: 8px;
-}
+        /* h1.example-app-name {
+            margin-left: 8px;
+        } */
 
 .example-sidenav-container {
     flex: 1;
@@ -44,7 +39,6 @@ h1 {
     font-family: 'Roboto';
     font-size: 36px;
     font-weight: 500;
-    margin-left: 4vw;
 }
 
 /*Sidenav css start*/
@@ -68,12 +62,12 @@ mat-sidenav a {
 
 h1 {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    margin-left: 25vw;
 }
 
 mat-nav-list {
     overflow: hidden;
-
 }
 
 .meio {
@@ -107,7 +101,7 @@ table {
 .grand-parent {
     display: flex;
     justify-content: center;
-    margin-top: 4vh;
+    margin-top: 2vh;
 }
 
 
