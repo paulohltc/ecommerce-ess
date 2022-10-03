@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminAddProductComponent } from './components/empresa/admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './components/empresa/admin-edit-product/admin-edit-product.component';
 import { ClientePurchaseComponent } from './components/cliente/cliente-purchase/cliente-purchase.component';
+import { ItemsComponent } from './components/items/items.component';
 
 
 
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'items', component: ItemsComponent
   },
 
   // Rotas de cliente

@@ -1,4 +1,4 @@
-import e from "express";
+import { Item } from "../../../models/item";
 import { Shop } from "../../../models/shop";
 
 export class ShopsController {
@@ -24,6 +24,14 @@ export class ShopsController {
             }
         })
         return emailShops;
+    }
+
+    getItems(code: string): Item[] {
+        var items: Item[] = [];
+        if (this.shopExists(code)) {
+            items = this.shops.get(code)!.items;
+        }
+        return items;
     }
 
     shopExists(code: string): boolean {

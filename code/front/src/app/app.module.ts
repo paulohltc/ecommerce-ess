@@ -41,6 +41,7 @@ import { AdminEditProductComponent } from './components/empresa/admin-edit-produ
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { environment } from 'src/environments/environment';
 import { ClientePurchaseComponent } from './components/cliente/cliente-purchase/cliente-purchase.component';
+import { ItemsComponent } from './components/items/items.component';
 
 
 
@@ -58,6 +59,7 @@ import { ClientePurchaseComponent } from './components/cliente/cliente-purchase/
     AdminEditProductComponent,
     NavbarComponent,
     ClientePurchaseComponent,
+    ItemsComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

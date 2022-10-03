@@ -23,5 +23,11 @@ shopsRouter.route("/:email")
         const shopsJson = Object.fromEntries(shops);
         return res.json(shopsJson);
     })
+shopsRouter.route("/items/:code")
+    .get((req: Request, res: Response) => {
+        const code = req.params.code;
+        const items = shopsController.getItems(code);
+        return res.json(items);
+    })
 
 export default shopsRouter;

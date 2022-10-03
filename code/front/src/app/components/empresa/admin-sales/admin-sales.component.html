@@ -49,7 +49,7 @@
         <ng-container matColumnDef="info">
           <th mat-header-cell *matHeaderCellDef> Itens </th>
           <td mat-cell *matCellDef="let i=index">
-            <button class="removeBtn" type="button">+</button>
+            <button class="removeBtn" (click)="details(i)" type="button">+</button>
           </td>
         </ng-container>
 

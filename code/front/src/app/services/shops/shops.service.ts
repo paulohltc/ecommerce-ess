@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ShopsService {
   private items: Item[] = [];
+  private currentShopCode = '';
   private totalPrice: number = 0;
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -25,8 +26,24 @@ export class ShopsService {
     this.items = [];
   }
 
+  getCurrentShopCode() {
+    return this.currentShopCode;
+  }
+
+  setCurrentShop(code: string) {
+    this.currentShopCode = code;
+  }
+
+  clearCurrentShop() {
+    this.currentShopCode = '';
+  }
+
   getShops(): Observable<Map<string, Shop>> {
     return this.http.get<any>(environment.url + '/shops');
+  }
+
+  getShopItems(): Observable<Item[]> {
+    return this.http.get<any>(environment.url + '/shops/items/' + this.currentShopCode);
   }
 
   getShopsFromClient(): Observable<Map<string, Shop>> {
