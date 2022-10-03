@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   roleAuth: string = 'Cliente';
+  private loggedEmail = '';
   private authRouteMap: Map<string, string> = new Map([
     ['Cliente', '/cliente-home'],
     ['Admin', '/products'],
@@ -30,10 +31,13 @@ export class AuthService {
   loginUser(login: User) {
     if (login.email == 'admin@admin.com') {
       this.roleAuth = 'Admin';
+    } else {
+      this.roleAuth = 'Cliente';
     }
     this.fireauth.signInWithEmailAndPassword(login.email, login.password).then((user) => {
       localStorage.setItem('token', 'true');
       var route = this.authRouteMap.get(this.roleAuth) as string;
+      this.loggedEmail = login.email;
       this.router.navigateByUrl(route);
     }, err => {
       alert('Credenciais invalidas');
@@ -52,9 +56,15 @@ export class AuthService {
   logout() {
     this.fireauth.signOut().then(() => {
       localStorage.removeItem('token');
+      this.loggedEmail = '';
       this.router.navigateByUrl('/login');
     }, err => {
       alert(err.message);
     })
   }
+
+  getLoggedEmail(): string {
+    return this.loggedEmail;
+  }
+
 }

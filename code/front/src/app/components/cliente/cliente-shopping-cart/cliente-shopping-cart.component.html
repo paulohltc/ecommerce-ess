@@ -1,55 +1,50 @@
 <html>
 <app-navbar></app-navbar>
 
-<!-- <mat-accordion class="example-headers-align">
-        <mat-expansion-panel *ngFor="let shop of getCart()">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    {{shop.product.name}}
-                </mat-panel-title>
-                <mat-panel-description>
-                    Modifique seu pedido
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+<mat-accordion class="parent">
+    <mat-expansion-panel class="example-headers-align" *ngFor="let product of dataSource; let i = index;">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{product.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+                Modifique seu pedido
+            </mat-panel-description>
+        </mat-expansion-panel-header>
 
-            <mat-form-field appearance="fill">
-                <mat-label placeholder="1">Quantidade</mat-label>
-                <input matInput type="number" min="1">
-            </mat-form-field>
+        <div class="grand-parent">
+            <div class="container">
+                <div class="productInfo">
+                    <mat-form-field class="qty" appearance="fill">
+                        <mat-label class="qty" placeholder="1">Quantidade</mat-label>
+                        <input matInput type="number" min="1" step="1" [(ngModel)]="quantities[i]">
+                        <p class="errorQty" *ngIf="quantities[i] > product.stock">Estoque inexistente
+                        </p>
+                        <p class="errorQty" *ngIf="quantities[i] === 0">Valor menor que 1
+                        </p>
+                    </mat-form-field>
 
-        </mat-expansion-panel>
-    </mat-accordion> -->
+                    <p>Total deste item:</p>
+                    <p class="price">{{formatPrice(quantities[i]*product.price)}}</p>
 
-<table mat-table [dataSource]="dataSource" class="table">
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome do produto </th>
-        <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
-    </ng-container>
+                    <a class="buttonRemove" mat-raised-button color="primary" target="_blank"
+                        (click)="removeItemFromCart(i)">Remover produto</a>
+                </div>
+            </div>
 
-    <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Preço </th>
-        <td mat-cell *matCellDef="let element"> {{formatPrice(element.product.price)}} </td>
-    </ng-container>
-    <ng-container matColumnDef="qty">
-        <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-        <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
-    </ng-container>
+        </div>
 
-    <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> Deletar </th>
-        <td mat-cell *matCellDef="let i=index">
-            <button class="removeBtn" type="button">x</button>
-        </td>
-    </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-</table>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<p class="totalAmountText">Subtotal do carrinho:</p>
+<p class="totalAmount">{{formatPrice(totalPrice())}}</p>
 
 <div class="shopButton">
-    <a mat-raised-button color="primary" target="_blank" (click)="purchase('123')">Comprar</a>
+    <a mat-raised-button color="primary" target="_blank" (click)="continuePurchase()">Continuar</a>
 </div>
 
 </html>

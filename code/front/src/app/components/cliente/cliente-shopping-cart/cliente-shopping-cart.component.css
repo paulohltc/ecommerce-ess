@@ -4,6 +4,22 @@ table {
     margin-right: auto;
 }
 
+.example-headers-align {
+    width: 30%;
+    margin-top: 2vh;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.errorQty {
+    color: red;
+    font-size: small;
+}
 
 .sec1 {
     font-size: 14px;
@@ -14,7 +30,7 @@ table {
 
 .mat-form-field {
     font-size: 14px;
-    width: 85%;
+    width: 75%;
     margin-right: 7vw;
 
 }
@@ -23,4 +39,66 @@ table {
     display: flex;
     justify-content: center;
     margin-top: 2vh;
+}
+
+.price {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.totalAmountText {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.totalAmount {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.qty {
+    width: 50%;
+}
+
+.grand-parent {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 35vw;
+}
+
+.buttonRemove {
+    width: 32%;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .buttonRemove {
+        font-size: xx-small;
+    }
+
+}
+
+@media only screen and (min-width: 601px) {
+    .buttonRemove {
+        font-size: small;
+    }
 }

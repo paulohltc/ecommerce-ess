@@ -1,70 +1,70 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Product } from 'src/app/models/product';
+import { Product } from '../../../../../models/product';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  products: Product[];
-  size: number = 0;
-  editingProduct: string = '';
-
-  private geladeira: Product = { code: '0', stock: 10, name: 'Geladeira', category: 'Doméstico', price: 1550, description: '400W muito boa', rating: 4.5 }
-  private microondas: Product = { code: '1', stock: 50, name: 'Microondas', category: 'Doméstico', price: 435, description: '400W muito boa', rating: 4.5 }
-  private fogao: Product = { code: '2', stock: 15, name: 'Fogão quatro bocas', category: 'Doméstico', price: 900, description: '400W muito boa', rating: 4.5 }
-  private tv: Product = { code: '3', stock: 4, name: 'Televisão 75"', category: 'Eletrônico', price: 6300, description: '400W muito boa', rating: 4.5 }
-  private liqui: Product = { code: '4', stock: 85, name: 'Liquidificador 500W', category: 'Doméstico', price: 245, description: '400W muito boa', rating: 4.5 }
-
-
-  constructor() {
-    this.products = [this.geladeira, this.microondas, this.fogao, this.tv, this.liqui];
-    this.size = 5;
+  private editingCode: string;
+  constructor(private http: HttpClient) {
+    this.editingCode = '';
   }
 
 
-  getProducts(): Observable<Product[]> {
-    const products = of(this.products);
-    return products;
+  getProducts(): Observable<Map<string, Product>> {
+    return this.http.get<any>(environment.url + '/products');
   }
 
-  productExists(code: string): boolean {
-    return +code < this.products.length
+  getAvailableProducts(): Observable<Map<string, Product>> {
+    return this.http.get<any>(environment.url + '/products/available');
   }
 
-  getProduct(code: string): Product {
-    return this.products[+code];
+  getProduct(code: string): Observable<Product> {
+    return this.http.get<any>(environment.url + '/products/code/' + code);
   }
 
-  addProduct(product: Product): void {
-    product.code = this.size.toString();
-    product.rating = 5;
-    this.products.push(product);
-    this.size++;
+  addProduct(product: Product): Observable<any> {
+    return this.http.post<any>(environment.url + '/products', product);
+  }
+  deleteProduct(code: string): Observable<any> {
+    return this.http.delete<any>(environment.url + '/products/code/' + code);
   }
 
-  // removeProduct(code: string): void {
-  //   if (this.productExists(code)) {
-  //     this.products.splice(+code, 1);;
-  //   }
-  // }
-
-  getEditingProduct(): Product {
-    return this.products[+this.editingProduct];
+  // edit product
+  getEditingProduct(): Observable<any> {
+    return this.http.get<any>(environment.url + '/products/code/' + this.editingCode);
   }
 
-  loginEditProduct(code: string): void {
-    this.editingProduct = code;
+  setEditingProduct(code: string) {
+    this.editingCode = code;
   }
 
-  logoutEditProduct(): void {
-    this.editingProduct = '';
+  editProduct(product: Product): Observable<any> {
+    return this.http.put<any>(environment.url + '/products/code/' + this.editingCode, product);
   }
 
-  updateProduct(code: string, product: Product): void {
-    product.code = code;
-    this.products[+code] = product;
+  updateProductStock(code: string, stock: number): Observable<any> {
+    var stockObj = { stock: stock };
+    return this.http.put<any>(environment.url + '/products/code/' + code + '/stock', stockObj);
+  }
+
+  // shopping cart
+  getShoppingCart(): Observable<Map<string, Product>> {
+    return this.http.get<any>(environment.url + '/products/cart');
+  }
+  addProductToCart(code: string): Observable<any> {
+    const codeObj = { code: code };
+    return this.http.post<any>(environment.url + '/products/cart', codeObj);
+  }
+  deleteProductFromCart(code: string): Observable<any> {
+    return this.http.delete<any>(environment.url + '/products/cart/' + code);
+  }
+  clearShoppingCart(): Observable<any> {
+    return this.http.get<any>(environment.url + '/products/cart/clear');
   }
 
 }

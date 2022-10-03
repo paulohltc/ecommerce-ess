@@ -11,14 +11,15 @@
 
         <div class="menu" [class.menuClasse]="menuVariable">
           <mat-toolbar class="navbar">
-            <a mat-button routerLink="/cliente-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
+            <a mat-button routerLink="/cliente-profile-page">Meus pedidos<mat-icon class="meio">account_circle
+              </mat-icon></a>
             <a mat-button routerLink="/cliente-home">Home <mat-icon class="meio">home</mat-icon></a>
             <h1 class="center">
               <mat-icon>eco</mat-icon>Magali
             </h1>
             <div class="spacer"></div>
             <a mat-button routerLink="/shopping-cart">
-              <mat-icon class="meio">shopping_cart</mat-icon> Carrinho
+              Carrinho<mat-icon class="meio">shopping_cart</mat-icon>
             </a>
             <a mat-list-item (click)="logout()" routerLink="/login">Sair</a>
 

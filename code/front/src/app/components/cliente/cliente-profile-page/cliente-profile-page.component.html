@@ -1,13 +1,42 @@
 <html>
 <app-navbar></app-navbar>
 
-
 <body>
+    <h1>Compras de {{getLoggedEmail()}}</h1>
+    <div class="grand-parent">
+        <table mat-table [dataSource]="shops" class="table">
 
+            <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef> Código de venda </th>
+                <td mat-cell *matCellDef="let shop"> {{shop.code}} </td>
+            </ng-container>
 
+            <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef> Quantidade de produtos </th>
+                <td mat-cell *matCellDef="let shop"> {{(shop.items.length)}} </td>
+            </ng-container>
 
-    <p>MEUS PEDIDOS PORRA</p>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Preço total </th>
+                <td mat-cell *matCellDef="let shop"> {{formatPrice(shop.total)}} </td>
+            </ng-container>
 
+            <ng-container matColumnDef="items">
+                <th mat-header-cell *matHeaderCellDef> Itens </th>
+                <td mat-cell *matCellDef="let i=index">
+                    <button class="items" (click)="details(i)" type="button">+</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data</td>
+            </tr>
+
+        </table>
+    </div>
 
 </body>
 
