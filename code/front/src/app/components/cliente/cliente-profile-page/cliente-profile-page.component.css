@@ -5,45 +5,19 @@ html {
     justify-content: center;
 }
 
-.grand-parent {
-    display: table;
-    height: 100%;
-    margin: 0 auto;
-}
-
-.container {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.register-form {
-    display: flex;
-    flex-direction: column;
-    padding: 50px;
-    width: 35vw;
-}
-
-.toggle {
+ .grand-parent {
     display: flex;
     justify-content: center;
+    margin-top: 4vh;
 }
 
-.saveButton {
+h1 {
     display: flex;
     justify-content: center;
-}
-
-.button {
-    width: 4vw;
+    margin-top: 2vh;
 }
 
 
-.msgEditDisplay {
-    color: green;
-}
-
-mat-error {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3vh;
+table {
+    width: 40%;
 }

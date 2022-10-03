@@ -5,60 +5,51 @@
     <mat-sidenav class="box" [opened]=true mode="push" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLink="/admin-profile-page">Fulano<mat-icon class="meio">account_circle</mat-icon></a>
         <a mat-list-item routerLink="/products">Produtos<mat-icon class="meio">store</mat-icon></a>
         <a mat-list-item routerLink="/sales">Vendas<mat-icon class="meio">attach_money</mat-icon></a>
-        <div *ngIf="isAdmin">
-          <a mat-list-item routerLink="/users">Usuários <mat-icon class="meio">event_note</mat-icon></a>
-        </div>
-        <div class="absolute"><a mat-list-item (click)="logOut()" routerLink="/login">Sair</a></div>
+        <div class="absolute"><a mat-list-item (click)="logout()" routerLink="/login">Sair</a></div>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <h1>Admin Sales</h1>
-      <div class="sec1">
-        <mat-form-field appearance="standard">
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
-        </mat-form-field>
-      </div>
 
-      <table mat-table [dataSource]="dataSourceSales" class="table">
+      <table mat-table [dataSource]="shops" class="table">
 
         <ng-container matColumnDef="codigoSale">
           <th mat-header-cell *matHeaderCellDef> Código da venda </th>
           <td mat-cell *matCellDef="let element"> {{element.code}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="codigoProduct">
-          <th mat-header-cell *matHeaderCellDef> Código do produto </th>
-          <td mat-cell *matCellDef="let element"> {{element.shop.product.code}} </td>
+        <ng-container matColumnDef="qty">
+          <th mat-header-cell *matHeaderCellDef> Quantidade de produtos </th>
+          <td mat-cell *matCellDef="let element"> {{element.items.length}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Nome do produto </th>
-          <td mat-cell *matCellDef="let element"> {{(element.shop.product.name)}} </td>
+          <th mat-header-cell *matHeaderCellDef> Nome do usuário </th>
+          <td mat-cell *matCellDef="let element"> {{(element.name)}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="qty">
-          <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-          <td mat-cell *matCellDef="let element"> {{element.shop.qty}} </td>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> E-mail do usuário </th>
+          <td mat-cell *matCellDef="let element"> {{(element.email)}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="value">
+        <ng-container matColumnDef="CPF">
+          <th mat-header-cell *matHeaderCellDef> CPF do usuário </th>
+          <td mat-cell *matCellDef="let element"> {{formatCPF(element.CPF)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef> Valor total </th>
-          <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+          <td mat-cell *matCellDef="let element"> {{formatPrice(element.total)}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="cpf">
-          <th mat-header-cell *matHeaderCellDef> CPF usuário </th>
-          <td mat-cell *matCellDef="let element"> {{element.CPFuser}} </td>
-        </ng-container>
 
         <ng-container matColumnDef="info">
-          <th mat-header-cell *matHeaderCellDef> Informações </th>
+          <th mat-header-cell *matHeaderCellDef> Itens </th>
           <td mat-cell *matCellDef="let i=index">
-            <button class="removeBtn" type="button">+</button>
+            <button class="removeBtn" (click)="details(i)" type="button">+</button>
           </td>
         </ng-container>
 
@@ -66,7 +57,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td class="mat-cell" colspan="4">No data</td>
         </tr>
 
       </table>

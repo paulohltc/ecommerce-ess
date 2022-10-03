@@ -1,52 +1,43 @@
 <html>
-    <app-navbar></app-navbar>
-<div class="toggle">
-    <mat-button-toggle-group #whatUser="matButtonToggleGroup" name="whatUser" aria-label="Favorite Color">
-        <mat-button-toggle (click)="editProfile()" value="esse">Editar perfil</mat-button-toggle>
-
-        <mat-button-toggle (click)="myShops()" value="Meus pedidos">Meus pedidos</mat-button-toggle>
-    </mat-button-toggle-group>
-</div>
+<app-navbar></app-navbar>
 
 <body>
-    <div *ngIf="editProfileDisplay">
-        <div class="grand-parent">
-            <div class="container">
-                <form class="register-form" [formGroup]="userEditForm">
-                    <mat-form-field class="seu-nome" appearance="fill">
-                        <mat-label>Nome</mat-label>
-                        <input matInput placeholder="Nome" maxlength="35" matInput formControlName="name"
-                            name="password">
-                        <mat-error *ngIf="this.userEditForm.controls.name.hasError">Favor fornecer nome</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="seu-email" appearance="fill">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email" maxlength="55" matInput formControlName="email"
-                            name="password">
-                        <mat-error *ngIf="this.userEditForm.controls.email.hasError">Favor preencher email corretamente
-                        </mat-error>
-                        <mat-error *ngIf="userEditForm.get('email')?.errors?.email"></mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="sua-senha" appearance="fill">
-                        <mat-label>Senha</mat-label>
-                        <input matInput [type]="showPassword ? 'text' : 'password'" maxlength="20" matInput
-                            formControlName="password" name="password" placeholder="currUserPassword">
-                        <mat-error *ngIf="this.userEditForm.controls.password.hasError">Favor fornecer senha</mat-error>
-                    </mat-form-field>
-                </form>
-            </div>
-        </div>
-        <mat-error class="msgEditDisplay" *ngIf="msgEditDisplay">Informações alteradas com sucesso!</mat-error>
+    <h1>Compras de {{getLoggedEmail()}}</h1>
+    <div class="grand-parent">
+        <table mat-table [dataSource]="shops" class="table">
 
-        <div class="saveButton">
-            <a mat-raised-button color="primary" (click)="saveEdit()" target="_blank" class="button">Salvar</a>
-        </div>
+            <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef> Código de venda </th>
+                <td mat-cell *matCellDef="let shop"> {{shop.code}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef> Quantidade de produtos </th>
+                <td mat-cell *matCellDef="let shop"> {{(shop.items.length)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Preço total </th>
+                <td mat-cell *matCellDef="let shop"> {{formatPrice(shop.total)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="items">
+                <th mat-header-cell *matHeaderCellDef> Itens </th>
+                <td mat-cell *matCellDef="let i=index">
+                    <button class="items" (click)="details(i)" type="button">+</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data</td>
+            </tr>
+
+        </table>
     </div>
-    <div *ngIf="myShopsDisplay">
 
-        <p>MEUS PEDIDOS PORRA</p>
-
-    </div>
 </body>
 
 </html>

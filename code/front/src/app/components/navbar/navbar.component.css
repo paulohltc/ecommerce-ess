@@ -1,10 +1,10 @@
 header{
     
-    background-color: grey;
+    background-color: #3F51B5;
     overflow: hidden;
   }
   .navbar{
-    background-color: grey;
+    background-color: #3F51B5;
   }
   .spacer {
     flex: 1 1 auto;
@@ -16,7 +16,7 @@ header{
   
   .menu h1.center{
     font-family:cursive;
-    color: antiquewhite;
+    color: #fff;
     text-align: center;
     font-size: 25px;
     flex: 20;
@@ -28,13 +28,13 @@ header{
     
     .navbar a {
         padding: 14px 16px;
-        color: antiquewhite;
+        color: #fff;
         text-align: center;
         font-size: 17px;
         text-decoration: none;
     }
   .menu a:hover{
-    background-color: darkgoldenrod;
+    background-color: #20295B;
     color: black;
     cursor: pointer;
     transition: 0.4s ease-in-out;
@@ -45,9 +45,9 @@ header{
     position: fixed;
     right: 980px;
     top:64;
-    width: 230px;
+    width: 180px;
     height: 100%;
-    background: grey;
+    background: #3F51B5;
     transition: 0.4s ease-in-out;
   
   }

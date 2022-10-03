@@ -1,11 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { Shop } from 'src/app/models/shop';
-import { LoggedService } from 'src/app/services/logged/logged.service';
-import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { Product } from '../../../../../../models/product';
 import { formatPrice } from 'src/app/utils/utils';
-import { SalesService } from 'src/app/services/sales/sales.service';
+import { ProductsService } from 'src/app/services/products/products.service';
+import { Router } from '@angular/router';
+import { ShopsService } from 'src/app/services/shops/shops.service';
+import { Item } from '../../../../../../models/item';
 
 
 @Component({
@@ -16,35 +15,77 @@ import { SalesService } from 'src/app/services/sales/sales.service';
 export class ClienteShoppingCartComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'qty', 'delete'];
-  dataSource = new MatTableDataSource(this.getCart())
+  shoppingCart: Product[] = [];
+  quantities: number[] = [];
+  dataSource = this.shoppingCart;
   formatPrice = formatPrice;
 
-  constructor(private salesService: SalesService, private changeDetectorRef: ChangeDetectorRef, private shoppingCartService: ShoppingCartService, private loggedService: LoggedService) { }
+  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef, private productsService: ProductsService, private shopsService: ShopsService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.refresh();
   }
 
-  getCart(): Shop[] {
-    let shop: Map<string, Shop> = new Map([]);
-    this.shoppingCartService.getCart().subscribe(productsList => shop = productsList);
-    return Array.from(shop.values());
+  totalPrice(): number {
+    var sum = 0;
+    for (let i = 0; i < this.shoppingCart.length; i++) {
+      sum += this.quantities[i] * this.shoppingCart[i].price;
+    }
+    return sum;
   }
 
-  refresh(): void {
-    this.shoppingCartService.getCart().subscribe((res) => {
-      this.dataSource.data = Array.from(res.values());
-      this.changeDetectorRef.detectChanges();
+  getCart() {
+    this.productsService.getShoppingCart().subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = Object.values(shoppingCart);
+        var diff = this.shoppingCart.length - this.quantities.length;
+        for (let i = 0; i < diff; i++) {
+          this.quantities.push(1);
+        }
+        this.dataSource = this.shoppingCart;
+      }, error: () => {
+        alert('Error');
+      }
     })
   }
 
-  purchase(): void {
-    for (let shop of this.getCart()) {
-      let loggedCPF = this.loggedService.getCPF();
-      let totalPrice = shop.qty * shop.product.price;
-      this.salesService.addSale({ shop: shop, CPFuser: loggedCPF, code: 'define-later', totalPrice: totalPrice });
+  refresh() {
+    this.getCart();
+    this.changeDetectorRef.detectChanges();
+  }
+
+  removeItemFromCart(index: number) {
+    var code = this.shoppingCart[index].code;
+    this.quantities.splice(index, 1);
+    this.productsService.deleteProductFromCart(code).subscribe({
+      next: () => {
+        this.refresh();
+      }, error: () => {
+        alert('Error')
+      }
+    });
+  }
+
+  continuePurchase() {
+    var cartSize = this.shoppingCart.length;
+    if (cartSize == 0) {
+      alert('Carrinho vazio')
     }
-    this.shoppingCartService.clearCart();
-    this.refresh();
+    else {
+      var valid = true;
+      this.refresh();
+      var items: Item[] = [];
+      for (let i = 0; i < cartSize; i++) {
+        if (this.quantities[i] > this.shoppingCart[i].stock || this.quantities[i] % 1 !== 0 || this.quantities[i] === 0) {
+          valid = false;
+        }
+        items.push({ product: this.shoppingCart[i], qty: this.quantities[i] });
+      }
+      if (valid) {
+        this.shopsService.setItems(items, this.totalPrice());
+        this.router.navigateByUrl('/cliente-purchase')
+      }
+    }
   }
 
 }

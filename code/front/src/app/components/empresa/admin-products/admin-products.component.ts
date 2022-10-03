@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatTableDataSource } from '@angular/material/table';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { Navigation, NavigationExtras, Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { LoggedService } from 'src/app/services/logged/logged.service';
-import { Product } from 'src/app/models/product';
+import { Router } from '@angular/router';
+import { Product } from '../../../../../../models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { formatPrice } from 'src/app/utils/utils';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -19,62 +17,65 @@ export class AdminProductsComponent implements OnInit {
 
 
   mobileQuery: MediaQueryList;
-  isAdmin: boolean = false;
   formatPrice = formatPrice;
 
-  displayedColumns: string[] = ['code', 'stock', 'name', 'category', 'price', 'edit'];
-  dataSourceProducts = new MatTableDataSource(this.getProducts());
+  displayedColumns: string[] = ['code', 'stock', 'name', 'price', 'edit', 'remove'];
+  products: Product[] = [];
+  dataSourceProducts = this.products;
 
   private _mobileQueryListener: () => void;
 
-  constructor(private router: Router, private loggedService: LoggedService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private productsService: ProductsService) {
+  constructor(private auth: AuthService, private router: Router, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private productsService: ProductsService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
   }
 
-  ngOnInit(): void {
-    this.isAdmin = this.loggedService.getAuth() == 'Admin';
+  ngOnInit() {
+    this.refresh();
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  logOut(): void {
-    this.loggedService.logOut();
+  logout(): void {
+    this.auth.logout();
   }
 
 
-  getcodefromIndex(index: number): string {
-    console.log(this.dataSourceProducts.data[index].code);
-    return this.dataSourceProducts.data[index].code;
-  }
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceProducts.filter = filterValue.trim().toLowerCase();
+  getProducts() {
+    this.productsService.getProducts().subscribe({
+      next: (products: Map<string, Product>) => {
+        this.products = Object.values(products);
+        this.dataSourceProducts = this.products;
+      }, error: () => {
+        alert("Error");
+      }
+    }
+
+    );
   }
 
-  getProducts(): Product[] {
-    let products: Product[] = [];
-    this.productsService.getProducts().subscribe(productsList => products = productsList);
-    return Array.from(products.values());
+  refresh() {
+    this.getProducts();
+    this.changeDetectorRef.detectChanges();
+  }
+  deleteProduct(index: string): void {
+    var code = this.products[+index].code;
+    this.productsService.deleteProduct(code).subscribe({
+      next: () => {
+        this.refresh();
+      }, error: () => {
+        alert("Error");
+      }
+    });
   }
 
-  refresh(): void {
-    this.productsService.getProducts().subscribe((res) => {
-      this.dataSourceProducts.data = Array.from(res.values());
-      this.changeDetectorRef.detectChanges();
-    })
-  }
-  // removeProduct(code: string): void {
-  //   this.productsService.removeProduct(code);
-  //   this.refresh();
-  // }
-
-  editProduct(code: string): void {
-    this.productsService.loginEditProduct(code); // passar para servico o produto atual
-    this.router.navigateByUrl('/edit-product')
+  editProduct(index: string): void {
+    var code = this.products[+index].code;
+    this.productsService.setEditingProduct(code);
+    this.router.navigateByUrl('/edit-product');
   }
 }
