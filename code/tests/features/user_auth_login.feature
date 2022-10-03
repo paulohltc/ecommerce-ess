@@ -6,41 +6,29 @@ Feature: User Authentication Login
 
     Background: Login page
         Given I am using the Chrome browser
-        And I am at "login" page
+        And I go to "login" page
 
     Scenario: Successful login as a Client
-        When I fill the CPF box with "00000000002"
-        And I fill the password box with "123"
+        When I fill the email box with "client@client.com"
+        And I fill the password box with "123456"
         And I submit my credentials
         Then I am now at "cliente-home" page
 
 
-    Scenario: Successful login as a Employee
-        When I fill the CPF box with "00000000003"
-        And I fill the password box with "123"
+    Scenario: Successful login as a Admin
+        When I fill the email box with "admin@admin.com"
+        And I fill the password box with "123456"
         And I submit my credentials
         Then I am now at "products" page
-        And I don't see the item Usuários in the sidenav
 
 
-    Scenario: Unsuccessful login as a Client
-        When I fill the CPF box with "00000000002"
+    Scenario: Unsuccessful login
+        When I fill the email box with "client@client.com"
         And I fill the password box with "wrongpassword"
         And I submit my credentials
-        Then I am now at "login" page
-        And A message "Senha incorreta!" comes to my screen
+        Then I see the "Credenciais invalidas" alert
+        And I accept the alert
+        And I am now at "login" page
 
-    Scenario: Unsuccessful login as a Employee
-        When I fill the CPF box with "00000000003"
-        And I fill the password box with "wrongpassword"
-        And I submit my credentials
-        Then I am now at "login" page
-        And A message "Senha incorreta!" comes to my screen
 
-    Scenario: Unsuccessful login with unregistered CPF
-        When I fill the CPF box with "00000000000"
-        And I fill the password box with "password"
-        And I submit my credentials
-        Then I am now at "login" page
-        And A message "Conta não existente!" comes to my screen
 

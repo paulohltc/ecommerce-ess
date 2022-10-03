@@ -6,7 +6,8 @@
             <h1>Login</h1>
             <mat-form-field class="teste" appearance="fill">
                 <mat-label>Email</mat-label>
-                <input matInput type="text" maxlength="100" matInput formControlName="email" name="email">
+                <input id="emailInput" matInput type="text" maxlength="100" matInput formControlName="email"
+                    name="email">
                 <mat-error *ngIf="userForm.get('email')?.errors?.required">Favor preencher Email</mat-error>
                 <mat-error *ngIf="userForm.get('email')?.errors?.minLenght">Favor preencher Email corretamente
                 </mat-error>
@@ -23,7 +24,8 @@
                     {{showPassword?'visibility_off':'visibility'}}
                 </mat-icon>
             </mat-form-field>
-            <button (click)="loginRoute()" mat-raised-button type="submit" color="primary">Entrar</button>
+            <button id="btnSubmit" (click)="loginRoute()" mat-raised-button type="submit"
+                color="primary">Entrar</button>
 
             <a id="registerBtn" mat-button routerLink="/register">Não tem conta? Cadastre-se!</a>
         </form>

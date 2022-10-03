@@ -13,7 +13,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>
-                <input matInput [type]="showPassword ? 'text' : 'password'" maxlength="20" matInput
+                <input id="passwordInput" matInput [type]="showPassword ? 'text' : 'password'" maxlength="20" matInput
                     formControlName="password" name="password">
                 <mat-error *ngIf="this.userForm.controls.password.hasError">Favor fornecer senha de no mínimo 6
                     caracteres</mat-error>
@@ -21,7 +21,7 @@
                     {{showPassword?'visibility_off':'visibility'}}
                 </mat-icon>
             </mat-form-field>
-            <a mat-raised-button color="primary" (click)="createUser()" target="_blank">Cadastrar</a>
+            <a id="btnSubmit" mat-raised-button color="primary" (click)="createUser()" target="_blank">Cadastrar</a>
             <a mat-button routerLink="/login">Fazer login!</a>
         </form>
     </div>
