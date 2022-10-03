@@ -17,7 +17,7 @@ export class ShopsController {
     }
 
     getShopsFromEmail(email: string): Map<string, Shop> {
-        var emailShops = this.shops;
+        var emailShops = new Map(this.shops);
         emailShops.forEach((value: Shop, key: string) => {
             if (value.email != email) {
                 emailShops.delete(key);

@@ -24,14 +24,28 @@ export class ClientePurchaseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  purchase() {
-    this.shopsService.purchaseItems(this.enderecoForm.value).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/cliente-home')
-      }, error: () => {
+  validForm(): boolean {
+    let valid = true;
+    Object.keys(this.enderecoForm.controls).forEach(key => {
+      valid = (this.enderecoForm.controls[key].status == "VALID") && valid;
+    });
+    return valid;
+  }
 
-      }
-    })
+
+  purchase() {
+    if (this.validForm()) {
+      this.shopsService.purchaseItems(this.enderecoForm.value).subscribe({
+        next: () => {
+          this.router.navigateByUrl('/cliente-home')
+        }, error: () => {
+
+        }
+      })
+    }
+    else {
+      alert('Informações inválidas')
+    }
   }
 
 }
