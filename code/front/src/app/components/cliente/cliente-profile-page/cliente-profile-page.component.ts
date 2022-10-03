@@ -7,9 +7,6 @@ import { Shop } from '../../../../../../models/shop';
 
 
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './cliente-profile-page.component.html',
@@ -19,7 +16,7 @@ export class ClienteProfilePageComponent implements OnInit {
 
   formatPrice = formatPrice;
 
-  displayedColumns: string[] = ['code', 'name', 'price', 'qty'];
+  displayedColumns: string[] = ['code', 'qty', 'price', 'items'];
   shops: Shop[] = [];
 
   constructor(private formBuilder: FormBuilder, private shopsService: ShopsService, private changeDetectorRef: ChangeDetectorRef) { }
