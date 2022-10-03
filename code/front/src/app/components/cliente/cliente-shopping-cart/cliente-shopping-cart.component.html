@@ -20,6 +20,8 @@
                         <input matInput type="number" min="1" step="1" [(ngModel)]="quantities[i]">
                         <p class="errorQty" *ngIf="quantities[i] > product.stock">Estoque inexistente
                         </p>
+                        <p class="errorQty" *ngIf="quantities[i] === 0">Valor menor que 1
+                        </p>
                     </mat-form-field>
 
                     <p>Total deste item:</p>
