@@ -48,7 +48,6 @@ export class AdminEditProductComponent implements OnInit {
   getEditingProduct() {
     this.productsServices.getEditingProduct().subscribe({
       next: (product) => {
-        console.log(product);
         this.productForm.patchValue({
           name: [product.name],
           stock: [product.stock],
