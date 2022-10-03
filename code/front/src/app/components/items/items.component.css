@@ -17,8 +17,10 @@
 
 .voltar {
     width: 10vh;
-    height: 3vh;
+    height: 4vh;
     margin-top: 1.5vh;
+    justify-content: center;
+    text-align: center;
 }
 
 .example-is-mobile .example-toolbar {
@@ -64,6 +66,11 @@ mat-sidenav a {
     background: #3F51B5;
 }
 
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
 mat-nav-list {
     overflow: hidden;
 
@@ -93,10 +100,15 @@ mat-nav-list {
 
 table {
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 
+.grand-parent {
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+}
 
 
 .mat-form-field {

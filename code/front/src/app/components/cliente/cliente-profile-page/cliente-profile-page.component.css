@@ -8,9 +8,14 @@ html {
  .grand-parent {
     display: flex;
     justify-content: center;
-    margin-top: 2vh;
+    margin-top: 4vh;
 }
 
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+}
 
 
 table {
