@@ -11,9 +11,14 @@ table {
 
 .parent {
     display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.errorQty {
+    color: red;
+    font-size: small;
 }
 
 .sec1 {
@@ -65,27 +70,27 @@ table {
     display: table;
     height: 100%;
     margin: 0 auto;
-  }
-  
-  .container {
+}
+
+.container {
     display: table-cell;
     vertical-align: middle;
-  }
-  
-  .productInfo {
+}
+
+.productInfo {
     display: flex;
     flex-direction: column;
     padding: 50px;
     width: 35vw;
-  }
+}
 
-  .buttonRemove {
+.buttonRemove {
     width: 32%;
     display: flex;
     justify-content: center;
-  }
+}
 
-  @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .buttonRemove {
         font-size: xx-small;
     }

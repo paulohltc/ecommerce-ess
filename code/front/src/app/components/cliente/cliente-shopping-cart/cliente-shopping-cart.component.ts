@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product } from '../../../../../../models/product';
-import { MatTableDataSource } from '@angular/material/table';
 import { formatPrice } from 'src/app/utils/utils';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { Router } from '@angular/router';
@@ -39,7 +38,8 @@ export class ClienteShoppingCartComponent implements OnInit {
     this.productsService.getShoppingCart().subscribe({
       next: (shoppingCart) => {
         this.shoppingCart = Object.values(shoppingCart);
-        for (let i = 0; i < this.shoppingCart.length; i++) {
+        var diff = this.shoppingCart.length - this.quantities.length;
+        for (let i = 0; i < diff; i++) {
           this.quantities.push(1);
         }
         this.dataSource = this.shoppingCart;
@@ -54,13 +54,38 @@ export class ClienteShoppingCartComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
   }
 
+  removeItemFromCart(index: number) {
+    var code = this.shoppingCart[index].code;
+    this.quantities.splice(index, 1);
+    this.productsService.deleteProductFromCart(code).subscribe({
+      next: () => {
+        this.refresh();
+      }, error: () => {
+        alert('Error')
+      }
+    });
+  }
+
   continuePurchase() {
-    var items: Item[] = [];
-    for (let i = 0; i < this.shoppingCart.length; i++) {
-      items.push({ product: this.shoppingCart[i], qty: this.quantities[i] });
+    var cartSize = this.shoppingCart.length;
+    if (cartSize == 0) {
+      alert('Carrinho vazio')
     }
-    this.shopsService.setItems(items, this.totalPrice());
-    this.router.navigateByUrl('/cliente-purchase')
+    else {
+      var valid = true;
+      this.refresh();
+      var items: Item[] = [];
+      for (let i = 0; i < cartSize; i++) {
+        if (this.quantities[i] > this.shoppingCart[i].stock || this.quantities[i] % 1 !== 0) {
+          valid = false;
+        }
+        items.push({ product: this.shoppingCart[i], qty: this.quantities[i] });
+      }
+      if (valid) {
+        this.shopsService.setItems(items, this.totalPrice());
+        this.router.navigateByUrl('/cliente-purchase')
+      }
+    }
   }
 
 }

@@ -47,6 +47,11 @@ export class ProductsService {
     return this.http.put<any>(environment.url + '/products/code/' + this.editingCode, product);
   }
 
+  updateProductStock(code: string, stock: number): Observable<any> {
+    var stockObj = { stock: stock };
+    return this.http.put<any>(environment.url + '/products/code/' + code + '/stock', stockObj);
+  }
+
   // shopping cart
   getShoppingCart(): Observable<Map<string, Product>> {
     return this.http.get<any>(environment.url + '/products/cart');

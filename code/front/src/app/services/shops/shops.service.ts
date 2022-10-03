@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ProductsService } from '../products/products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ShopsService {
   private items: Item[] = [];
   private currentShopCode = '';
   private totalPrice: number = 0;
-  constructor(private authService: AuthService, private http: HttpClient) { }
+  constructor(private authService: AuthService, private http: HttpClient, private productsService: ProductsService) { }
 
 
   setItems(items: Item[], totalPrice: number) {
@@ -53,7 +54,17 @@ export class ShopsService {
 
   purchaseItems(details: Details): Observable<any> {
     var shop: Shop = { code: '-', email: this.authService.getLoggedEmail(), ...details, items: this.items, total: this.totalPrice };
+    for (let item of this.items) {
+      var newQty = item.product.stock - item.qty;
+      var prodCode = item.product.code;
+      this.productsService.updateProductStock(prodCode, newQty).subscribe({
+        next: () => { }
+      })
+    }
     this.clearItems();
+    this.productsService.clearShoppingCart().subscribe({
+      next: () => { }
+    });
     return this.http.post<any>(environment.url + '/shops', shop);
   }
 }

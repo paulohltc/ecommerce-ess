@@ -29,7 +29,7 @@ mat-toolbar {
 
 }
 
-.content > mat-card {
+.content>mat-card {
     margin-bottom: 2vw;
 }
 
@@ -43,6 +43,12 @@ mat-toolbar {
 
 .price {
     color: black;
-    font-size:large;
+    font-size: large;
+    font-weight: bold;
+}
+
+.stock {
+    color: black;
+    font-size: medium;
     font-weight: bold;
 }
