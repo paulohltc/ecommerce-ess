@@ -76,7 +76,7 @@ export class ClienteShoppingCartComponent implements OnInit {
       this.refresh();
       var items: Item[] = [];
       for (let i = 0; i < cartSize; i++) {
-        if (this.quantities[i] > this.shoppingCart[i].stock || this.quantities[i] % 1 !== 0) {
+        if (this.quantities[i] > this.shoppingCart[i].stock || this.quantities[i] % 1 !== 0 || this.quantities[i] === 0) {
           valid = false;
         }
         items.push({ product: this.shoppingCart[i], qty: this.quantities[i] });

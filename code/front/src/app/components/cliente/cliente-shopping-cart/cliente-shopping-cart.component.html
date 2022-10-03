@@ -17,7 +17,7 @@
                 <div class="productInfo">
                     <mat-form-field class="qty" appearance="fill">
                         <mat-label class="qty" placeholder="1">Quantidade</mat-label>
-                        <input matInput type="number" min="0" step="1" [(ngModel)]="quantities[i]" min="1">
+                        <input matInput type="number" min="1" step="1" [(ngModel)]="quantities[i]">
                         <p class="errorQty" *ngIf="quantities[i] > product.stock">Estoque inexistente
                         </p>
                     </mat-form-field>
