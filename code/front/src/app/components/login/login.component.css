@@ -19,7 +19,7 @@ h1 {
 
 .container {
     display: table-cell;
-    vertical-align: middle;
+    vertical-align:middle;
 }
 
 .login-form {
@@ -47,9 +47,6 @@ h1 {
     margin-top: 2vh;
 }
 
-.teste {
-    width: 100%;
-}
 
 .errorMsg {
     margin-top: 1vh;
