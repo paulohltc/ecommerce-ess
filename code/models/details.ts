@@ -1,5 +1,5 @@
 export interface Details {
-    nome: string;
+    name: string;
     CPF: string;
     CEP: string;
     rua: string;

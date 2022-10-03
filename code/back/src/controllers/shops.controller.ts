@@ -1,8 +1,9 @@
+import e from "express";
 import { Shop } from "../../../models/shop";
 
 export class ShopsController {
     private shops: Map<string, Shop>;
-    private keyboard: Shop = { code: '0', email: 'phltc@cin.ufpe.br', nome: 'Paulo Correia', CPF: '06105312345', CEP: '51020600', rua: 'Rua Poeta Clecio Rodrigo', numero: '38', complemento: 'Apt 1401 Bloco B', items: [{ product: { code: '5', name: 'Teclado gamer', price: 545, stock: 0, description: 'Gamer' }, qty: 3 }, { product: { code: '0', stock: 0, name: 'Geladeira', price: 1550, description: '400W muito boa' }, qty: 1 }], total: 3185 };
+    private keyboard: Shop = { code: '0', email: 'phltc@cin.ufpe.br', name: 'Paulo Correia', CPF: '06105312345', CEP: '51020600', rua: 'Rua Poeta Clecio Rodrigo', numero: '38', complemento: 'Apt 1401 Bloco B', items: [{ product: { code: '5', name: 'Teclado gamer', price: 545, stock: 0, description: 'Gamer' }, qty: 3 }, { product: { code: '0', stock: 0, name: 'Geladeira', price: 1550, description: '400W muito boa' }, qty: 1 }], total: 3185 };
     private codeNum: number = 1;
 
     constructor() {

@@ -16,5 +16,12 @@ shopsRouter.route("/")
         shopsController.addShop(shop);
         return res.json({ success: "Compra cadastrado com sucesso" });
     })
+shopsRouter.route("/:email")
+    .get((req: Request, res: Response) => {
+        const email = req.params.email;
+        const shops = shopsController.getShopsFromEmail(email);
+        const shopsJson = Object.fromEntries(shops);
+        return res.json(shopsJson);
+    })
 
 export default shopsRouter;

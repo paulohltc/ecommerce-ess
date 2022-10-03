@@ -25,6 +25,15 @@ export class ShopsService {
     this.items = [];
   }
 
+  getShops(): Observable<Map<string, Shop>> {
+    return this.http.get<any>(environment.url + '/shops');
+  }
+
+  getShopsFromClient(): Observable<Map<string, Shop>> {
+    var email = this.authService.getLoggedEmail();
+    return this.http.get<any>(environment.url + '/shops/' + email);
+  }
+
   purchaseItems(details: Details): Observable<any> {
     var shop: Shop = { code: '-', email: this.authService.getLoggedEmail(), ...details, items: this.items, total: this.totalPrice };
     this.clearItems();

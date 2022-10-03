@@ -3,7 +3,7 @@ import { Item } from "./item";
 export interface Shop {
     code: string;
     email: string;
-    nome: string;
+    name: string;
     CPF: string;
     items: Item[];
     CEP: string;
