@@ -9,22 +9,22 @@ Feature: User Authentication Login
         And I go to "login" page
 
     Scenario: Successful login as a Client
-        When I fill the email box with "client@client.com"
-        And I fill the password box with "123456"
+        When I fill the "email" box with "client@client.com"
+        And I fill the "password" box with "123456"
         And I submit my credentials
         Then I am now at "cliente-home" page
 
 
     Scenario: Successful login as a Admin
-        When I fill the email box with "admin@admin.com"
-        And I fill the password box with "123456"
+        When I fill the "email" box with "admin@admin.com"
+        And I fill the "password" box with "123456"
         And I submit my credentials
         Then I am now at "products" page
 
 
     Scenario: Unsuccessful login
-        When I fill the email box with "client@client.com"
-        And I fill the password box with "wrongpassword"
+        When I fill the "email" box with "client@client.com"
+        And I fill the "password" box with "wrongpassword"
         And I submit my credentials
         Then I see the "Credenciais invalidas" alert
         And I accept the alert

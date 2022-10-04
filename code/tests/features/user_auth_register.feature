@@ -9,8 +9,8 @@ Feature: User Authentication Register
 
 
     Scenario: Sign up new account that already exist
-        When I fill the email box with "client@client.com"
-        And I fill the password box with "123456"
+        When I fill the "email" box with "client@client.com"
+        And I fill the "password" box with "123456"
         And I submit my credentials
         Then I see the "Conta já existente ou formato inválido" alert
         And I accept the alert
