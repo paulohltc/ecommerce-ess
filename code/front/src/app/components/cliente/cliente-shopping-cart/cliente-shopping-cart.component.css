@@ -83,4 +83,18 @@ mat-toolbar {
     width: 32%;
     display: flex;
     justify-content: center;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1950px) {
+    .buttonRemove {
+        width: 40%;
+        font-size: x-small;
+    }
+}
+
+@media only screen and (min-width: 1951px) {
+	.buttonRemove {
+        font-size: small;
+    }
 }

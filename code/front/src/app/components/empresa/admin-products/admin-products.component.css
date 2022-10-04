@@ -14,8 +14,8 @@
 }
 
 .addProduct {
-    height: 3vh;
-    margin-top: 1.5vh;
+    height: 4vh;
+    margin-top: 2vh;
 }
 
 h1 {
@@ -92,6 +92,7 @@ table {
     width: 90%;
     margin-left: 4vw;
     margin-right: auto;
+    margin-top: 2vh;
 }
 
 
