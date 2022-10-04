@@ -5,7 +5,7 @@ import shopsRouter from "./src/routes/shops.routes";
 
 const server = express();
 
-const port = 8080;
+const port = 8085;
 
 server.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');

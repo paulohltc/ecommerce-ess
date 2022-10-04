@@ -2,7 +2,7 @@ from math import prod
 import time
 import requests
 
-base = 'http://localhost:8080'
+base = 'http://localhost:8085'
 
 prevStock = 0
 

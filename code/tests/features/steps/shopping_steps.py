@@ -19,7 +19,7 @@ login = {
     },
 }
 def removeSaleAndRestockProducts(saleId):
-    base = 'http://localhost:8080'
+    base = 'http://localhost:8085'
     responseShop = requests.get(base + '/shops/client@client.com')
     prodCode = responseShop.json()[saleId]['items'][0]['product']['code']
     requests.delete(base + '/shops/code/'+saleId)
