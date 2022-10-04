@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Route, Router, RouterFeature } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 import { ShopsService } from 'src/app/services/shops/shops.service';
 import { formatCPF, formatPrice } from 'src/app/utils/utils';
 import { Shop } from '../../../../../../models/shop'
@@ -25,7 +26,7 @@ export class AdminSalesComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
 
-  constructor(private auth: AuthService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private shopsService: ShopsService, private router: Router) {
+  constructor(private shoppingCartService: ShoppingCartService, private auth: AuthService, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private shopsService: ShopsService, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -57,6 +58,8 @@ export class AdminSalesComponent implements OnInit {
   }
 
   logout(): void {
+    this.shoppingCartService.clearCart();
+    this.shoppingCartService.clearItems();
     this.auth.logout();
   }
 

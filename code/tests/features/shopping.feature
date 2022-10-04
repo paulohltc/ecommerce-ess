@@ -7,9 +7,15 @@ Feature: Buying products as a client
         Given I have logged in as a client
         And I am at the "cliente-home" page
 
-    Scenario: Successful add product to cart
-        When I want to buy the first product of the products list
-        Then I see the "Produto adicionado com sucesso" alert
+    # Scenario: Successful add
+    #     When I added the first product of the products list to the cart
+    #     Then I see the "Produto adicionado com sucesso" alert
+
+    Scenario: Successful shop
+        Given I added the first product of the products list to the cart
+        And I click the shopping cart button
+        And I am at the "shopping-cart" page
+        And I click the first panel
 
 # Background: shopping cart page
 # Given I have logged in as a "cliente"

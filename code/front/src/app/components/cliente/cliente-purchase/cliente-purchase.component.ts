@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 import { ShopsService } from 'src/app/services/shops/shops.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class ClientePurchaseComponent implements OnInit {
     complemento: new FormControl('', [Validators.required])
   });;
 
-  constructor(private formBuilder: FormBuilder, private shopsService: ShopsService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private shopsService: ShopsService, private shoppingCartService: ShoppingCartService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -35,11 +36,11 @@ export class ClientePurchaseComponent implements OnInit {
 
   purchase() {
     if (this.validForm()) {
-      this.shopsService.purchaseItems(this.enderecoForm.value).subscribe({
+      this.shoppingCartService.purchaseItems(this.enderecoForm.value).subscribe({
         next: () => {
           this.router.navigateByUrl('/cliente-home')
         }, error: () => {
-
+          alert('Error')
         }
       })
     }

@@ -27,35 +27,6 @@ productsRouter.route("/available")
         const productsJson = Object.fromEntries(mapProducts);
         return res.json(productsJson);
     })
-// shopping cart
-productsRouter.route("/cart")
-    .get((req: Request, res: Response) => {
-        const mapProducts = productsController.getShoppingCart();
-        const productsJson = Object.fromEntries(mapProducts);
-        return res.json(productsJson);
-    })
-    .post((req: Request, res: Response) => {
-        const codeJson = req.body;
-        const valid = productsController.addProductToCart(codeJson.code);
-        if (!valid) {
-            return res.status(404).json({ err: "Produto não encontrado" });
-        }
-        return res.json({ success: "Produto adicionado ao carrinho com sucesso" });
-    })
-productsRouter.route("/cart/:code")
-    .delete((req: Request, res: Response) => {
-        const code = req.params.code;
-        const del = productsController.deleteProductFromCart(code);
-        if (!del) {
-            return res.status(404).json({ err: "Produto não encontrado" });
-        }
-        return res.json({ success: "Produto removido do carrinho com sucesso" });
-    })
-productsRouter.route("/cart/clear")
-    .get((req: Request, res: Response) => {
-        productsController.clearCart();
-        return res.json({ success: "Carrinho limpo com sucesso" });
-    })
 
 // specific product
 productsRouter.route("/code/:code")

@@ -1,50 +1,46 @@
 <html>
 <app-navbar></app-navbar>
 
-<mat-accordion class="parent">
-    <mat-expansion-panel class="example-headers-align" *ngFor="let product of dataSource; let i = index;">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{product.name}}
-            </mat-panel-title>
-            <mat-panel-description>
-                Modifique seu pedido
-            </mat-panel-description>
-        </mat-expansion-panel-header>
 
-        <div class="grand-parent">
-            <div class="container">
-                <div class="productInfo">
+<div class="content">
+
+    <div class="container">
+        <div class="header">
+            <h1>Total: {{formatPrice(totalPrice())}}</h1>
+        </div>
+        <div class="purchase">
+            <a class="purchaseBtn" mat-raised-button color="primary" target="_blank"
+                (click)="continuePurchase()">Realizar
+                compra</a>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
+            *ngFor="let product of shoppingCart; index as i;">
+            <mat-card class="mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p class="price">
+                        {{formatPrice(quantities[i] < 0 ? 0 : product.price*quantities[i])}} </p>
+                </mat-card-content>
+                <mat-card-actions>
                     <mat-form-field class="qty" appearance="fill">
                         <mat-label class="qty" placeholder="1">Quantidade</mat-label>
                         <input matInput type="number" min="1" step="1" [(ngModel)]="quantities[i]">
                         <p class="errorQty" *ngIf="quantities[i] > product.stock">Estoque inexistente
                         </p>
-                        <p class="errorQty" *ngIf="quantities[i] === 0">Valor menor que 1
+                        <p class="errorQty" *ngIf="quantities[i] < 1">Valor menor que 1
                         </p>
                     </mat-form-field>
-
-                    <p>Total deste item:</p>
-                    <p class="price">{{formatPrice(quantities[i]*product.price)}}</p>
-
-
                     <a class="buttonRemove" mat-raised-button color="primary" target="_blank"
                         (click)="removeItemFromCart(i)">Remover produto</a>
-                </div>
-            </div>
-
+                </mat-card-actions>
+            </mat-card>
         </div>
-
-
-
-    </mat-expansion-panel>
-</mat-accordion>
-
-<p class="totalAmountText">Subtotal do carrinho:</p>
-<p class="totalAmount">{{formatPrice(totalPrice())}}</p>
-
-<div class="shopButton">
-    <a mat-raised-button color="primary" target="_blank" (click)="continuePurchase()">Continuar</a>
+    </div>
 </div>
 
 </html>

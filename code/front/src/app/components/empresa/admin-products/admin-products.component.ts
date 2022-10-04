@@ -6,6 +6,7 @@ import { Product } from '../../../../../../models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { formatPrice } from 'src/app/utils/utils';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ShoppingCartService } from 'src/app/services/shoppingCart/shopping-cart.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -25,7 +26,7 @@ export class AdminProductsComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(private auth: AuthService, private router: Router, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private productsService: ProductsService) {
+  constructor(private shoppingCartService: ShoppingCartService, private auth: AuthService, private router: Router, private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private productsService: ProductsService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -41,6 +42,8 @@ export class AdminProductsComponent implements OnInit {
   }
 
   logout(): void {
+    this.shoppingCartService.clearCart();
+    this.shoppingCartService.clearItems();
     this.auth.logout();
   }
 

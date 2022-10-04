@@ -11,7 +11,6 @@
           <mat-card-title>{{product.name}}</mat-card-title>
         </mat-card-header>
         <img mat-card-image class="image-photo" src="\assets\images\product-image.png">
-        <!-- "\assets\images\pc-gamer.jpg" -->
         <mat-card-content>
           <p class="price">
             {{formatPrice(product.price)}}
@@ -31,50 +30,5 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="sec1">
-        <mat-form-field appearance="standard">
-        <mat-label>Procurar por produto</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="filter">
-        </mat-form-field>
-    </div>
-
-    <p *ngIf="msgAddShopDisplay">
-        Item adicionado ao carrinho com sucesso!
-      </p>
-
-    <table mat-table [dataSource]="dataSourceProducts" class="table">
-
-
-        <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome do produto </th>
-        <td mat-cell *matCellDef="let element"> {{(element.name)}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef> Categoria </th>
-        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Preço unitário </th>
-        <td mat-cell *matCellDef="let element"> {{formatPrice(element.price)}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="carrinho">
-            <th mat-header-cell *matHeaderCellDef> Adicionar ao carrinho </th>
-            <td mat-cell *matCellDef="let i=index">
-              <button class="removeBtn" type="button" (click)="addProductToCart(getcodefromIndex(i))">Adicionar</button>
-            </td>
-          </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-        </tr>
-
-    </table> -->
 
 </html>

@@ -1,5 +1,5 @@
 import { Product } from "../../../models/product";
-
+8
 export class ProductsController {
 
     private geladeira: Product = { code: '0', stock: 10, name: 'Geladeira', price: 1550, description: '400W muito boa' };
@@ -10,7 +10,6 @@ export class ProductsController {
     private teclado: Product = { code: '5', stock: 100, name: 'Teclado gamer', price: 545, description: 'Gamer' };
     private codeNum: number = 6;
 
-    private shoppingCart: Map<string, Product>; // codes
     private products: Map<string, Product>;
 
     constructor() {
@@ -19,9 +18,9 @@ export class ProductsController {
             [this.microondas.code, this.microondas],
             [this.fogao.code, this.fogao],
             [this.tv.code, this.tv],
-            [this.liqui.code, this.liqui]
+            [this.liqui.code, this.liqui],
+            [this.teclado.code, this.teclado]
         ]);
-        this.shoppingCart = new Map([]);
     }
 
     getStock(code: string): number | undefined {
@@ -35,29 +34,6 @@ export class ProductsController {
         prod.stock = stock;
         this.products.set(code, prod);
         return true;
-    }
-    getShoppingCart(): Map<string, Product> {
-        return this.shoppingCart;
-    }
-
-    addProductToCart(code: string): boolean {
-        var existsProduct = this.productExists(code);
-        if (existsProduct) {
-            this.shoppingCart.set(code, this.products.get(code)!);
-        }
-        return existsProduct;
-    }
-
-    deleteProductFromCart(code: string): boolean {
-        var productInCart = this.isProductInCart(code);
-        if (productInCart) {
-            this.shoppingCart.delete(code);
-        }
-        return productInCart;
-    }
-
-    clearCart() {
-        this.shoppingCart = new Map([]);
     }
 
     getProduct(code: string): Product | undefined {
@@ -76,10 +52,6 @@ export class ProductsController {
             }
         })
         return available;
-    }
-
-    isProductInCart(code: string): boolean {
-        return this.shoppingCart.has(code);
     }
 
     productExists(code: string): boolean {
