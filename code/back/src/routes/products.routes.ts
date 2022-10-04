@@ -22,7 +22,6 @@ productsRouter.route("/")
 // query by stock > 0
 productsRouter.route("/available")
     .get((req: Request, res: Response) => {
-        const filter = req.params.filter;
         const mapProducts = productsController.getAvailableProducts();
         const productsJson = Object.fromEntries(mapProducts);
         return res.json(productsJson);
@@ -65,14 +64,14 @@ productsRouter.route("/code/:code/stock")
         }
         return res.json({ stock });
     })
-productsRouter.route("/code/:code/stock/:stock")
-    .get((req: Request, res: Response) => {
+    .put((req: Request, res: Response) => {
         const code = req.params.code;
-        const stock = req.params.stock;
-        const update = productsController.updateStock(code, +stock);
+        const stock = req.body.stock;
+        const update = productsController.updateStock(code, stock);
         if (!update) {
             return res.status(404).json({ err: "Produto não encontrado" });
         }
         return res.json({ success: "Produto atualizado com sucesso" });
     })
+
 export default productsRouter;

@@ -7,11 +7,6 @@ Feature: User Authentication Register
         Given I am using the Chrome browser
         And I go to "register" page
 
-    # Scenario: Sign up new account that does not exist
-    #     When I fill the email box with "Clecio"
-    #     And I fill the password box with "clecio123456"
-    #     And I submit my credentials
-    #     Then I am now at "login" page
 
     Scenario: Sign up new account that already exist
         When I fill the email box with "client@client.com"

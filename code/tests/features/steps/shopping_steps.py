@@ -7,7 +7,6 @@ from selenium.webdriver.common.by import By
 from user_auth_steps import fillBox,submitCredentials
 import time
 import requests
-import json
 
 login = {
     'admin' : {
@@ -25,8 +24,11 @@ def removeSaleAndRestockProducts(saleId):
     prodCode = responseShop.json()[saleId]['items'][0]['product']['code']
     requests.delete(base + '/shops/code/'+saleId)
     responseStock = requests.get(base + '/products/code/' + prodCode + '/stock')
-    newStock = responseStock.json()['stock'] + 1  
-    requests.get(base + '/products/code/' + prodCode + '/stock/' + str(newStock))
+    newStock = responseStock.json()['stock'] + 1
+    body = {
+        "stock": newStock,
+    }    
+    requests.put(base + '/products/code/' + prodCode + '/stock', json=body)
 
 
 def getText(element):
