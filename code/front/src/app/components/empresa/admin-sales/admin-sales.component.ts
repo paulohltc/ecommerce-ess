@@ -20,7 +20,7 @@ export class AdminSalesComponent implements OnInit {
   formatCPF = formatCPF;
   formatPrice = formatPrice;
   shops: Shop[] = []
-  displayedColumns: string[] = ['codigoSale', 'qty', 'name', 'email', 'CPF', 'total', 'info'];
+  displayedColumns: string[] = ['codigoSale', 'qty', 'name', 'email', 'CPF', 'total', 'info', 'remove'];
 
 
   private _mobileQueryListener: () => void;
@@ -67,6 +67,17 @@ export class AdminSalesComponent implements OnInit {
     var detailsCode = this.shops[index].code;
     this.shopsService.setCurrentShop(detailsCode);
     this.router.navigateByUrl('/items');
+  }
+
+  removeSale(index: number) {
+    var saleCode = this.shops[index].code;
+    this.shopsService.removeShop(saleCode).subscribe({
+      next: () => {
+        this.refresh();
+      }, error: () => {
+        alert('Error')
+      }
+    })
   }
 
 }

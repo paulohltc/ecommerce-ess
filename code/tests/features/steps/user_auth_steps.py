@@ -4,6 +4,16 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import time
 
+inputBoxId = {
+    'name': 'nameInput',
+    'email': 'emailInput',
+    'password': 'passwordInput',
+    'CPF': 'CPFInput',
+    'CEP': 'CEPInput',
+    'rua': 'ruaInput',
+    'numero': 'numeroInput',
+    'complemento': 'complementoInput'
+}
 
 @given('I am using the Chrome browser')
 def launchBrowser(context):
@@ -17,18 +27,10 @@ def loadPage(context,page):
     url = base + page
     context.driver.get(url)
 
-@when('I fill the name box with "{name}"')
-def fillName(context,name):
-    context.driver.find_element(By.ID, 'nameInput').send_keys(name)
 
-@when('I fill the email box with "{email}"')
-def fillEmail(context,email):
-    context.driver.find_element(By.ID, 'emailInput').send_keys(email)
-
-
-@when('I fill the password box with "{password}"')
-def fillPassword(context,password):
-    context.driver.find_element(By.ID, 'passwordInput').send_keys(password)
+@when('I fill the "{box}" box with "{data}"')
+def fillBox(context,box,data):
+    context.driver.find_element(By.ID, inputBoxId[box]).send_keys(data)
 
 
 @when('I submit my credentials')

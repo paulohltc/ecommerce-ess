@@ -16,6 +16,24 @@ shopsRouter.route("/")
         shopsController.addShop(shop);
         return res.json({ success: "Compra cadastrado com sucesso" });
     })
+shopsRouter.route("/code/:code")
+    .get((req: Request, res: Response) => {
+        const code = req.params.code;
+        const shop = shopsController.getShop(code)
+        if (!shop) {
+            return res.status(404).json({ err: "Compra não encontrada" });
+        }
+        return res.json(shop);
+    })
+    .delete((req: Request, res: Response) => {
+        const code = req.params.code;
+        const exists = shopsController.deleteShop(code)
+        if (!exists) {
+            return res.status(404).json({ err: "Compra não encontrada" });
+        }
+        return res.json({ success: "Compra deletada com sucesso" });
+    })
+
 shopsRouter.route("/:email")
     .get((req: Request, res: Response) => {
         const email = req.params.email;

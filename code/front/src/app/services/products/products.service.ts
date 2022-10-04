@@ -48,8 +48,7 @@ export class ProductsService {
   }
 
   updateProductStock(code: string, stock: number): Observable<any> {
-    var stockObj = { stock: stock };
-    return this.http.put<any>(environment.url + '/products/code/' + code + '/stock', stockObj);
+    return this.http.get<any>(environment.url + '/products/code/' + code + '/stock/' + stock);
   }
 
 

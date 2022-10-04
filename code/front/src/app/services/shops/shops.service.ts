@@ -40,4 +40,8 @@ export class ShopsService {
     return this.http.get<any>(environment.url + '/shops/' + email);
   }
 
+  removeShop(code: string): Observable<any> {
+    return this.http.delete<any>(environment.url + '/shops/code/' + code)
+  }
+
 }

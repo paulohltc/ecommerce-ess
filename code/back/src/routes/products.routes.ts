@@ -65,10 +65,11 @@ productsRouter.route("/code/:code/stock")
         }
         return res.json({ stock });
     })
-    .put((req: Request, res: Response) => {
+productsRouter.route("/code/:code/stock/:stock")
+    .get((req: Request, res: Response) => {
         const code = req.params.code;
-        const stock = req.body.stock;
-        const update = productsController.updateStock(code, stock);
+        const stock = req.params.stock;
+        const update = productsController.updateStock(code, +stock);
         if (!update) {
             return res.status(404).json({ err: "Produto não encontrado" });
         }

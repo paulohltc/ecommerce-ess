@@ -16,6 +16,10 @@ export class ShopsController {
         return this.shops;
     }
 
+    getShop(code: string): Shop | undefined {
+        return this.shops.get(code);
+    }
+
     getShopsFromEmail(email: string): Map<string, Shop> {
         var emailShops = new Map(this.shops);
         emailShops.forEach((value: Shop, key: string) => {
@@ -47,7 +51,7 @@ export class ShopsController {
         this.codeNum++;
     }
 
-    deleteProduct(code: string): boolean {
+    deleteShop(code: string): boolean {
         var exists = this.shopExists(code);
         if (exists) {
             this.shops.delete(code);

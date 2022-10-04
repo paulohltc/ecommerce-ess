@@ -7,8 +7,8 @@
             <h1>Detalhes da compra</h1>
             <mat-form-field class="name" appearance="fill">
                 <mat-label>Nome</mat-label>
-                <input matInput placeholder="Ex. Cynara Costa" maxlength="55" matInput formControlName="name"
-                    name="name">
+                <input id="nameInput" matInput placeholder="Ex. Cynara Costa" maxlength="55" matInput
+                    formControlName="name" name="name">
                 <mat-error *ngIf="this.enderecoForm.controls.name.hasError">Favor preencher nome corretamente
                 </mat-error>
                 <mat-error *ngIf="enderecoForm.get('name')?.errors?.CPF"></mat-error>
@@ -16,29 +16,32 @@
 
             <mat-form-field class="CPF" appearance="fill">
                 <mat-label>CPF</mat-label>
-                <input matInput placeholder="Ex. 123456789" maxlength="11" matInput formControlName="CPF" name="CPF">
+                <input id="CPFInput" matInput placeholder="Ex. 123456789" maxlength="11" matInput formControlName="CPF"
+                    name="CPF">
                 <mat-error *ngIf="this.enderecoForm.controls.CPF.hasError">Favor preencher CPF corretamente</mat-error>
                 <mat-error *ngIf="enderecoForm.get('CPF')?.errors?.CPF"></mat-error>
             </mat-form-field>
 
             <mat-form-field class="CEP" appearance="fill">
                 <mat-label>CEP</mat-label>
-                <input matInput placeholder="Ex. 51021-450" maxlength="8" matInput formControlName="CEP" name="CEP">
+                <input id="CEPInput" matInput placeholder="Ex. 51021-450" maxlength="8" matInput formControlName="CEP"
+                    name="CEP">
                 <mat-error *ngIf="this.enderecoForm.controls.CEP.hasError">Favor preencher CEP corretamente</mat-error>
                 <mat-error *ngIf="enderecoForm.get('CEP')?.errors?.CEP"></mat-error>
             </mat-form-field>
 
             <mat-form-field class="rua" appearance="fill">
                 <mat-label>Rua</mat-label>
-                <input matInput placeholder="Ex. Rua Poeta Augusto" maxlength="55" matInput formControlName="rua"
-                    name="rua">
+                <input id="ruaInput" matInput placeholder="Ex. Rua Poeta Augusto" maxlength="55" matInput
+                    formControlName="rua" name="rua">
                 <mat-error *ngIf="this.enderecoForm.controls.rua.hasError">Favor preencher rua corretamente</mat-error>
                 <mat-error *ngIf="enderecoForm.get('rua')?.errors?.rua"></mat-error>
             </mat-form-field>
 
             <mat-form-field class="numero" appearance="fill">
                 <mat-label>Número</mat-label>
-                <input matInput placeholder="Ex. 38" maxlength="8" matInput formControlName="numero" name="numero">
+                <input id="numeroInput" matInput placeholder="Ex. 38" maxlength="8" matInput formControlName="numero"
+                    name="numero">
                 <mat-error *ngIf="this.enderecoForm.controls.numero.hasError">Favor preencher número corretamente
                 </mat-error>
                 <mat-error *ngIf="enderecoForm.get('numero')?.errors?.numero"></mat-error>
@@ -46,14 +49,15 @@
 
             <mat-form-field class="complemento" appearance="fill">
                 <mat-label>Complemento</mat-label>
-                <input matInput placeholder="Ex. Apt 5102" maxlength="30" matInput formControlName="complemento"
-                    name="complemento">
+                <input id="complementoInput" matInput placeholder="Ex. Apt 5102" maxlength="30" matInput
+                    formControlName="complemento" name="complemento">
                 <mat-error *ngIf="this.enderecoForm.controls.complemento.hasError">Favor preencher complemento
                     corretamente</mat-error>
                 <mat-error *ngIf="enderecoForm.get('complemento')?.errors?.complemento"></mat-error>
             </mat-form-field>
 
-            <a mat-raised-button color="primary" (click)="purchase()" target="_blank">Concluir compra!</a>
+            <a id="purchaseBtn" mat-raised-button color="primary" (click)="purchase()" target="_blank">Concluir
+                compra!</a>
         </form>
     </div>
 </div>
