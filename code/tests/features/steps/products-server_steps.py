@@ -32,7 +32,6 @@ def checkCodeServer(context,code):
     global prevStock
     response = requests.get(base + '/products/code/' + code)
     prevStockJson = requests.get(base + '/products/code/' + code + '/stock')
-    print(prevStockJson.json())
     prevStock = prevStockJson.json()['stock']
     assert response.status_code == 200
 
@@ -53,6 +52,5 @@ def checkStock(context,stock,code):
     body = {
         "stock": prevStock
     }
-    print(body)
     requests.put(base + '/products/code/' + code + '/stock', json=body)
     assert currStock == int(stock)
